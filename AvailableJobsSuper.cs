@@ -85,76 +85,18 @@ namespace Opus_Proto_1
                 {
                     for (int i = 1; i < leftovers+1; i++)
                     {
-                        AvailableJobs availableJob = new AvailableJobs();
-                        AvailableJobs previousJob;
-                        pnlAJSMain.Controls.Add(availableJob);
-                        if (pnlAJSMain.Controls.Count < 2)
-                        {
-                            availableJob.Location = new Point(0, 0);
-                        }
-                        else
-                        {
-                            previousJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 2];
-                            availableJob.Location = new Point(0, previousJob.Location.Y + previousJob.Height + 3);
-                        }
-                        availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + index].JobCode);
-                        availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + index].Username);
-                        availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + index].Desc);
-                        availableJob.SetRating((int.Parse(cf.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + index].Username + "'", conn)) / 5 * 100));
-                        availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + index].PayAmount);
-                        availableJob.index = pnlAJSMain.Controls.Count - 1;
-                        availableJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
-                         | System.Windows.Forms.AnchorStyles.Left))));
+                        Left(index);
                     }
                 }
                 else
                 {
                     for (int i = 1; i < 26; i++)
                     {
-                        AvailableJobs availableJob = new AvailableJobs();
-                        AvailableJobs previousJob;
-                        pnlAJSMain.Controls.Add(availableJob);
-                        if (pnlAJSMain.Controls.Count < 2)
-                        {
-                            availableJob.Location = new Point(0, 0);
-                        }
-                        else
-                        {
-                            previousJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 2];
-                            availableJob.Location = new Point(0, previousJob.Location.Y + previousJob.Height + 3);
-                        }
-                        availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + index].JobCode);
-                        availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + index].Username);
-                        availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + index].Desc);
-                        availableJob.SetRating((int.Parse(cf.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + index].Username + "'", conn)) / 5 * 100));
-                        availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + index].PayAmount);
-                        availableJob.index = pnlAJSMain.Controls.Count - 1;
-                        availableJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
-                         | System.Windows.Forms.AnchorStyles.Left))));
+                        Left(index);
                     }
                     for (int i = 1; i < leftovers - 24; i++)
                     {
-                        AvailableJobs availableJob = new AvailableJobs();
-                        AvailableJobs previousJob;
-                        AvailableJobs rightFirstJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 25];
-                        pnlAJSMain.Controls.Add(availableJob);
-                        if (pnlAJSMain.Controls.Count < 27)
-                        {
-                            availableJob.Location = new Point(rightFirstJob.Location.X + rightFirstJob.Width + SPACERX, 0);
-                        }
-                        else
-                        {
-                            previousJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 27];
-                            availableJob.Location = new Point(previousJob.Width + SPACERX, previousJob.Location.Y + previousJob.Height + SPACERY);
-                        }
-                        availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + index].JobCode);
-                        availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + index].Username);
-                        availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + index].Desc);
-                        availableJob.SetRating((int.Parse(cf.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + index].Username.ToString() + "'", conn)) / 5 * 100));
-                        availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + index].PayAmount);
-                        availableJob.index = pnlAJSMain.Controls.Count - 1;
-                        availableJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
-                         | System.Windows.Forms.AnchorStyles.Left))));
+                        Right(index);
                     }
                 }
             }
@@ -162,50 +104,11 @@ namespace Opus_Proto_1
             {
                 for (int i = 1; i < 26; i++)
                 {
-                    AvailableJobs availableJob = new AvailableJobs();
-                    AvailableJobs previousJob;
-                    pnlAJSMain.Controls.Add(availableJob);
-                    if (pnlAJSMain.Controls.Count < 2)
-                    {
-                        availableJob.Location = new Point(0, 0);
-                    }
-                    else
-                    {
-                        previousJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 2];
-                        availableJob.Location = new Point(0, previousJob.Location.Y + previousJob.Height + 3);
-                    }
-                    availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + index].JobCode);
-                    availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + index].Username);
-                    availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + index].Desc);
-                    availableJob.SetRating((int.Parse(cf.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + index].Username + "'", conn)) / 5 * 100));
-                    availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + index].PayAmount);
-                    availableJob.index = pnlAJSMain.Controls.Count - 1;
-                    availableJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
-                     | System.Windows.Forms.AnchorStyles.Left))));
+                    Left(index);
                 }
                 for (int i = 1; i < 26; i++)
                 {
-                    AvailableJobs availableJob = new AvailableJobs();
-                    AvailableJobs previousJob;
-                    AvailableJobs rightFirstJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 25];
-                    pnlAJSMain.Controls.Add(availableJob);
-                    if (pnlAJSMain.Controls.Count < 27)
-                    {
-                        availableJob.Location = new Point(rightFirstJob.Location.X + rightFirstJob.Width + SPACERX, 0);
-                    }
-                    else
-                    {
-                        previousJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 27];
-                        availableJob.Location = new Point(previousJob.Width + SPACERX, previousJob.Location.Y + previousJob.Height + SPACERY);
-                    }
-                    availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + index].JobCode);
-                    availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + index].Username);
-                    availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + index].Desc);
-                    availableJob.SetRating((int.Parse(cf.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + index].Username.ToString() + "'", conn)) / 5 * 100));
-                    availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + index].PayAmount);
-                    availableJob.index = pnlAJSMain.Controls.Count - 1;
-                    availableJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
-                     | System.Windows.Forms.AnchorStyles.Left))));
+                    Right(index);
                 }
             }       
         }        
@@ -221,6 +124,53 @@ namespace Opus_Proto_1
                     lstJobs.Add(new Jobs(dataReader));
                 }
             }
+        }
+        private void Left(int Index)
+        {
+            AvailableJobs availableJob = new AvailableJobs();
+            AvailableJobs previousJob;
+            pnlAJSMain.Controls.Add(availableJob);
+            if (pnlAJSMain.Controls.Count < 2)
+            {
+                availableJob.Location = new Point(0, 0);
+            }
+            else
+            {
+                previousJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 2];
+                availableJob.Location = new Point(0, previousJob.Location.Y + previousJob.Height + 3);
+            }
+            availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode);
+            availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username);
+            availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
+            availableJob.SetRating((int.Parse(cf.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username + "'", conn)) / 5 * 100));
+            availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount);
+            availableJob.index = pnlAJSMain.Controls.Count - 1;
+            availableJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
+             | System.Windows.Forms.AnchorStyles.Left))));
+        }
+        private void Right(int Index)
+        {
+            AvailableJobs availableJob = new AvailableJobs();
+            AvailableJobs previousJob;
+            AvailableJobs rightFirstJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 25];
+            pnlAJSMain.Controls.Add(availableJob);
+            if (pnlAJSMain.Controls.Count < 27)
+            {
+                availableJob.Location = new Point(rightFirstJob.Location.X + rightFirstJob.Width + SPACERX, 0);
+            }
+            else
+            {
+                previousJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 27];
+                availableJob.Location = new Point(previousJob.Width + SPACERX, previousJob.Location.Y + previousJob.Height + SPACERY);
+            }
+            availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode);
+            availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username);
+            availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
+            availableJob.SetRating((int.Parse(cf.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username.ToString() + "'", conn)) / 5 * 100));
+            availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount);
+            availableJob.index = pnlAJSMain.Controls.Count - 1;
+            availableJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
+             | System.Windows.Forms.AnchorStyles.Left))));
         }
 
         //Need event arguement to shoot to Userprofile page
