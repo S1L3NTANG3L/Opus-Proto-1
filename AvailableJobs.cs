@@ -12,6 +12,7 @@ namespace Opus_Proto_1
 {
     public partial class AvailableJobs : UserControl
     {
+        public int index = 0;
         public AvailableJobs()
         {
             InitializeComponent();
@@ -31,6 +32,10 @@ namespace Opus_Proto_1
         public void SetRating(int value)
         {
             pbRating.Value = value;
+        }
+        public void SetPaymentRate(int value)
+        {
+            lblPaymentRate.Text = value.ToString();
         }
         private void lblUsername_Click(object sender, EventArgs e)
         {

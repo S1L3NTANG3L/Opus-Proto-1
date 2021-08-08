@@ -98,12 +98,14 @@ namespace Opus_Proto_1
             this.pbRating.Location = new System.Drawing.Point(236, 177);
             this.pbRating.Name = "pbRating";
             this.pbRating.Size = new System.Drawing.Size(125, 29);
+            this.pbRating.Step = 1;
             this.pbRating.TabIndex = 6;
             // 
             // AvailableJobs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(130)))), ((int)(((byte)(182)))));
             this.Controls.Add(this.pbRating);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.label2);

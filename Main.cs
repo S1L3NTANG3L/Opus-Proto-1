@@ -35,7 +35,9 @@ namespace Opus_Proto_1
                 update.index = i;
             }
             pnlMain.Controls.Remove(login);
-            //Create Availablejobssuper
+            AvailableJobsSuper availableJobsSuper = new AvailableJobsSuper();
+            pnlMain.Controls.Add(availableJobsSuper);
+            availableJobsSuper.Location = new Point(pnlMain.Width / 2 - 252, 0);
         }
     }
 }//Create load functions

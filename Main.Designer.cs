@@ -37,18 +37,18 @@ namespace Opus_Proto_1
             this.pnlMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlMain.AutoScroll = true;
             this.pnlMain.AutoSize = true;
-            this.pnlMain.Location = new System.Drawing.Point(1, 0);
+            this.pnlMain.Location = new System.Drawing.Point(12, 12);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(893, 713);
+            this.pnlMain.Size = new System.Drawing.Size(746, 677);
             this.pnlMain.TabIndex = 0;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(896, 716);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(84)))), ((int)(((byte)(110)))));
+            this.ClientSize = new System.Drawing.Size(993, 701);
             this.Controls.Add(this.pnlMain);
             this.Name = "frmMain";
             this.Text = "Opus";
