@@ -27,10 +27,10 @@ namespace Opus_Proto_1
         }
         private void AvailableJobsSuper_Load(object sender, EventArgs e)
         {            
-            conn = cf.CreateRemoteSQLConnection("10.100.100.15", "13306", "Rechard", "V<6OD|>!$i]L", "opus_db");            
+            conn = cf.CreateRemoteSQLConnection("10.100.100.15", "13306", "Rechard", "V<6OD|>!$i]L", "opus_db");
+            cmbCategory.Items.AddRange(cf.GetStringArraySQL("SELECT Job_Name FROM job_types", conn));
             btnPrevious.Visible = false;
-            //Fill combobox
-            FillList("SELECT * FROM available_jobs");
+            FillList("SELECT * FROM available_jobs");            
             int number = cf.GetCountSQL("SELECT COUNT(Job_Code) FROM available_jobs", conn);
             decimal dtot = (decimal)(number / 50);
             totalPageCount = (int)Math.Ceiling(dtot);
@@ -40,7 +40,16 @@ namespace Opus_Proto_1
         {
             pageNumber--;
             pnlAJSMain.Controls.Clear();
-            LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs");
+            if(cmbCategory.SelectedIndex == -1)
+            {
+                LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs");
+            }
+            else
+            {
+                string jobCode = cf.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'", conn);
+                LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'");
+            }
+            
             if (pageNumber == 1)
             {
                 btnPrevious.Visible = false;
@@ -54,7 +63,15 @@ namespace Opus_Proto_1
         {
             pageNumber++;
             pnlAJSMain.Controls.Clear();
-            LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs");
+            if (cmbCategory.SelectedIndex == -1)
+            {
+                LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs");
+            }
+            else
+            {
+                string jobCode = cf.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'", conn);
+                LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'");
+            }
             if (pageNumber > 1)
             {
                 btnPrevious.Visible = true;
@@ -67,12 +84,15 @@ namespace Opus_Proto_1
         }
         private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int number = cf.GetCountSQL("SELECT COUNT(Job_Code) FROM available_jobs", conn);
+            pnlAJSMain.Controls.Clear();
+            string jobCode = cf.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'",conn);
+            MessageBox.Show(jobCode);
+            int number = cf.GetCountSQL("SELECT COUNT(Job_Code) FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'" , conn);
             decimal dtot = (decimal)(number / 50);
             totalPageCount = (int)Math.Ceiling(dtot);
             pageNumber = 1;
-            FillList("SELECT * FROM available_jobs");//Needs to change
-            LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs");
+            FillList("SELECT * FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'");
+            LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'");
         }
         private void LoadAvailableJobs(string command)
         {
