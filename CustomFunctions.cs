@@ -1,5 +1,5 @@
 ﻿//Ver. 2.1.3
-using MySql.Data.MySqlClient;//Using a MySQL Database not Microsoft SQL Server
+using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using System.IO;
@@ -231,7 +231,7 @@ namespace SoutiesSandbox
             }
             return new string(chars);
         }
-        public string UUIDGenerator()
+        public string UUIDGenerator()//Generates a unique 11 digit id
         {
             StringBuilder builder = new StringBuilder();
             Enumerable
