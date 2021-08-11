@@ -29,37 +29,16 @@ namespace Opus_Proto_1
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlAJSMain = new System.Windows.Forms.Panel();
-            this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.btnPrevious = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.pnlAJSMain = new System.Windows.Forms.Panel();
+            this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // pnlAJSMain
-            // 
-            this.pnlAJSMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlAJSMain.AutoScroll = true;
-            this.pnlAJSMain.Location = new System.Drawing.Point(3, 46);
-            this.pnlAJSMain.Name = "pnlAJSMain";
-            this.pnlAJSMain.Size = new System.Drawing.Size(1248, 701);
-            this.pnlAJSMain.TabIndex = 0;
-            // 
-            // cmbCategory
-            // 
-            this.cmbCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(877, 12);
-            this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Size = new System.Drawing.Size(374, 28);
-            this.cmbCategory.TabIndex = 1;
-            this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
             // 
             // btnPrevious
             // 
-            this.btnPrevious.Location = new System.Drawing.Point(978, 745);
+            this.btnPrevious.Location = new System.Drawing.Point(933, 652);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(129, 45);
             this.btnPrevious.TabIndex = 2;
@@ -69,7 +48,7 @@ namespace Opus_Proto_1
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(1131, 745);
+            this.btnNext.Location = new System.Drawing.Point(1080, 652);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(117, 45);
             this.btnNext.TabIndex = 3;
@@ -79,7 +58,7 @@ namespace Opus_Proto_1
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(0, 745);
+            this.btnBack.Location = new System.Drawing.Point(3, 652);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(129, 45);
             this.btnBack.TabIndex = 4;
@@ -87,30 +66,44 @@ namespace Opus_Proto_1
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // pnlAJSMain
+            // 
+            this.pnlAJSMain.AutoScroll = true;
+            this.pnlAJSMain.Location = new System.Drawing.Point(0, 40);
+            this.pnlAJSMain.Name = "pnlAJSMain";
+            this.pnlAJSMain.Size = new System.Drawing.Size(1200, 600);
+            this.pnlAJSMain.TabIndex = 5;
+            // 
+            // cmbCategory
+            // 
+            this.cmbCategory.FormattingEnabled = true;
+            this.cmbCategory.Location = new System.Drawing.Point(890, 6);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Size = new System.Drawing.Size(304, 28);
+            this.cmbCategory.TabIndex = 6;
+            // 
             // AvailableJobsSuper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(92)))), ((int)(((byte)(120)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.Controls.Add(this.cmbCategory);
+            this.Controls.Add(this.pnlAJSMain);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrevious);
-            this.Controls.Add(this.cmbCategory);
-            this.Controls.Add(this.pnlAJSMain);
             this.Name = "AvailableJobsSuper";
-            this.Size = new System.Drawing.Size(1254, 795);
+            this.Size = new System.Drawing.Size(1200, 700);
             this.Load += new System.EventHandler(this.AvailableJobsSuper_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel pnlAJSMain;
-        private System.Windows.Forms.ComboBox cmbCategory;
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Panel pnlAJSMain;
+        private System.Windows.Forms.ComboBox cmbCategory;
     }
 }

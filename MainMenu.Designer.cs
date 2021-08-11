@@ -45,9 +45,9 @@ namespace Opus_Proto_1
             // 
             // pbProfile
             // 
-            this.pbProfile.Location = new System.Drawing.Point(69, 57);
+            this.pbProfile.Location = new System.Drawing.Point(25, 25);
             this.pbProfile.Name = "pbProfile";
-            this.pbProfile.Size = new System.Drawing.Size(149, 111);
+            this.pbProfile.Size = new System.Drawing.Size(200, 200);
             this.pbProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbProfile.TabIndex = 0;
             this.pbProfile.TabStop = false;
@@ -55,9 +55,9 @@ namespace Opus_Proto_1
             // 
             // pbOpenJobs
             // 
-            this.pbOpenJobs.Location = new System.Drawing.Point(263, 57);
+            this.pbOpenJobs.Location = new System.Drawing.Point(275, 25);
             this.pbOpenJobs.Name = "pbOpenJobs";
-            this.pbOpenJobs.Size = new System.Drawing.Size(149, 111);
+            this.pbOpenJobs.Size = new System.Drawing.Size(200, 200);
             this.pbOpenJobs.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbOpenJobs.TabIndex = 1;
             this.pbOpenJobs.TabStop = false;
@@ -65,9 +65,9 @@ namespace Opus_Proto_1
             // 
             // pbAvailableJobs
             // 
-            this.pbAvailableJobs.Location = new System.Drawing.Point(69, 181);
+            this.pbAvailableJobs.Location = new System.Drawing.Point(25, 275);
             this.pbAvailableJobs.Name = "pbAvailableJobs";
-            this.pbAvailableJobs.Size = new System.Drawing.Size(149, 111);
+            this.pbAvailableJobs.Size = new System.Drawing.Size(200, 200);
             this.pbAvailableJobs.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbAvailableJobs.TabIndex = 2;
             this.pbAvailableJobs.TabStop = false;
@@ -75,9 +75,9 @@ namespace Opus_Proto_1
             // 
             // pbPastJobs
             // 
-            this.pbPastJobs.Location = new System.Drawing.Point(263, 181);
+            this.pbPastJobs.Location = new System.Drawing.Point(275, 275);
             this.pbPastJobs.Name = "pbPastJobs";
-            this.pbPastJobs.Size = new System.Drawing.Size(149, 111);
+            this.pbPastJobs.Size = new System.Drawing.Size(200, 200);
             this.pbPastJobs.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPastJobs.TabIndex = 3;
             this.pbPastJobs.TabStop = false;
@@ -85,9 +85,9 @@ namespace Opus_Proto_1
             // 
             // pbSettings
             // 
-            this.pbSettings.Location = new System.Drawing.Point(69, 301);
+            this.pbSettings.Location = new System.Drawing.Point(25, 525);
             this.pbSettings.Name = "pbSettings";
-            this.pbSettings.Size = new System.Drawing.Size(149, 111);
+            this.pbSettings.Size = new System.Drawing.Size(200, 200);
             this.pbSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbSettings.TabIndex = 4;
             this.pbSettings.TabStop = false;
@@ -95,9 +95,9 @@ namespace Opus_Proto_1
             // 
             // pbLogout
             // 
-            this.pbLogout.Location = new System.Drawing.Point(263, 301);
+            this.pbLogout.Location = new System.Drawing.Point(275, 525);
             this.pbLogout.Name = "pbLogout";
-            this.pbLogout.Size = new System.Drawing.Size(149, 111);
+            this.pbLogout.Size = new System.Drawing.Size(200, 200);
             this.pbLogout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbLogout.TabIndex = 5;
             this.pbLogout.TabStop = false;
@@ -114,7 +114,7 @@ namespace Opus_Proto_1
             this.Controls.Add(this.pbOpenJobs);
             this.Controls.Add(this.pbProfile);
             this.Name = "MainMenu";
-            this.Size = new System.Drawing.Size(482, 493);
+            this.Size = new System.Drawing.Size(500, 786);
             this.Load += new System.EventHandler(this.MainMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbProfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOpenJobs)).EndInit();

@@ -41,61 +41,66 @@ namespace Opus_Proto_1
             // lblJobName
             // 
             this.lblJobName.AutoSize = true;
-            this.lblJobName.Location = new System.Drawing.Point(3, 9);
+            this.lblJobName.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblJobName.Location = new System.Drawing.Point(3, 0);
             this.lblJobName.Name = "lblJobName";
-            this.lblJobName.Size = new System.Drawing.Size(54, 20);
+            this.lblJobName.Size = new System.Drawing.Size(118, 41);
             this.lblJobName.TabIndex = 0;
             this.lblJobName.Text = "Painter";
             // 
             // redtDesc
             // 
-            this.redtDesc.Location = new System.Drawing.Point(3, 32);
+            this.redtDesc.Location = new System.Drawing.Point(3, 44);
             this.redtDesc.Name = "redtDesc";
             this.redtDesc.ReadOnly = true;
-            this.redtDesc.Size = new System.Drawing.Size(447, 120);
+            this.redtDesc.Size = new System.Drawing.Size(544, 120);
             this.redtDesc.TabIndex = 1;
             this.redtDesc.Text = "Painter need to paint living all paint and tools supplied.";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 155);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(0, 177);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 20);
+            this.label1.Size = new System.Drawing.Size(178, 28);
             this.label1.TabIndex = 2;
             this.label1.Text = "Payment Rate(p/h):";
             // 
             // lblPaymentRate
             // 
             this.lblPaymentRate.AutoSize = true;
-            this.lblPaymentRate.Location = new System.Drawing.Point(144, 155);
+            this.lblPaymentRate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblPaymentRate.Location = new System.Drawing.Point(184, 177);
             this.lblPaymentRate.Name = "lblPaymentRate";
-            this.lblPaymentRate.Size = new System.Drawing.Size(50, 20);
+            this.lblPaymentRate.Size = new System.Drawing.Size(65, 28);
             this.lblPaymentRate.TabIndex = 3;
             this.lblPaymentRate.Text = "label2";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 186);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(0, 205);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 20);
+            this.label2.Size = new System.Drawing.Size(102, 28);
             this.label2.TabIndex = 4;
             this.label2.Text = "Posted by:";
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(88, 186);
+            this.lblUsername.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblUsername.Location = new System.Drawing.Point(111, 205);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(50, 20);
+            this.lblUsername.Size = new System.Drawing.Size(65, 28);
             this.lblUsername.TabIndex = 5;
             this.lblUsername.Text = "label3";
             this.lblUsername.Click += new System.EventHandler(this.lblUsername_Click);
             // 
             // pbRating
             // 
-            this.pbRating.Location = new System.Drawing.Point(236, 177);
+            this.pbRating.Location = new System.Drawing.Point(422, 196);
             this.pbRating.Name = "pbRating";
             this.pbRating.Size = new System.Drawing.Size(125, 29);
             this.pbRating.Step = 1;
@@ -105,7 +110,7 @@ namespace Opus_Proto_1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(130)))), ((int)(((byte)(182)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.Controls.Add(this.pbRating);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.label2);
@@ -114,7 +119,7 @@ namespace Opus_Proto_1
             this.Controls.Add(this.redtDesc);
             this.Controls.Add(this.lblJobName);
             this.Name = "AvailableJobs";
-            this.Size = new System.Drawing.Size(463, 239);
+            this.Size = new System.Drawing.Size(550, 250);
             this.ResumeLayout(false);
             this.PerformLayout();
 

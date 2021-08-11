@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MaterialSkin;
+using MaterialSkin.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,19 +12,21 @@ using System.Windows.Forms;
 
 namespace Opus_Proto_1
 {
-    public partial class frmMain : Form
+    public partial class frmMain : MaterialForm
     {             
         public frmMain()
         {
             InitializeComponent();
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.BLACK);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
             Login lgnForm = new Login();
-            AvailableJobsSuper ajsForm = new AvailableJobsSuper();
-            MainMenu mmForm = new MainMenu();
             pnlMain.Controls.Add(lgnForm);
-            lgnForm.Location = new Point(pnlMain.Width/2-252, 0);            
+            lgnForm.Location = new Point(pnlMain.Width/2-250, 0);            
             lgnForm.onRemoveLogin += new Login.RemoveLoginEventHandler(RemoveLgnSite_Click);
         }
         private void RemoveLgnSite_Click(Object sender, LoginArgs e)
@@ -32,15 +36,16 @@ namespace Opus_Proto_1
             MainMenu mainMenu = new MainMenu();
             mainMenu.onRemoveSite += new MainMenu.RemoveMMEventHandler(RemoveMMSite_Click);
             pnlMain.Controls.Add(mainMenu);
-            mainMenu.Location = new Point(pnlMain.Width / 2 - 252, 0);
+            mainMenu.Location = new Point(pnlMain.Width / 2 - 250, 0);
         }
         private void RemoveAJSSite_Click(Object sender, AvailableJobsSuperArgs e)
         {
             AvailableJobsSuper jobsSuper = (AvailableJobsSuper)sender;
             pnlMain.Controls.Remove(jobsSuper);
             MainMenu mainMenu = new MainMenu();
+            mainMenu.onRemoveSite += new MainMenu.RemoveMMEventHandler(RemoveMMSite_Click);
             pnlMain.Controls.Add(mainMenu);
-            mainMenu.Location = new Point(pnlMain.Width / 2 - 252, 0);
+            mainMenu.Location = new Point(pnlMain.Width / 2 - 250, 0);
         }
         private void RemoveMMSite_Click(Object sender, MainMenuArgs e)
         {
@@ -57,7 +62,7 @@ namespace Opus_Proto_1
                     AvailableJobsSuper availableJobsSuper = new AvailableJobsSuper();
                     availableJobsSuper.onRemoveAJS += new AvailableJobsSuper.RemoveAJSEventHandler(RemoveAJSSite_Click);
                     pnlMain.Controls.Add(availableJobsSuper);
-                    availableJobsSuper.Location = new Point(pnlMain.Width / 2 - 252, 0);
+                    availableJobsSuper.Location = new Point(pnlMain.Width/2-600,0);
                     break;
                 case 4:
                     break;
@@ -67,7 +72,7 @@ namespace Opus_Proto_1
                     Login login = new Login();
                     login.onRemoveLogin += new Login.RemoveLoginEventHandler(RemoveLgnSite_Click);
                     pnlMain.Controls.Add(login);
-                    login.Location = new Point(pnlMain.Width / 2 - 252, 0);
+                    login.Location = new Point(pnlMain.Width / 2 - 250, 0);
                     break;
             }
         }
