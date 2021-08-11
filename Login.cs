@@ -12,9 +12,9 @@ namespace Opus_Proto_1
 {
     public partial class Login : UserControl
     {
-        public int index = 0;
-        public delegate void RemoveSiteEventHandler(Object sender, LoginArgs e);
-        public event RemoveSiteEventHandler onRemoveSite;
+        public int loginI = 0;
+        public delegate void RemoveLoginEventHandler(Object sender, LoginArgs e);
+        public event RemoveLoginEventHandler onRemoveLogin;
         public Login()
         {
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace Opus_Proto_1
         private void btnLogin_Click(object sender, EventArgs e)
         {
             //Add verification etc
-            onRemoveSite(this, new LoginArgs(index));
+            onRemoveLogin(this, new LoginArgs(loginI));
         }
     }
     public class LoginArgs : EventArgs

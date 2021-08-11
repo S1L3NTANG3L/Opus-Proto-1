@@ -14,7 +14,7 @@ namespace Opus_Proto_1
 {
     public partial class AvailableJobsSuper : UserControl
     {
-        public int index=0;
+        public int ajsI=0;
         const int SPACERY = 3;
         const int SPACERX = 20;
         int totalPageCount;
@@ -22,8 +22,8 @@ namespace Opus_Proto_1
         string conn = "";
         List<Jobs> lstJobs = new List<Jobs>();
         CustomFunctions cf = new CustomFunctions();
-        public delegate void RemoveSiteEventHandler(Object sender, AvailableJobsSuperArgs e);
-        public event RemoveSiteEventHandler onRemoveSite;
+        public delegate void RemoveAJSEventHandler(object sender, AvailableJobsSuperArgs e);
+        public event RemoveAJSEventHandler onRemoveAJS;
         public AvailableJobsSuper()
         {
             InitializeComponent();
@@ -99,7 +99,7 @@ namespace Opus_Proto_1
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
-            onRemoveSite(this, new AvailableJobsSuperArgs(index));
+            onRemoveAJS(this, new AvailableJobsSuperArgs(ajsI));
         }
         private void LoadAvailableJobs(string command)
         {

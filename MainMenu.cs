@@ -13,8 +13,8 @@ namespace Opus_Proto_1
     public partial class MainMenu : UserControl
     {
         public int index = 0;
-        public delegate void RemoveSiteEventHandler(Object sender, MainMenuArgs e);
-        public event RemoveSiteEventHandler onRemoveSite;
+        public delegate void RemoveMMEventHandler(Object sender, MainMenuArgs e);
+        public event RemoveMMEventHandler onRemoveSite;
         public MainMenu()
         {
             InitializeComponent();
