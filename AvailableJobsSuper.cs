@@ -40,7 +40,7 @@ namespace Opus_Proto_1
             btnPrevious.Visible = false;
             FillList("SELECT * FROM available_jobs");            
             int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM available_jobs", conn);
-            decimal dtot = (decimal)(number / 50);
+            decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
             LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs");
         }
@@ -96,7 +96,7 @@ namespace Opus_Proto_1
             string jobCode = cF.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'",conn);
             MessageBox.Show(jobCode);
             int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'" , conn);
-            decimal dtot = (decimal)(number / 50);
+            decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
             pageNumber = 1;
             FillList("SELECT * FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'");
@@ -109,11 +109,11 @@ namespace Opus_Proto_1
         private void LoadAvailableJobs(string command)
         {
             int smallCount = cF.GetCountSQL(command,conn);
-            int index = (pageNumber - 1) * 50;
+            int index = (pageNumber - 1) * 20;
             int leftovers = smallCount - index;
-            if (leftovers < 50)
+            if (leftovers < 20)
             {
-                if(leftovers <=25)
+                if(leftovers <=10)
                 {
                     for (int i = 1; i < leftovers+1; i++)
                     {
@@ -122,11 +122,11 @@ namespace Opus_Proto_1
                 }
                 else
                 {
-                    for (int i = 1; i < 26; i++)
+                    for (int i = 1; i < 11; i++)
                     {
                         Left(index);
                     }
-                    for (int i = 1; i < leftovers - 24; i++)
+                    for (int i = 1; i < leftovers - 9; i++)
                     {
                         Right(index);
                     }
@@ -134,11 +134,11 @@ namespace Opus_Proto_1
             }
             else
             {
-                for (int i = 1; i < 26; i++)
+                for (int i = 1; i < 11; i++)
                 {
                     Left(index);
                 }
-                for (int i = 1; i < 26; i++)
+                for (int i = 1; i < 11; i++)
                 {
                     Right(index);
                 }
@@ -184,15 +184,15 @@ namespace Opus_Proto_1
         {
             AvailableJobs availableJob = new AvailableJobs();
             AvailableJobs previousJob;
-            AvailableJobs rightFirstJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 25];
+            AvailableJobs rightFirstJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 10];
             pnlAJSMain.Controls.Add(availableJob);
-            if (pnlAJSMain.Controls.Count < 27)
+            if (pnlAJSMain.Controls.Count < 12)
             {
                 availableJob.Location = new Point(rightFirstJob.Location.X + rightFirstJob.Width + SPACERX, 0);
             }
             else
             {
-                previousJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 27];
+                previousJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 12];
                 availableJob.Location = new Point(previousJob.Width + SPACERX, previousJob.Location.Y + previousJob.Height + SPACERY);
             }
             availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode);
@@ -203,11 +203,7 @@ namespace Opus_Proto_1
             availableJob.index = pnlAJSMain.Controls.Count - 1;
             availableJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
              | System.Windows.Forms.AnchorStyles.Left))));
-        }
-
-        
-
-
+        }  
         //Need event arguement to shoot to Userprofile page
     }
     public class AvailableJobsSuperArgs : EventArgs
