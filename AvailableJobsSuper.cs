@@ -14,6 +14,7 @@ namespace Opus_Proto_1
 {
     public partial class AvailableJobsSuper : UserControl
     {
+        public int index=0;
         const int SPACERY = 3;
         const int SPACERX = 20;
         int totalPageCount;
@@ -21,6 +22,8 @@ namespace Opus_Proto_1
         string conn = "";
         List<Jobs> lstJobs = new List<Jobs>();
         CustomFunctions cf = new CustomFunctions();
+        public delegate void RemoveSiteEventHandler(Object sender, AvailableJobsSuperArgs e);
+        public event RemoveSiteEventHandler onRemoveSite;
         public AvailableJobsSuper()
         {
             InitializeComponent();
@@ -93,6 +96,10 @@ namespace Opus_Proto_1
             pageNumber = 1;
             FillList("SELECT * FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'");
             LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'");
+        }
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            onRemoveSite(this, new AvailableJobsSuperArgs(index));
         }
         private void LoadAvailableJobs(string command)
         {
@@ -193,7 +200,17 @@ namespace Opus_Proto_1
              | System.Windows.Forms.AnchorStyles.Left))));
         }
 
+        
+
         //Need event arguement to shoot to Userprofile page
+    }
+    public class AvailableJobsSuperArgs : EventArgs
+    {
+        public int index;
+        public AvailableJobsSuperArgs(int value)
+        {
+            index = value;
+        }
     }
     public class Jobs
     {

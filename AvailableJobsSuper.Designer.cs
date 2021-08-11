@@ -33,6 +33,7 @@ namespace Opus_Proto_1
             this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.btnPrevious = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pnlAJSMain
@@ -43,14 +44,14 @@ namespace Opus_Proto_1
             this.pnlAJSMain.AutoScroll = true;
             this.pnlAJSMain.Location = new System.Drawing.Point(3, 46);
             this.pnlAJSMain.Name = "pnlAJSMain";
-            this.pnlAJSMain.Size = new System.Drawing.Size(1245, 693);
+            this.pnlAJSMain.Size = new System.Drawing.Size(1248, 701);
             this.pnlAJSMain.TabIndex = 0;
             // 
             // cmbCategory
             // 
             this.cmbCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(874, 12);
+            this.cmbCategory.Location = new System.Drawing.Point(877, 12);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(374, 28);
             this.cmbCategory.TabIndex = 1;
@@ -58,9 +59,9 @@ namespace Opus_Proto_1
             // 
             // btnPrevious
             // 
-            this.btnPrevious.Location = new System.Drawing.Point(1054, 745);
+            this.btnPrevious.Location = new System.Drawing.Point(978, 745);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(94, 29);
+            this.btnPrevious.Size = new System.Drawing.Size(129, 45);
             this.btnPrevious.TabIndex = 2;
             this.btnPrevious.Text = "Previous";
             this.btnPrevious.UseVisualStyleBackColor = true;
@@ -68,13 +69,23 @@ namespace Opus_Proto_1
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(1154, 745);
+            this.btnNext.Location = new System.Drawing.Point(1131, 745);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(94, 29);
+            this.btnNext.Size = new System.Drawing.Size(117, 45);
             this.btnNext.TabIndex = 3;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(0, 745);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(129, 45);
+            this.btnBack.TabIndex = 4;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // AvailableJobsSuper
             // 
@@ -82,12 +93,13 @@ namespace Opus_Proto_1
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(92)))), ((int)(((byte)(120)))));
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.cmbCategory);
             this.Controls.Add(this.pnlAJSMain);
             this.Name = "AvailableJobsSuper";
-            this.Size = new System.Drawing.Size(1251, 787);
+            this.Size = new System.Drawing.Size(1254, 795);
             this.Load += new System.EventHandler(this.AvailableJobsSuper_Load);
             this.ResumeLayout(false);
 
@@ -99,5 +111,6 @@ namespace Opus_Proto_1
         private System.Windows.Forms.ComboBox cmbCategory;
         private System.Windows.Forms.Button btnPrevious;
         private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnBack;
     }
 }

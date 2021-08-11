@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Windows.Forms;
 
 namespace SoutiesSandbox
 {
@@ -34,6 +35,12 @@ namespace SoutiesSandbox
             {
                 return false;
             }
+        }
+        public PictureBox LoadImage(string ImageName)
+        {
+            PictureBox temp = new PictureBox();
+            temp.ImageLocation = Application.StartupPath + "\\" + ImageName + ".png";
+            return temp;
         }
         public void AppendToFile(string LineToAppend, string FileName)//Textfile method
         {
