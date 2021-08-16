@@ -17,8 +17,6 @@ namespace Opus_Proto_1
         public AvailableJobs()
         {
             InitializeComponent();
-            frmMain Main = (frmMain)this.Parent;
-            //Add back color code
         }
         public void SetJobName(string value)
         {
