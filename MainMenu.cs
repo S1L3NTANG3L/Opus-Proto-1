@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//CODE HAS A PROBLEM
+
 namespace Opus_Proto_1
 {
     public partial class MainMenu : UserControl
@@ -18,6 +18,8 @@ namespace Opus_Proto_1
         public MainMenu()
         {
             InitializeComponent();
+            frmMain Main = (frmMain)this.Parent;
+            //Add back color code
         }
         private void MainMenu_Load(object sender, EventArgs e)
         {
@@ -57,6 +59,10 @@ namespace Opus_Proto_1
         {
             index = 6;
             onRemoveSite(this, new MainMenuArgs(index));
+        }
+        public void setBackColor(Color color)
+        {
+            BackColor = color;
         }
     }
     public class MainMenuArgs : EventArgs

@@ -18,17 +18,12 @@ namespace Opus_Proto_1
         CustomFunctions cF = new CustomFunctions();
         string conn;
         public int index = 0;
-        string sec_key;
         public delegate void RemoveLoginEventHandler(Object sender, LoginArgs e);
         public event RemoveLoginEventHandler onRemoveLogin;
         public Login()
         {
             InitializeComponent();
-            btnLogin.BackColor = Color.FromArgb(39, 62, 76);
             lblInvalid.Visible = false;
-            var temp = cF.ReadFromFile("Sec_key.txt");
-            string[] tempArr = temp.StringArray;
-            sec_key = tempArr[0];
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -57,6 +52,18 @@ namespace Opus_Proto_1
             //    onRemoveLogin(this, new LoginArgs(index));
             //}
             onRemoveLogin(this, new LoginArgs(index));
+        }
+        public void setButtonBackColor(Color color)
+        {
+            btnLogin.BackColor = color;
+        }
+        public void setConnection(string conn)
+        {
+            this.conn = conn;
+        }
+        public void setBackColor(Color color)
+        {
+            BackColor = color;
         }
     }
     public class LoginArgs : EventArgs

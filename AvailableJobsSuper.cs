@@ -29,13 +29,9 @@ namespace Opus_Proto_1
         public AvailableJobsSuper()
         {
             InitializeComponent();
-            btnBack.BackColor = Color.FromArgb(39,62,76);
-            btnNext.BackColor = Color.FromArgb(39, 62, 76);
-            btnPrevious.BackColor = Color.FromArgb(39, 62, 76);
         }
         private void AvailableJobsSuper_Load(object sender, EventArgs e)
-        {            
-            conn = cF.CreateRemoteSQLConnection("10.100.100.15", "13306", "Rechard", "V<6OD|>!$i]L", "opus_db");
+        {
             cmbCategory.Items.AddRange(cF.GetStringArraySQL("SELECT Job_Name FROM job_types", conn));
             btnPrevious.Visible = false;
             FillList("SELECT * FROM available_jobs");            
@@ -203,8 +199,22 @@ namespace Opus_Proto_1
             availableJob.index = pnlAJSMain.Controls.Count - 1;
             availableJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
              | System.Windows.Forms.AnchorStyles.Left))));
-        }  
+        }
         //Need event arguement to shoot to Userprofile page
+        public void setButtonBackColor(Color color)
+        {
+            btnBack.BackColor = color;
+            btnNext.BackColor = color;
+            btnPrevious.BackColor = color;
+        }
+        public void setConnection(string conn)
+        {
+            this.conn = conn;
+        }
+        public void setBackColor(Color color)
+        {
+            BackColor = color;
+        }
     }
     public class AvailableJobsSuperArgs : EventArgs
     {
