@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
+﻿using SoutiesSandbox;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using SoutiesSandbox;
 
 namespace Opus_Proto_1
 {
@@ -25,14 +17,14 @@ namespace Opus_Proto_1
         public Settings()
         {
             InitializeComponent();
-            
+
         }
         private void Settings_Load(object sender, EventArgs e)
         {
             int temp = 0;
             for (int i = 0; i < cmbCurrency.Items.Count; i++)
             {
-                if(cmbCurrency.Items[i].ToString() == currencyCode)
+                if (cmbCurrency.Items[i].ToString() == currencyCode)
                 {
                     temp = i;
                     break;
@@ -81,7 +73,7 @@ namespace Opus_Proto_1
         private void cmbTheme_SelectionChangeCommitted(object sender, EventArgs e)
         {
             string[] arrTemp = new string[3];
-            arrTemp[0] = sec_key;            
+            arrTemp[0] = sec_key;
             arrTemp[1] = cmbTheme.SelectedItem.ToString();
             arrTemp[2] = currencyCode;
             cF.WriteToFile(arrTemp, "config.dll");

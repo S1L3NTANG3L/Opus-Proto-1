@@ -136,15 +136,15 @@ namespace SoutiesSandbox
         {
             int temp = 0;
             try
-            {                
+            {
                 using (MySqlConnection conn = new MySqlConnection(DatabaseConnection))
                 {
                     conn.Open();
                     MySqlCommand sqlCommand = new MySqlCommand(Command, conn);
                     temp = Convert.ToInt32(sqlCommand.ExecuteScalar());
-                }                
+                }
             }
-            catch(MySqlException ex)
+            catch (MySqlException ex)
             {
                 Console.WriteLine(ex.ToString());
             }
@@ -190,7 +190,7 @@ namespace SoutiesSandbox
                 Console.WriteLine(ex.ToString());
             }
             string[] output = new string[count];
-            try 
+            try
             {
                 using (MySqlConnection conn = new MySqlConnection(DatabaseConnection))
                 {

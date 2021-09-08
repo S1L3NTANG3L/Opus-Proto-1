@@ -1,21 +1,15 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using SoutiesSandbox;
+using System;
+using System.Drawing;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace Opus_Proto_1
 {
     public partial class frmMain : MaterialForm
-    {        
+    {
         CustomFunctions cF = new CustomFunctions();
         public string pickedTheme;
         public Color themeButtonColor;
@@ -25,7 +19,7 @@ namespace Opus_Proto_1
         public string currencyCode;
         public frmMain()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -37,10 +31,10 @@ namespace Opus_Proto_1
             currencyCode = tempArr[2];
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
-            if(pickedTheme == "Dark")
+            if (pickedTheme == "Dark")
             {
                 materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
-                materialSkinManager.ColorScheme =  new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.BLACK);
+                materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.BLACK);
                 themeButtonColor = Color.FromArgb(39, 62, 76);
                 themeBackColor = Color.FromArgb(50, 50, 50);
             }
@@ -49,18 +43,18 @@ namespace Opus_Proto_1
                 materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
                 materialSkinManager.ColorScheme = new ColorScheme(Primary.LightBlue800, Primary.Cyan800, Primary.LightBlue400, Accent.LightBlue700, TextShade.BLACK);
                 themeButtonColor = Color.FromArgb(62, 155, 212);
-                themeBackColor = Color.FromArgb(39,124,175);
+                themeBackColor = Color.FromArgb(39, 124, 175);
                 PictureBox pbTemp = new PictureBox();
                 pbTemp.ImageLocation = Application.StartupPath + "\\light_background.jpg";
                 BackgroundImage = pbTemp.Image;
                 BackgroundImageLayout = ImageLayout.Center;
-            }            
+            }
             Login lgnForm = new Login();
             lgnForm.setButtonBackColor(themeButtonColor);
             lgnForm.setConnection(conn);
             lgnForm.setBackColor(themeBackColor);
             pnlMain.Controls.Add(lgnForm);
-            lgnForm.Location = new Point(pnlMain.Width/2-250, 0);            
+            lgnForm.Location = new Point(pnlMain.Width / 2 - 250, 0);
             lgnForm.onRemoveLogin += new Login.RemoveLoginEventHandler(RemoveLgnSite_Click);
         }
         private void RemoveLgnSite_Click(Object sender, LoginArgs e)
@@ -112,7 +106,7 @@ namespace Opus_Proto_1
                     availableJobsSuper.setCurrencyCode(currencyCode);
                     availableJobsSuper.onRemoveAJS += new AvailableJobsSuper.RemoveAJSEventHandler(RemoveAJSSite_Click);
                     pnlMain.Controls.Add(availableJobsSuper);
-                    availableJobsSuper.Location = new Point(pnlMain.Width/2-600,0);
+                    availableJobsSuper.Location = new Point(pnlMain.Width / 2 - 600, 0);
                     break;
                 case 4:
                     break;

@@ -1,17 +1,12 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using SoutiesSandbox;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MaterialSkin;
-using MaterialSkin.Controls;
-using MySql.Data.MySqlClient;
-using SoutiesSandbox;
 
 namespace Opus_Proto_1
 {
@@ -37,7 +32,7 @@ namespace Opus_Proto_1
         {
             cmbCategory.Items.AddRange(cF.GetStringArraySQL("SELECT Job_Name FROM job_types", conn));
             btnPrevious.Visible = false;
-            FillList("SELECT * FROM available_jobs");            
+            FillList("SELECT * FROM available_jobs");
             int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM available_jobs", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
@@ -47,7 +42,7 @@ namespace Opus_Proto_1
         {
             pageNumber--;
             pnlAJSMain.Controls.Clear();
-            if(cmbCategory.SelectedIndex == -1)
+            if (cmbCategory.SelectedIndex == -1)
             {
                 LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs");
             }
@@ -55,7 +50,7 @@ namespace Opus_Proto_1
             {
                 string jobCode = cF.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'", conn);
                 LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'");
-            }            
+            }
             if (pageNumber == 1)
             {
                 btnPrevious.Visible = false;
@@ -91,9 +86,9 @@ namespace Opus_Proto_1
         private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             pnlAJSMain.Controls.Clear();
-            string jobCode = cF.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'",conn);
+            string jobCode = cF.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'", conn);
             MessageBox.Show(jobCode);
-            int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'" , conn);
+            int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
             pageNumber = 1;
@@ -106,14 +101,14 @@ namespace Opus_Proto_1
         }
         private void LoadAvailableJobs(string command)
         {
-            int smallCount = cF.GetCountSQL(command,conn);
+            int smallCount = cF.GetCountSQL(command, conn);
             int index = (pageNumber - 1) * 20;
             int leftovers = smallCount - index;
             if (leftovers < 20)
             {
-                if(leftovers <=10)
+                if (leftovers <= 10)
                 {
-                    for (int i = 1; i < leftovers+1; i++)
+                    for (int i = 1; i < leftovers + 1; i++)
                     {
                         Left(index);
                     }
@@ -140,8 +135,8 @@ namespace Opus_Proto_1
                 {
                     Right(index);
                 }
-            }       
-        }        
+            }
+        }
         private void FillList(string command)
         {
             using (MySqlConnection conn2 = new MySqlConnection(conn))
