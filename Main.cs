@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SoutiesSandbox;
+using System.Reflection;
 
 namespace Opus_Proto_1
 {
@@ -21,17 +22,19 @@ namespace Opus_Proto_1
         public Color themeBackColor;
         public string sec_key;
         public string conn;
+        public string currencyCode;
         public frmMain()
         {
             InitializeComponent();            
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
-            conn = cF.CreateRemoteSQLConnection("soutiesentrance.ddns.net", "13306", "Rechard", "V<6OD|>!$i]L", "opus_db");
-            var temp = cF.ReadFromFile("config.txt");
+            conn = cF.CreateRemoteSQLConnection("10.100.100.15", "13306", "Rechard", "V<6OD|>!$i]L", "opus_db");//Needs to change for external access
+            var temp = cF.ReadFromFile("config.dll");
             string[] tempArr = temp.StringArray;
             sec_key = tempArr[0];
             pickedTheme = tempArr[1];
+            currencyCode = tempArr[2];
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             if(pickedTheme == "Dark")
@@ -47,6 +50,10 @@ namespace Opus_Proto_1
                 materialSkinManager.ColorScheme = new ColorScheme(Primary.LightBlue800, Primary.Cyan800, Primary.LightBlue400, Accent.LightBlue700, TextShade.BLACK);
                 themeButtonColor = Color.FromArgb(62, 155, 212);
                 themeBackColor = Color.FromArgb(39,124,175);
+                PictureBox pbTemp = new PictureBox();
+                pbTemp.ImageLocation = Application.StartupPath + "\\light_background.jpg";
+                BackgroundImage = pbTemp.Image;
+                BackgroundImageLayout = ImageLayout.Center;
             }            
             Login lgnForm = new Login();
             lgnForm.setButtonBackColor(themeButtonColor);
@@ -102,6 +109,7 @@ namespace Opus_Proto_1
                     availableJobsSuper.setButtonBackColor(themeButtonColor);
                     availableJobsSuper.setConnection(conn);
                     availableJobsSuper.setBackColor(themeBackColor);
+                    availableJobsSuper.setCurrencyCode(currencyCode);
                     availableJobsSuper.onRemoveAJS += new AvailableJobsSuper.RemoveAJSEventHandler(RemoveAJSSite_Click);
                     pnlMain.Controls.Add(availableJobsSuper);
                     availableJobsSuper.Location = new Point(pnlMain.Width/2-600,0);
@@ -112,10 +120,13 @@ namespace Opus_Proto_1
                     Settings settings = new Settings();
                     settings.setButtonBackColor(themeButtonColor);
                     settings.setSecKey(sec_key);
+                    settings.setCurrencyCode(currencyCode);
                     settings.setBackColor(themeBackColor);
+                    settings.setPickedTheme(pickedTheme);
                     settings.onRemoveS += new Settings.RemoveSEventHandler(RemoveSSite_Click);
                     pnlMain.Controls.Add(settings);
                     settings.Location = new Point(pnlMain.Width / 2 - 275, 0);
+                    settings.setVersion(Assembly.GetExecutingAssembly().GetName().Version);
                     break;
                 case 6:
                     Login login = new Login();

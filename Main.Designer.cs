@@ -38,6 +38,8 @@ namespace Opus_Proto_1
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlMain.AutoSize = true;
+            this.pnlMain.BackColor = System.Drawing.Color.Transparent;
+            this.pnlMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pnlMain.Location = new System.Drawing.Point(2, 67);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(1292, 721);
@@ -48,6 +50,7 @@ namespace Opus_Proto_1
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(84)))), ((int)(((byte)(110)))));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1300, 800);
             this.Controls.Add(this.pnlMain);
             this.MaximizeBox = false;

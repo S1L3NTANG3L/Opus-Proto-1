@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,12 +17,14 @@ namespace Opus_Proto_1
 {
     public partial class AvailableJobsSuper : UserControl
     {
+        Color backColor;
         public int index = 0;
         const int SPACERY = 10;
         const int SPACERX = 75;
-        int totalPageCount;
-        int pageNumber = 1;
-        string conn = "";
+        private int totalPageCount;
+        private int pageNumber = 1;
+        private string conn = "";
+        private string currencyCode;
         List<Jobs> lstJobs = new List<Jobs>();
         CustomFunctions cF = new CustomFunctions();
         public delegate void RemoveAJSEventHandler(object sender, AvailableJobsSuperArgs e);
@@ -52,8 +55,7 @@ namespace Opus_Proto_1
             {
                 string jobCode = cF.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'", conn);
                 LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'");
-            }
-            
+            }            
             if (pageNumber == 1)
             {
                 btnPrevious.Visible = false;
@@ -171,10 +173,11 @@ namespace Opus_Proto_1
             availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username);
             availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
             availableJob.SetRating((int.Parse(cF.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username + "'", conn)) / 5 * 100));
-            availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount);
+            availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
             availableJob.index = pnlAJSMain.Controls.Count - 1;
             availableJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
              | System.Windows.Forms.AnchorStyles.Left))));
+            availableJob.setBackColor(backColor);
         }
         private void Right(int Index)
         {
@@ -195,10 +198,11 @@ namespace Opus_Proto_1
             availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username);
             availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
             availableJob.SetRating((int.Parse(cF.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username.ToString() + "'", conn)) / 5 * 100));
-            availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount);
+            availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
             availableJob.index = pnlAJSMain.Controls.Count - 1;
             availableJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
              | System.Windows.Forms.AnchorStyles.Left))));
+            availableJob.setBackColor(backColor);
         }
         //Need event arguement to shoot to Userprofile page
         public void setButtonBackColor(Color color)
@@ -213,7 +217,12 @@ namespace Opus_Proto_1
         }
         public void setBackColor(Color color)
         {
-            BackColor = color;
+            this.BackColor = color;
+            backColor = color;
+        }
+        public void setCurrencyCode(string currencyCode)
+        {
+            this.currencyCode = currencyCode;
         }
     }
     public class AvailableJobsSuperArgs : EventArgs
@@ -230,14 +239,30 @@ namespace Opus_Proto_1
         public string JobCode { get; private set; }
         public string JobTypeCode { get; private set; }
         public string Desc { get; private set; }
-        public int PayAmount { get; private set; }
+        public decimal PayAmount { get; private set; }
         public Jobs(System.Data.IDataRecord Data)
         {
             Username = (string)Data[0];
             JobCode = (string)Data[1];
             JobTypeCode = (string)Data[2];
             Desc = (string)Data[3];
-            PayAmount = (int)Data[4];
+            PayAmount = (decimal)Data[4];
+        }
+    }
+    public static class DecimalExtension
+    {
+        private static readonly Dictionary<string, CultureInfo> ISOCurrenciesToACultureMap =
+            CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+                .Select(c => new { c, new RegionInfo(c.LCID).ISOCurrencySymbol })
+                .GroupBy(x => x.ISOCurrencySymbol)
+                .ToDictionary(g => g.Key, g => g.First().c, StringComparer.OrdinalIgnoreCase);
+
+        public static string FormatCurrency(this decimal amount, string currencyCode)
+        {
+            CultureInfo culture;
+            if (ISOCurrenciesToACultureMap.TryGetValue(currencyCode, out culture))
+                return string.Format(culture, "{0:C}", amount);
+            return amount.ToString("0.00");
         }
     }
 }

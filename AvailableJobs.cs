@@ -34,13 +34,17 @@ namespace Opus_Proto_1
         {
             pbRating.Value = value;
         }
-        public void SetPaymentRate(int value)
+        public void SetPaymentRate(string value)
         {
-            lblPaymentRate.Text = value.ToString();
+            lblPaymentRate.Text = value;
         }
         private void lblUsername_Click(object sender, EventArgs e)
         {
             //Show user profile
+        }
+        public void setBackColor(Color color)
+        {
+            this.BackColor = color;
         }
     }
 }
