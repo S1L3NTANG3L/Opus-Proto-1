@@ -35,7 +35,6 @@ namespace Opus_Proto_1
             this.lblPaymentRate = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
-            this.pbRating = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // lblJobName
@@ -98,20 +97,11 @@ namespace Opus_Proto_1
             this.lblUsername.Text = "label3";
             this.lblUsername.Click += new System.EventHandler(this.lblUsername_Click);
             // 
-            // pbRating
-            // 
-            this.pbRating.Location = new System.Drawing.Point(422, 196);
-            this.pbRating.Name = "pbRating";
-            this.pbRating.Size = new System.Drawing.Size(125, 29);
-            this.pbRating.Step = 1;
-            this.pbRating.TabIndex = 6;
-            // 
             // AvailableJobs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.Controls.Add(this.pbRating);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblPaymentRate);
@@ -133,6 +123,5 @@ namespace Opus_Proto_1
         private System.Windows.Forms.Label lblPaymentRate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblUsername;
-        private System.Windows.Forms.ProgressBar pbRating;
     }
 }

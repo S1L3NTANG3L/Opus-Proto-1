@@ -110,18 +110,18 @@ namespace Opus_Proto_1
                 {
                     for (int i = 1; i < leftovers + 1; i++)
                     {
-                        Left(index);
+                        LeftRow(index);
                     }
                 }
                 else
                 {
                     for (int i = 1; i < 11; i++)
                     {
-                        Left(index);
+                        LeftRow(index);
                     }
                     for (int i = 1; i < leftovers - 9; i++)
                     {
-                        Right(index);
+                        RightRow(index);
                     }
                 }
             }
@@ -129,11 +129,11 @@ namespace Opus_Proto_1
             {
                 for (int i = 1; i < 11; i++)
                 {
-                    Left(index);
+                    LeftRow(index);
                 }
                 for (int i = 1; i < 11; i++)
                 {
-                    Right(index);
+                    RightRow(index);
                 }
             }
         }
@@ -150,7 +150,7 @@ namespace Opus_Proto_1
                 }
             }
         }
-        private void Left(int Index)
+        private void LeftRow(int Index)
         {
             AvailableJobs availableJob = new AvailableJobs();
             AvailableJobs previousJob;
@@ -167,14 +167,14 @@ namespace Opus_Proto_1
             availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode);
             availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username);
             availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
-            availableJob.SetRating((int.Parse(cF.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username + "'", conn)) / 5 * 100));
+            availableJob.SetRating(int.Parse(cF.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username + "'", conn)));
             availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
             availableJob.index = pnlAJSMain.Controls.Count - 1;
             availableJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
              | System.Windows.Forms.AnchorStyles.Left))));
             availableJob.setBackColor(backColor);
         }
-        private void Right(int Index)
+        private void RightRow(int Index)
         {
             AvailableJobs availableJob = new AvailableJobs();
             AvailableJobs previousJob;
@@ -192,7 +192,7 @@ namespace Opus_Proto_1
             availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode);
             availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username);
             availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
-            availableJob.SetRating((int.Parse(cF.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username.ToString() + "'", conn)) / 5 * 100));
+            availableJob.SetRating(int.Parse(cF.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username.ToString() + "'", conn)));
             availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
             availableJob.index = pnlAJSMain.Controls.Count - 1;
             availableJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)

@@ -12,17 +12,15 @@ namespace Opus_Proto_1
         public MainMenu()
         {
             InitializeComponent();
-            frmMain Main = (frmMain)this.Parent;
-            //Add back color code
         }
         private void MainMenu_Load(object sender, EventArgs e)
         {
-            pbProfile.ImageLocation = Application.StartupPath + "\\Profile.png";
-            pbAvailableJobs.ImageLocation = Application.StartupPath + "\\AvailableJobs.png";
-            pbLogout.ImageLocation = Application.StartupPath + "\\LogOut.png";
-            pbOpenJobs.ImageLocation = Application.StartupPath + "\\OpenJobs.png";
-            pbPastJobs.ImageLocation = Application.StartupPath + "\\PastJobs.png";
-            pbSettings.ImageLocation = Application.StartupPath + "\\Settings.png";
+            pbProfile.ImageLocation = Application.StartupPath + "\\Pictures\\Profile.png";
+            pbAvailableJobs.ImageLocation = Application.StartupPath + "\\Pictures\\AvailableJobs.png";
+            pbLogout.ImageLocation = Application.StartupPath + "\\Pictures\\LogOut.png";
+            pbOpenJobs.ImageLocation = Application.StartupPath + "\\Pictures\\OpenJobs.png";
+            pbPastJobs.ImageLocation = Application.StartupPath + "\\Pictures\\PastJobs.png";
+            pbSettings.ImageLocation = Application.StartupPath + "\\Pictures\\Settings.png";
         }
         private void pbProfile_Click(object sender, EventArgs e)
         {

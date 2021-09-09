@@ -17,13 +17,14 @@ namespace Opus_Proto_1
         public string sec_key;
         public string conn;
         public string currencyCode;
+        private string username;
         public frmMain()
         {
             InitializeComponent();
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
-            conn = cF.CreateRemoteSQLConnection("10.100.100.15", "13306", "Rechard", "V<6OD|>!$i]L", "opus_db");//Needs to change for external access
+            conn = cF.CreateRemoteSQLConnection("192.168.50.34", "13306", "opus_user", "opus2021", "opus_db");//Needs to change for external access
             var temp = cF.ReadFromFile("config.dll");
             string[] tempArr = temp.StringArray;
             sec_key = tempArr[0];
@@ -60,7 +61,18 @@ namespace Opus_Proto_1
         private void RemoveLgnSite_Click(Object sender, LoginArgs e)
         {
             Login login = (Login)sender;
+            username = login.username;
             pnlMain.Controls.Remove(login);
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.setBackColor(themeBackColor);
+            mainMenu.onRemoveSite += new MainMenu.RemoveMMEventHandler(RemoveMMSite_Click);
+            pnlMain.Controls.Add(mainMenu);
+            mainMenu.Location = new Point(pnlMain.Width / 2 - 250, 0);
+        }
+        private void RemoveUPSite_Click(Object sender, UserProfileArgs e)
+        {
+            UserProfile userProfile = (UserProfile)sender;
+            pnlMain.Controls.Remove(userProfile);
             MainMenu mainMenu = new MainMenu();
             mainMenu.setBackColor(themeBackColor);
             mainMenu.onRemoveSite += new MainMenu.RemoveMMEventHandler(RemoveMMSite_Click);
@@ -95,6 +107,16 @@ namespace Opus_Proto_1
             switch (temp)
             {
                 case 1:
+                    UserProfile userProfile = new UserProfile();
+                    //userProfile.username = this.username;
+                    //userProfile.rating = SQLCODE;
+                    //userProfile.profilePicture = sqlCode;
+                    userProfile.backColor = themeBackColor;
+                    userProfile.buttonColor = themeButtonColor;
+                    userProfile.setDefualtProfilePicture();
+                    userProfile.onRemoveUP += new UserProfile.RemoveUPEventHandler(RemoveUPSite_Click);
+                    pnlMain.Controls.Add(userProfile);
+                    userProfile.Location = new Point(pnlMain.Width / 2 - 330, 0);
                     break;
                 case 2:
                     break;

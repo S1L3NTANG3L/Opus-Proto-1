@@ -17,7 +17,6 @@ namespace Opus_Proto_1
         public Settings()
         {
             InitializeComponent();
-
         }
         private void Settings_Load(object sender, EventArgs e)
         {

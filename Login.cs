@@ -57,13 +57,17 @@ namespace Opus_Proto_1
         {
             BackColor = color;
         }
+        public string username
+        {
+            get { return edtUsername.Text; }
+        }
     }
     public class LoginArgs : EventArgs
     {
         public int index;
-        public LoginArgs(int value)
+        public LoginArgs(int iValue)
         {
-            index = value;
+            index = iValue;
         }
     }
 }
