@@ -37,6 +37,7 @@ namespace Opus_Proto_1
             this.edtUsername = new System.Windows.Forms.TextBox();
             this.edtPassword = new System.Windows.Forms.TextBox();
             this.lblInvalid = new System.Windows.Forms.Label();
+            this.btnRegister = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,11 +104,22 @@ namespace Opus_Proto_1
             this.lblInvalid.TabIndex = 6;
             this.lblInvalid.Text = "Invalid Credentials";
             // 
+            // btnRegister
+            // 
+            this.btnRegister.Location = new System.Drawing.Point(71, 649);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(360, 61);
+            this.btnRegister.TabIndex = 7;
+            this.btnRegister.Text = "Register";
+            this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.lblInvalid);
             this.Controls.Add(this.edtPassword);
             this.Controls.Add(this.edtUsername);
@@ -116,7 +128,7 @@ namespace Opus_Proto_1
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Login";
-            this.Size = new System.Drawing.Size(500, 680);
+            this.Size = new System.Drawing.Size(500, 724);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -132,5 +144,6 @@ namespace Opus_Proto_1
         private System.Windows.Forms.TextBox edtUsername;
         private System.Windows.Forms.TextBox edtPassword;
         private System.Windows.Forms.Label lblInvalid;
+        private System.Windows.Forms.Button btnRegister;
     }
 }

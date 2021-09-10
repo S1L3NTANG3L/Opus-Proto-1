@@ -9,6 +9,8 @@ namespace Opus_Proto_1
     {
         public int index = 0;
         private StarRatingControl starRatingControl = new StarRatingControl();
+        public delegate void RemoveAJEventHandler(object sender, AvailableJobsArgs e);
+        public event RemoveAJEventHandler onRemoveAJ;
         public AvailableJobs()
         {
             InitializeComponent();
@@ -16,6 +18,7 @@ namespace Opus_Proto_1
             starRatingControl.Left = 400;
             Controls.Add(starRatingControl);
             starRatingControl.Enabled = false;
+            lblUsername.ForeColor = Color.Blue;
         }
         public void SetJobName(string value)
         {
@@ -39,11 +42,19 @@ namespace Opus_Proto_1
         }
         private void lblUsername_Click(object sender, EventArgs e)
         {
-            //Show user profile
+            onRemoveAJ(this, new AvailableJobsArgs(index));
         }
         public void setBackColor(Color color)
         {
             this.BackColor = color;
+        }
+    }
+    public class AvailableJobsArgs : EventArgs
+    {
+        public int index;
+        public AvailableJobsArgs(int value)
+        {
+            index = value;
         }
     }
 }

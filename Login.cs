@@ -10,6 +10,7 @@ namespace Opus_Proto_1
         CustomFunctions cF = new CustomFunctions();
         string conn;
         public int index = 0;
+        public int buttonPressed;
         public delegate void RemoveLoginEventHandler(Object sender, LoginArgs e);
         public event RemoveLoginEventHandler onRemoveLogin;
         public Login()
@@ -43,6 +44,7 @@ namespace Opus_Proto_1
             //{
             //    onRemoveLogin(this, new LoginArgs(index));
             //}
+            buttonPressed = 1;
             onRemoveLogin(this, new LoginArgs(index));
         }
         public void setButtonBackColor(Color color)
@@ -60,6 +62,12 @@ namespace Opus_Proto_1
         public string username
         {
             get { return edtUsername.Text; }
+        }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            buttonPressed = 2;
+            onRemoveLogin(this, new LoginArgs(index));
         }
     }
     public class LoginArgs : EventArgs

@@ -62,12 +62,19 @@ namespace Opus_Proto_1
         {
             Login login = (Login)sender;
             username = login.username;
-            pnlMain.Controls.Remove(login);
-            MainMenu mainMenu = new MainMenu();
-            mainMenu.setBackColor(themeBackColor);
-            mainMenu.onRemoveSite += new MainMenu.RemoveMMEventHandler(RemoveMMSite_Click);
-            pnlMain.Controls.Add(mainMenu);
-            mainMenu.Location = new Point(pnlMain.Width / 2 - 250, 0);
+            if(login.buttonPressed == 1)
+            {
+                pnlMain.Controls.Remove(login);
+                MainMenu mainMenu = new MainMenu();
+                mainMenu.setBackColor(themeBackColor);
+                mainMenu.onRemoveSite += new MainMenu.RemoveMMEventHandler(RemoveMMSite_Click);
+                pnlMain.Controls.Add(mainMenu);
+                mainMenu.Location = new Point(pnlMain.Width / 2 - 250, 0);
+            }
+            else
+            {
+
+            }
         }
         private void RemoveUPSite_Click(Object sender, UserProfileArgs e)
         {

@@ -20,6 +20,7 @@ namespace Opus_Proto_1
         private int pageNumber = 1;
         private string conn = "";
         private string currencyCode;
+        private int pageShowing = 0;
         List<Jobs> lstJobs = new List<Jobs>();
         CustomFunctions cF = new CustomFunctions();
         public delegate void RemoveAJSEventHandler(object sender, AvailableJobsSuperArgs e);
@@ -30,13 +31,7 @@ namespace Opus_Proto_1
         }
         private void AvailableJobsSuper_Load(object sender, EventArgs e)
         {
-            cmbCategory.Items.AddRange(cF.GetStringArraySQL("SELECT Job_Name FROM job_types", conn));
-            btnPrevious.Visible = false;
-            FillList("SELECT * FROM available_jobs");
-            int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM available_jobs", conn);
-            decimal dtot = (decimal)(number / 20);
-            totalPageCount = (int)Math.Ceiling(dtot);
-            LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs");
+            LoadStartUpAvailableJobsSuper();
         }
         private void btnPrevious_Click(object sender, EventArgs e)
         {
@@ -86,18 +81,50 @@ namespace Opus_Proto_1
         private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             pnlAJSMain.Controls.Clear();
-            string jobCode = cF.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'", conn);
-            MessageBox.Show(jobCode);
-            int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'", conn);
+            string jobTypeCode = cF.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'", conn);
+            MessageBox.Show(jobTypeCode);
+            int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM job_details WHERE Job_Type_Code = '" + jobTypeCode + "'", conn);//C
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
             pageNumber = 1;
-            FillList("SELECT * FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'");
-            LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'");
+            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'");//Done
+            LoadAvailableJobs("SELECT COUNT(Job_Code) FROM job_details WHERE Job_Type_Code = '" + jobTypeCode + "'");//C
+        }
+        private void RemoveAvailableJobs_Click(Object sender, AvailableJobsArgs e)
+        {
+            pnlAJSMain.Controls.Clear();
+            UserProfile userProfile = new UserProfile();
+            //userProfile.username = this.username;
+            //userProfile.rating = SQLCODE;
+            //userProfile.profilePicture = sqlCode;
+            userProfile.backColor = this.backColor;
+            //userProfile.buttonColor = this.themeButtonColor;
+            userProfile.setDefualtProfilePicture();
+            pnlAJSMain.Controls.Add(userProfile);
+            userProfile.Location = new Point(pnlAJSMain.Width / 2 - 330, 0);
+            pageShowing++;
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
-            onRemoveAJS(this, new AvailableJobsSuperArgs(index));
+            if(pageShowing == 0)
+            {
+                onRemoveAJS(this, new AvailableJobsSuperArgs(index));
+            }
+            else
+            {
+                LoadStartUpAvailableJobsSuper();
+                pageShowing--;
+            }            
+        }
+        private void LoadStartUpAvailableJobsSuper()
+        {
+            cmbCategory.Items.AddRange(cF.GetStringArraySQL("SELECT Job_Name FROM job_types", conn));
+            btnPrevious.Visible = false;
+            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code; ");//Done
+            int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM job_Details", conn);//C
+            decimal dtot = (decimal)(number / 20);
+            totalPageCount = (int)Math.Ceiling(dtot);
+            LoadAvailableJobs("SELECT COUNT(Job_Code) FROM job_details");//C
         }
         private void LoadAvailableJobs(string command)
         {
@@ -153,6 +180,7 @@ namespace Opus_Proto_1
         private void LeftRow(int Index)
         {
             AvailableJobs availableJob = new AvailableJobs();
+            availableJob.onRemoveAJ += new AvailableJobs.RemoveAJEventHandler(RemoveAvailableJobs_Click);
             AvailableJobs previousJob;
             pnlAJSMain.Controls.Add(availableJob);
             if (pnlAJSMain.Controls.Count < 2)
@@ -177,6 +205,7 @@ namespace Opus_Proto_1
         private void RightRow(int Index)
         {
             AvailableJobs availableJob = new AvailableJobs();
+            availableJob.onRemoveAJ += new AvailableJobs.RemoveAJEventHandler(RemoveAvailableJobs_Click);
             AvailableJobs previousJob;
             AvailableJobs rightFirstJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 10];
             pnlAJSMain.Controls.Add(availableJob);
@@ -199,7 +228,6 @@ namespace Opus_Proto_1
              | System.Windows.Forms.AnchorStyles.Left))));
             availableJob.setBackColor(backColor);
         }
-        //Need event arguement to shoot to Userprofile page
         public void setButtonBackColor(Color color)
         {
             btnBack.BackColor = color;
