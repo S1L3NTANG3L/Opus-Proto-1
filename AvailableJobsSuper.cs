@@ -83,12 +83,16 @@ namespace Opus_Proto_1
             pnlAJSMain.Controls.Clear();
             string jobTypeCode = cF.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'", conn);
             MessageBox.Show(jobTypeCode);
-            int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM job_details WHERE Job_Type_Code = '" + jobTypeCode + "'", conn);//C
+            int number = cF.GetCountSQL("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN "
+                +"available_jobs ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
             pageNumber = 1;
-            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'");//Done
-            LoadAvailableJobs("SELECT COUNT(Job_Code) FROM job_details WHERE Job_Type_Code = '" + jobTypeCode + "'");//C
+            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount "
+                + "FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code "
+                +"WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'");
+            LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN available_jobs "
+                +"ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'");
         }
         private void RemoveAvailableJobs_Click(Object sender, AvailableJobsArgs e)
         {
@@ -120,11 +124,12 @@ namespace Opus_Proto_1
         {
             cmbCategory.Items.AddRange(cF.GetStringArraySQL("SELECT Job_Name FROM job_types", conn));
             btnPrevious.Visible = false;
-            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code; ");//Done
-            int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM job_Details", conn);//C
+            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount "
+                +"FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code; ");
+            int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM job_Details", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
-            LoadAvailableJobs("SELECT COUNT(Job_Code) FROM job_details");//C
+            LoadAvailableJobs("SELECT COUNT(Job_Code) FROM job_details");
         }
         private void LoadAvailableJobs(string command)
         {
