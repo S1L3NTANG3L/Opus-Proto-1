@@ -15,12 +15,12 @@ namespace Opus_Proto_1
         }
         private void MainMenu_Load(object sender, EventArgs e)
         {
-            pbProfile.ImageLocation = Application.StartupPath + "\\Pictures\\Profile.png";
-            pbAvailableJobs.ImageLocation = Application.StartupPath + "\\Pictures\\AvailableJobs.png";
-            pbLogout.ImageLocation = Application.StartupPath + "\\Pictures\\LogOut.png";
-            pbOpenJobs.ImageLocation = Application.StartupPath + "\\Pictures\\OpenJobs.png";
-            pbPastJobs.ImageLocation = Application.StartupPath + "\\Pictures\\PastJobs.png";
-            pbSettings.ImageLocation = Application.StartupPath + "\\Pictures\\Settings.png";
+            pbProfile.ImageLocation = Application.StartupPath + "\\Config\\Profile.png";
+            pbAvailableJobs.ImageLocation = Application.StartupPath + "\\Config\\AvailableJobs.png";
+            pbLogout.ImageLocation = Application.StartupPath + "\\Config\\LogOut.png";
+            pbOpenJobs.ImageLocation = Application.StartupPath + "\\Config\\OpenJobs.png";
+            pbPastJobs.ImageLocation = Application.StartupPath + "\\Config\\PastJobs.png";
+            pbSettings.ImageLocation = Application.StartupPath + "\\Config\\Settings.png";
         }
         private void pbProfile_Click(object sender, EventArgs e)
         {

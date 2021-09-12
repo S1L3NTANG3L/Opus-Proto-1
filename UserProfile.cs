@@ -32,7 +32,7 @@ namespace Opus_Proto_1
         }
         public void setDefualtProfilePicture()
         {
-            pbProfilePicture.ImageLocation = Application.StartupPath + "\\Pictures\\DefaultPP.png";
+            pbProfilePicture.ImageLocation = Application.StartupPath + "\\Config\\DefaultPP.png";
             pbProfilePicture.SizeMode = PictureBoxSizeMode.StretchImage;
         }
         public Image profilePicture

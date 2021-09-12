@@ -1,4 +1,4 @@
-﻿//Ver. 2.1.3
+﻿//Ver. 2.1.4
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
@@ -20,8 +20,8 @@ namespace SoutiesSandbox
         }
         public (string[] StringArray, int ItemCount) ReadFromFile(string FileName)//Textfile method
         {
-            string[] output = File.ReadAllLines(FileName);
-            int count = File.ReadAllLines(FileName).Length;
+            string[] output = File.ReadAllLines(Application.StartupPath+FileName);
+            int count = File.ReadAllLines(Application.StartupPath + FileName).Length;
             return (output, count);
         }
         public bool EmailVerification(string email)//Email address verification
@@ -44,11 +44,11 @@ namespace SoutiesSandbox
         }
         public void AppendToFile(string LineToAppend, string FileName)//Textfile method
         {
-            System.IO.File.AppendAllText(FileName, LineToAppend);
+            System.IO.File.AppendAllText(Application.StartupPath + FileName, LineToAppend);
         }
         public void WriteToFile(string[] ArrayToWrite, string FileName)//Textfile method
         {
-            System.IO.File.WriteAllLines(FileName, ArrayToWrite);
+            System.IO.File.WriteAllLines(Application.StartupPath + FileName, ArrayToWrite);
         }
         public bool LuhnAlgorithm(string Number)//Method used to verify ID and Banking numbers
         {
