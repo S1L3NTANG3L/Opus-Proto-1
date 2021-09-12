@@ -16,4 +16,5 @@ namespace Opus_Proto_1
         {
             InitializeComponent();
         }
+    }
 }

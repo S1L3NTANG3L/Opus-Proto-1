@@ -14,13 +14,15 @@ namespace Opus_Proto_1
     {
         Color backColor;
         public int index = 0;
-        const int SPACERY = 10;
-        const int SPACERX = 75;
+        private Color themeButtonColor;
+        private const int SPACERY = 10;
+        private const int SPACERX = 75;
         private int totalPageCount;
         private int pageNumber = 1;
         private string conn = "";
         private string currencyCode;
         private int pageShowing = 0;
+        private string username;
         List<Jobs> lstJobs = new List<Jobs>();
         CustomFunctions cF = new CustomFunctions();
         public delegate void RemoveAJSEventHandler(object sender, AvailableJobsSuperArgs e);
@@ -98,15 +100,23 @@ namespace Opus_Proto_1
         {
             pnlAJSMain.Controls.Clear();
             UserProfile userProfile = new UserProfile();
-            //userProfile.username = this.username;
-            //userProfile.rating = SQLCODE;
-            //userProfile.profilePicture = sqlCode;
+            userProfile.username = this.username;
+            userProfile.rating = Int16.Parse(cF.GetSingleStringSQL("SELECT Overall_Rating FROM user_Details WHERE Username ='" + username + "'",conn));
+            //userProfile.profilePicture = sqlCode; Need to figure this out
             userProfile.backColor = this.backColor;
-            //userProfile.buttonColor = this.themeButtonColor;
+            userProfile.buttonColor = this.themeButtonColor;
             userProfile.setDefualtProfilePicture();
-            pnlAJSMain.Controls.Add(userProfile);
-            userProfile.Location = new Point(pnlAJSMain.Width / 2 - 330, 0);
-            pageShowing++;
+            if(!(cF.GetCountSQL("SELECT COUNT(Review) FROM reviews WHERE User_Code ='" + username + "'", conn) == 0))
+            {
+                string[] arrReviews = cF.GetStringArraySQL("SELECT Review FROM reviews WHERE User_Code ='" + username + "'", conn);
+                for (int i = 0; i < arrReviews.Length; i++)
+                {
+                    userProfile.addReview(arrReviews[i]);
+                }
+                pnlAJSMain.Controls.Add(userProfile);
+                userProfile.Location = new Point(pnlAJSMain.Width / 2 - 330, 0);
+                pageShowing++;
+            }            
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
@@ -238,6 +248,7 @@ namespace Opus_Proto_1
             btnBack.BackColor = color;
             btnNext.BackColor = color;
             btnPrevious.BackColor = color;
+            themeButtonColor = color;
         }
         public void setConnection(string conn)
         {
@@ -251,6 +262,10 @@ namespace Opus_Proto_1
         public void setCurrencyCode(string currencyCode)
         {
             this.currencyCode = currencyCode;
+        }
+        public void setUsername(string username)
+        {
+            this.username = username;
         }
     }
     public class AvailableJobsSuperArgs : EventArgs

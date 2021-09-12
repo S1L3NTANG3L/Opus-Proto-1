@@ -73,8 +73,27 @@ namespace Opus_Proto_1
             }
             else
             {
-
+                pnlMain.Controls.Remove(login);
+                Registartion registartion = new Registartion();
+                registartion.setBackColor(themeBackColor);
+                registartion.setButtonBackColor(themeButtonColor);
+                registartion.setConnection(conn);
+                registartion.onRemoveSite += new Registartion.RemoveRegEventHandler(RemoveRegSite_Click);
+                pnlMain.Controls.Add(registartion);
+                registartion.Location = new Point(pnlMain.Width / 2 - 600, 0);
             }
+        }
+        private void RemoveRegSite_Click(Object sender, RegistrationArgs e)
+        {
+            Registartion registartion = (Registartion)sender;
+            pnlMain.Controls.Remove(registartion);
+            Login lgnForm = new Login();
+            lgnForm.setButtonBackColor(themeButtonColor);
+            lgnForm.setConnection(conn);
+            lgnForm.setBackColor(themeBackColor);
+            pnlMain.Controls.Add(lgnForm);
+            lgnForm.Location = new Point(pnlMain.Width / 2 - 250, 0);
+            lgnForm.onRemoveLogin += new Login.RemoveLoginEventHandler(RemoveLgnSite_Click);
         }
         private void RemoveUPSite_Click(Object sender, UserProfileArgs e)
         {
@@ -133,6 +152,7 @@ namespace Opus_Proto_1
                     availableJobsSuper.setConnection(conn);
                     availableJobsSuper.setBackColor(themeBackColor);
                     availableJobsSuper.setCurrencyCode(currencyCode);
+                    availableJobsSuper.setUsername(username);
                     availableJobsSuper.onRemoveAJS += new AvailableJobsSuper.RemoveAJSEventHandler(RemoveAJSSite_Click);
                     pnlMain.Controls.Add(availableJobsSuper);
                     availableJobsSuper.Location = new Point(pnlMain.Width / 2 - 600, 0);

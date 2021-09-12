@@ -29,11 +29,11 @@ namespace Opus_Proto_1
         /// </summary>
         private void InitializeComponent()
         {
-            this.panReg = new System.Windows.Forms.Panel();
+            this.pnlReg = new System.Windows.Forms.Panel();
+            this.btnBack = new System.Windows.Forms.Button();
             this.gbAccountInfo = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.btnSubmit = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -41,20 +41,14 @@ namespace Opus_Proto_1
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gbPersonalInfo = new System.Windows.Forms.GroupBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.txtTownCity = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.cboProvince = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.txtPostAddress = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtAge = new System.Windows.Forms.TextBox();
-            this.CalDOB = new System.Windows.Forms.MonthCalendar();
-            this.cboGender = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
@@ -65,28 +59,42 @@ namespace Opus_Proto_1
             this.label4 = new System.Windows.Forms.Label();
             this.txtFName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.panReg.SuspendLayout();
+            this.btnSubmit = new System.Windows.Forms.Button();
+            this.pnlReg.SuspendLayout();
             this.gbAccountInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gbPersonalInfo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panReg
+            // pnlReg
             // 
-            this.panReg.BackColor = System.Drawing.Color.LightSlateGray;
-            this.panReg.Controls.Add(this.gbAccountInfo);
-            this.panReg.Controls.Add(this.gbPersonalInfo);
-            this.panReg.Location = new System.Drawing.Point(4, 5);
-            this.panReg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panReg.Name = "panReg";
-            this.panReg.Size = new System.Drawing.Size(1187, 532);
-            this.panReg.TabIndex = 22;
+            this.pnlReg.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlReg.Controls.Add(this.btnBack);
+            this.pnlReg.Controls.Add(this.gbAccountInfo);
+            this.pnlReg.Controls.Add(this.gbPersonalInfo);
+            this.pnlReg.Controls.Add(this.btnSubmit);
+            this.pnlReg.Location = new System.Drawing.Point(0, 0);
+            this.pnlReg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pnlReg.Name = "pnlReg";
+            this.pnlReg.Size = new System.Drawing.Size(1195, 542);
+            this.pnlReg.TabIndex = 22;
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(20, 458);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(181, 58);
+            this.btnBack.TabIndex = 5;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // gbAccountInfo
             // 
+            this.gbAccountInfo.BackColor = System.Drawing.Color.Transparent;
             this.gbAccountInfo.Controls.Add(this.label13);
             this.gbAccountInfo.Controls.Add(this.textBox3);
-            this.gbAccountInfo.Controls.Add(this.btnSubmit);
             this.gbAccountInfo.Controls.Add(this.label12);
             this.gbAccountInfo.Controls.Add(this.textBox2);
             this.gbAccountInfo.Controls.Add(this.label11);
@@ -97,7 +105,7 @@ namespace Opus_Proto_1
             this.gbAccountInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gbAccountInfo.Name = "gbAccountInfo";
             this.gbAccountInfo.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gbAccountInfo.Size = new System.Drawing.Size(441, 478);
+            this.gbAccountInfo.Size = new System.Drawing.Size(441, 364);
             this.gbAccountInfo.TabIndex = 4;
             this.gbAccountInfo.TabStop = false;
             this.gbAccountInfo.Text = "Account Info";
@@ -120,16 +128,6 @@ namespace Opus_Proto_1
             this.textBox3.PasswordChar = '*';
             this.textBox3.Size = new System.Drawing.Size(212, 27);
             this.textBox3.TabIndex = 26;
-            // 
-            // btnSubmit
-            // 
-            this.btnSubmit.Location = new System.Drawing.Point(177, 365);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(132, 58);
-            this.btnSubmit.TabIndex = 3;
-            this.btnSubmit.Text = "Create Account";
-            this.btnSubmit.UseVisualStyleBackColor = true;
             // 
             // label12
             // 
@@ -192,21 +190,15 @@ namespace Opus_Proto_1
             // 
             // gbPersonalInfo
             // 
-            this.gbPersonalInfo.BackColor = System.Drawing.Color.LightSlateGray;
+            this.gbPersonalInfo.BackColor = System.Drawing.Color.Transparent;
+            this.gbPersonalInfo.Controls.Add(this.textBox4);
             this.gbPersonalInfo.Controls.Add(this.txtTownCity);
             this.gbPersonalInfo.Controls.Add(this.label17);
-            this.gbPersonalInfo.Controls.Add(this.cboProvince);
             this.gbPersonalInfo.Controls.Add(this.label16);
             this.gbPersonalInfo.Controls.Add(this.txtAddress);
             this.gbPersonalInfo.Controls.Add(this.label15);
             this.gbPersonalInfo.Controls.Add(this.txtPostAddress);
             this.gbPersonalInfo.Controls.Add(this.label14);
-            this.gbPersonalInfo.Controls.Add(this.label9);
-            this.gbPersonalInfo.Controls.Add(this.txtAge);
-            this.gbPersonalInfo.Controls.Add(this.CalDOB);
-            this.gbPersonalInfo.Controls.Add(this.cboGender);
-            this.gbPersonalInfo.Controls.Add(this.label10);
-            this.gbPersonalInfo.Controls.Add(this.label8);
             this.gbPersonalInfo.Controls.Add(this.txtID);
             this.gbPersonalInfo.Controls.Add(this.txtEmail);
             this.gbPersonalInfo.Controls.Add(this.txtPhone);
@@ -221,53 +213,41 @@ namespace Opus_Proto_1
             this.gbPersonalInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gbPersonalInfo.Name = "gbPersonalInfo";
             this.gbPersonalInfo.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.gbPersonalInfo.Size = new System.Drawing.Size(676, 478);
+            this.gbPersonalInfo.Size = new System.Drawing.Size(676, 364);
             this.gbPersonalInfo.TabIndex = 3;
             this.gbPersonalInfo.TabStop = false;
             this.gbPersonalInfo.Text = "Personal Information";
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(128, 315);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(304, 27);
+            this.textBox4.TabIndex = 30;
+            // 
             // txtTownCity
             // 
-            this.txtTownCity.Location = new System.Drawing.Point(432, 297);
+            this.txtTownCity.Location = new System.Drawing.Point(128, 264);
             this.txtTownCity.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTownCity.Name = "txtTownCity";
-            this.txtTownCity.Size = new System.Drawing.Size(219, 27);
+            this.txtTownCity.Size = new System.Drawing.Size(304, 27);
             this.txtTownCity.TabIndex = 29;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(321, 304);
+            this.label17.Location = new System.Drawing.Point(17, 271);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(78, 20);
             this.label17.TabIndex = 28;
             this.label17.Text = "Town\\City:";
             // 
-            // cboProvince
-            // 
-            this.cboProvince.FormattingEnabled = true;
-            this.cboProvince.Items.AddRange(new object[] {
-            "Gauteng",
-            "Free State",
-            "Kwa-Zulu Natal",
-            "Western Cape",
-            "Eastern Cape",
-            "Northern Cape",
-            "North-West",
-            "Mpumalanga",
-            "Limpopo"});
-            this.cboProvince.Location = new System.Drawing.Point(432, 337);
-            this.cboProvince.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cboProvince.Name = "cboProvince";
-            this.cboProvince.Size = new System.Drawing.Size(179, 28);
-            this.cboProvince.TabIndex = 27;
-            this.cboProvince.Text = "Select province....";
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(321, 351);
+            this.label16.Location = new System.Drawing.Point(17, 318);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(68, 20);
@@ -276,16 +256,16 @@ namespace Opus_Proto_1
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(432, 211);
+            this.txtAddress.Location = new System.Drawing.Point(128, 178);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(219, 27);
+            this.txtAddress.Size = new System.Drawing.Size(304, 27);
             this.txtAddress.TabIndex = 22;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(321, 213);
+            this.label15.Location = new System.Drawing.Point(17, 180);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(65, 20);
@@ -294,100 +274,41 @@ namespace Opus_Proto_1
             // 
             // txtPostAddress
             // 
-            this.txtPostAddress.Location = new System.Drawing.Point(432, 255);
+            this.txtPostAddress.Location = new System.Drawing.Point(128, 222);
             this.txtPostAddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPostAddress.Name = "txtPostAddress";
-            this.txtPostAddress.Size = new System.Drawing.Size(219, 27);
+            this.txtPostAddress.Size = new System.Drawing.Size(304, 27);
             this.txtPostAddress.TabIndex = 20;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(321, 257);
+            this.label14.Location = new System.Drawing.Point(17, 224);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(106, 20);
             this.label14.TabIndex = 19;
             this.label14.Text = "Postal address:";
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(13, 179);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(213, 20);
-            this.label9.TabIndex = 17;
-            this.label9.Text = "Please select your date of birth";
-            // 
-            // txtAge
-            // 
-            this.txtAge.Location = new System.Drawing.Point(93, 132);
-            this.txtAge.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtAge.Name = "txtAge";
-            this.txtAge.Size = new System.Drawing.Size(132, 27);
-            this.txtAge.TabIndex = 16;
-            // 
-            // CalDOB
-            // 
-            this.CalDOB.Location = new System.Drawing.Point(16, 211);
-            this.CalDOB.Margin = new System.Windows.Forms.Padding(12, 14, 12, 14);
-            this.CalDOB.Name = "CalDOB";
-            this.CalDOB.TabIndex = 18;
-            // 
-            // cboGender
-            // 
-            this.cboGender.FormattingEnabled = true;
-            this.cboGender.Items.AddRange(new object[] {
-            "Male",
-            "Female",
-            "Other"});
-            this.cboGender.Location = new System.Drawing.Point(539, 40);
-            this.cboGender.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cboGender.Name = "cboGender";
-            this.cboGender.Size = new System.Drawing.Size(132, 28);
-            this.cboGender.TabIndex = 15;
-            this.cboGender.Text = "Select gender....";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(17, 134);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(39, 20);
-            this.label10.TabIndex = 14;
-            this.label10.Text = "Age:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(472, 48);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(60, 20);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "Gender:";
-            // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(93, 86);
+            this.txtID.Location = new System.Drawing.Point(52, 86);
             this.txtID.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(132, 27);
+            this.txtID.Size = new System.Drawing.Size(173, 27);
             this.txtID.TabIndex = 11;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(539, 95);
+            this.txtEmail.Location = new System.Drawing.Point(71, 127);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(132, 27);
+            this.txtEmail.Size = new System.Drawing.Size(268, 27);
             this.txtEmail.TabIndex = 10;
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(339, 91);
+            this.txtPhone.Location = new System.Drawing.Point(347, 86);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(132, 27);
@@ -406,7 +327,7 @@ namespace Opus_Proto_1
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(485, 97);
+            this.label6.Location = new System.Drawing.Point(17, 129);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 20);
@@ -416,7 +337,7 @@ namespace Opus_Proto_1
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(233, 93);
+            this.label5.Location = new System.Drawing.Point(241, 88);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(108, 20);
@@ -425,7 +346,7 @@ namespace Opus_Proto_1
             // 
             // txtLName
             // 
-            this.txtLName.Location = new System.Drawing.Point(339, 40);
+            this.txtLName.Location = new System.Drawing.Point(347, 41);
             this.txtLName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtLName.Name = "txtLName";
             this.txtLName.Size = new System.Drawing.Size(132, 27);
@@ -434,7 +355,7 @@ namespace Opus_Proto_1
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(233, 48);
+            this.label4.Location = new System.Drawing.Point(241, 49);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 20);
@@ -443,7 +364,7 @@ namespace Opus_Proto_1
             // 
             // txtFName
             // 
-            this.txtFName.Location = new System.Drawing.Point(93, 42);
+            this.txtFName.Location = new System.Drawing.Point(101, 43);
             this.txtFName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtFName.Name = "txtFName";
             this.txtFName.Size = new System.Drawing.Size(132, 27);
@@ -452,22 +373,33 @@ namespace Opus_Proto_1
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 44);
+            this.label3.Location = new System.Drawing.Point(17, 45);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 20);
             this.label3.TabIndex = 0;
             this.label3.Text = "First Name:";
             // 
+            // btnSubmit
+            // 
+            this.btnSubmit.Location = new System.Drawing.Point(983, 458);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(181, 58);
+            this.btnSubmit.TabIndex = 3;
+            this.btnSubmit.Text = "Create Account";
+            this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            // 
             // Registartion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panReg);
+            this.Controls.Add(this.pnlReg);
             this.Name = "Registartion";
             this.Size = new System.Drawing.Size(1195, 542);
             this.Load += new System.EventHandler(this.Registartion_Load);
-            this.panReg.ResumeLayout(false);
+            this.pnlReg.ResumeLayout(false);
             this.gbAccountInfo.ResumeLayout(false);
             this.gbAccountInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -479,7 +411,7 @@ namespace Opus_Proto_1
 
         #endregion
 
-        private System.Windows.Forms.Panel panReg;
+        private System.Windows.Forms.Panel pnlReg;
         private System.Windows.Forms.GroupBox gbAccountInfo;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox textBox3;
@@ -493,18 +425,11 @@ namespace Opus_Proto_1
         private System.Windows.Forms.GroupBox gbPersonalInfo;
         private System.Windows.Forms.TextBox txtTownCity;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.ComboBox cboProvince;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtPostAddress;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtAge;
-        private System.Windows.Forms.MonthCalendar CalDOB;
-        private System.Windows.Forms.ComboBox cboGender;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtPhone;
@@ -515,5 +440,7 @@ namespace Opus_Proto_1
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtFName;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button btnBack;
     }
 }

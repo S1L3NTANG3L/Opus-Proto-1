@@ -50,6 +50,7 @@ namespace Opus_Proto_1
         public void setButtonBackColor(Color color)
         {
             btnLogin.BackColor = color;
+            btnRegister.BackColor = color;
         }
         public void setConnection(string conn)
         {
