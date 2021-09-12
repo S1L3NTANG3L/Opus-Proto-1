@@ -98,13 +98,16 @@ namespace Opus_Proto_1
         }
         private void RemoveAvailableJobs_Click(Object sender, AvailableJobsArgs e)
         {
+            AvailableJobs availableJobs = (AvailableJobs)sender;
+            username = availableJobs.getUsername();
             pnlAJSMain.Controls.Clear();
             UserProfile userProfile = new UserProfile();
             userProfile.username = this.username;
-            userProfile.rating = Int16.Parse(cF.GetSingleStringSQL("SELECT Overall_Rating FROM user_Details WHERE Username ='" + username + "'",conn));
+            userProfile.rating = cF.GetSingleIntegerSQL("SELECT Overall_Rating FROM user_details WHERE Username ='" + username + "'",conn);
             //userProfile.profilePicture = sqlCode; Need to figure this out
             userProfile.backColor = this.backColor;
             userProfile.buttonColor = this.themeButtonColor;
+            userProfile.disableBackButton();
             userProfile.setDefualtProfilePicture();
             if(!(cF.GetCountSQL("SELECT COUNT(Review) FROM reviews WHERE User_Code ='" + username + "'", conn) == 0))
             {
@@ -112,11 +115,11 @@ namespace Opus_Proto_1
                 for (int i = 0; i < arrReviews.Length; i++)
                 {
                     userProfile.addReview(arrReviews[i]);
-                }
-                pnlAJSMain.Controls.Add(userProfile);
-                userProfile.Location = new Point(pnlAJSMain.Width / 2 - 330, 0);
-                pageShowing++;
-            }            
+                }                
+            }
+            pnlAJSMain.Controls.Add(userProfile);
+            userProfile.Location = new Point(pnlAJSMain.Width / 2 - 330, 0);
+            pageShowing++;
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
@@ -126,6 +129,7 @@ namespace Opus_Proto_1
             }
             else
             {
+                pnlAJSMain.Controls.Clear();
                 LoadStartUpAvailableJobsSuper();
                 pageShowing--;
             }            

@@ -25,6 +25,11 @@ namespace Opus_Proto_1
             Controls.Add(starRatingControl);
             starRatingControl.Enabled = false;
         }
+        public void disableBackButton()
+        {
+            btnBack.Visible = false;
+            btnBack.Enabled = false;
+        }
         public void setDefualtProfilePicture()
         {
             pbProfilePicture.ImageLocation = Application.StartupPath + "\\Pictures\\DefaultPP.png";

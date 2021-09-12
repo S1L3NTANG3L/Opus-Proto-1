@@ -48,6 +48,10 @@ namespace Opus_Proto_1
         {
             this.BackColor = color;
         }
+        public string getUsername()
+        {
+            return lblUsername.Text;
+        }
     }
     public class AvailableJobsArgs : EventArgs
     {

@@ -169,6 +169,24 @@ namespace SoutiesSandbox
             }
             return temp;
         }
+        public int GetSingleIntegerSQL(string Command, string DatabaseConnection)//Returns an single value form an sql statement
+        {
+            int temp = 0;
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(DatabaseConnection))
+                {
+                    conn.Open();
+                    MySqlCommand sqlCommand = new MySqlCommand(Command, conn);
+                    temp = (int)sqlCommand.ExecuteScalar();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            return temp;
+        }
         public string[] GetStringArraySQL(string Command, string DatabaseConnection)//Returns an array of sql data
         {
             int count = 0;
