@@ -45,10 +45,6 @@ namespace Opus_Proto_1
                 materialSkinManager.ColorScheme = new ColorScheme(Primary.LightBlue800, Primary.Cyan800, Primary.LightBlue400, Accent.LightBlue700, TextShade.BLACK);
                 themeButtonColor = Color.FromArgb(62, 155, 212);
                 themeBackColor = Color.FromArgb(39, 124, 175);
-                PictureBox pbTemp = new PictureBox();
-                pbTemp.ImageLocation = Application.StartupPath + "\\light_background.jpg";
-                BackgroundImage = pbTemp.Image;
-                BackgroundImageLayout = ImageLayout.Center;
             }
             Login lgnForm = new Login();
             lgnForm.setButtonBackColor(themeButtonColor);
