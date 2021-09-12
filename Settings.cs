@@ -75,7 +75,7 @@ namespace Opus_Proto_1
             arrTemp[0] = sec_key;
             arrTemp[1] = cmbTheme.SelectedItem.ToString();
             arrTemp[2] = currencyCode;
-            cF.WriteToFile(arrTemp, "config.dll");
+            cF.WriteToFile(arrTemp, "\\Config\\config.dll");
             if (MessageBox.Show("Program needs to restart to apply theme.\nWould you like to exit now?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 Application.Restart();
@@ -88,7 +88,7 @@ namespace Opus_Proto_1
             arrTemp[0] = sec_key;
             arrTemp[1] = pickedTheme;
             arrTemp[2] = cmbCurrency.SelectedItem.ToString();
-            cF.WriteToFile(arrTemp, "config.dll");
+            cF.WriteToFile(arrTemp, "\\Config\\config.dll");
             if (MessageBox.Show("Program needs to restart to apply theme.\nWould you like to exit now?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 Application.Restart();
