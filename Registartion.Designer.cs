@@ -398,7 +398,6 @@ namespace Opus_Proto_1
             this.Controls.Add(this.pnlReg);
             this.Name = "Registartion";
             this.Size = new System.Drawing.Size(1195, 542);
-            this.Load += new System.EventHandler(this.Registartion_Load);
             this.pnlReg.ResumeLayout(false);
             this.gbAccountInfo.ResumeLayout(false);
             this.gbAccountInfo.PerformLayout();

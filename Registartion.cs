@@ -22,12 +22,9 @@ namespace Opus_Proto_1
         {
             InitializeComponent();
         }
-        private void Registartion_Load(object sender, EventArgs e)
-        {
-
-        }
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            //Add your code here need full validation and add items to database code can leave the profile picture part for now
             onRemoveSite(this, new RegistrationArgs(index));
         }
         public void setButtonBackColor(Color color)
