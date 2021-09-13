@@ -9,13 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Opus_Proto_1
-{/// <summary>
-/// Need to code closely to available jobs
-/// </summary>
-    public partial class OpenJobs : UserControl
+{
+    public partial class PastJobsSuper : UserControl
     {
-        public int index = 0;
-        public OpenJobs()
+        public PastJobsSuper()
         {
             InitializeComponent();
         }
