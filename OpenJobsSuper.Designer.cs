@@ -30,7 +30,6 @@ namespace Opus_Proto_1
         private void InitializeComponent()
         {
             this.pnlOJS = new System.Windows.Forms.Panel();
-            this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
@@ -40,27 +39,18 @@ namespace Opus_Proto_1
             // pnlOJS
             // 
             this.pnlOJS.AutoScroll = true;
-            this.pnlOJS.Location = new System.Drawing.Point(0, 40);
+            this.pnlOJS.Location = new System.Drawing.Point(0, 6);
             this.pnlOJS.Name = "pnlOJS";
-            this.pnlOJS.Size = new System.Drawing.Size(1200, 600);
+            this.pnlOJS.Size = new System.Drawing.Size(1200, 634);
             this.pnlOJS.TabIndex = 0;
-            // 
-            // cmbCategory
-            // 
-            this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(893, 3);
-            this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Size = new System.Drawing.Size(304, 28);
-            this.cmbCategory.TabIndex = 7;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(788, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 20);
+            this.label1.Size = new System.Drawing.Size(0, 20);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Job Category:";
             // 
             // btnBack
             // 
@@ -98,7 +88,6 @@ namespace Opus_Proto_1
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.cmbCategory);
             this.Controls.Add(this.pnlOJS);
             this.Name = "OpenJobsSuper";
             this.Size = new System.Drawing.Size(1200, 700);
@@ -111,7 +100,6 @@ namespace Opus_Proto_1
         #endregion
 
         private System.Windows.Forms.Panel pnlOJS;
-        private System.Windows.Forms.ComboBox cmbCategory;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnNext;

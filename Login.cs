@@ -62,7 +62,8 @@ namespace Opus_Proto_1
         }
         public string username
         {
-            get { return edtUsername.Text; }
+            //get { return edtUsername.Text; }
+            get { return "RECHARD1"; }//Remember to change this
         }
 
         private void btnRegister_Click(object sender, EventArgs e)

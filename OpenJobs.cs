@@ -35,9 +35,17 @@ namespace Opus_Proto_1
         {
             jobCode = value;
         }
-        public void setPayRate(string value)
+        public void setPaymentRate(string value)
         {
             lblPaymentRate.Text = value;
+        }
+        public void setBackColor(Color value)
+        {
+            this.BackColor = value;
+        }
+        public void setButtonColor(Color value)
+        {
+            btnInfo.BackColor = value;
         }
     }
 }

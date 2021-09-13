@@ -141,9 +141,8 @@ namespace Opus_Proto_1
             {
                 case 1:
                     UserProfile userProfile = new UserProfile();
-                    //userProfile.username = this.username;
-                    //userProfile.rating = SQLCODE;
-                    //userProfile.profilePicture = sqlCode;
+                    userProfile.username = this.username;
+                    userProfile.rating = cF.GetSingleIntegerSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + username + "'",conn);
                     userProfile.backColor = themeBackColor;
                     userProfile.buttonColor = themeButtonColor;
                     userProfile.setDefualtProfilePicture();
@@ -157,7 +156,7 @@ namespace Opus_Proto_1
                     openJobsSuper.setConnection(conn);
                     openJobsSuper.setBackColor(themeBackColor);
                     openJobsSuper.setCurrencyCode(currencyCode);
-                    //openJobsSuper.setUsername(username);
+                    openJobsSuper.setUsername(username);
                     openJobsSuper.onRemoveOJS += new OpenJobsSuper.RemoveOJSEventHandler(RemoveOJSSite_Click);
                     pnlMain.Controls.Add(openJobsSuper);
                     openJobsSuper.Location = new Point(pnlMain.Width / 2 - 600, 0);

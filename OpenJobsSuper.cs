@@ -24,7 +24,6 @@ namespace Opus_Proto_1
         private int pageNumber = 1;
         private string conn = "";
         private string currencyCode;
-        private int pageShowing = 0;
         private string username;
         List<Jobs> lstJobs = new List<Jobs>();
         CustomFunctions cF = new CustomFunctions();
@@ -38,46 +37,33 @@ namespace Opus_Proto_1
         {
             LoadStartUpOpenJobsSuper();
         }
-        private void LoadStartUpOpenJobsSuper()//Change
+        private void LoadStartUpOpenJobsSuper()
         {
-            cmbCategory.Items.AddRange(cF.GetStringArraySQL("SELECT Job_Name FROM job_types", conn));
             btnPrevious.Visible = false;
-            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Type_Code,open_jobs.Job_Desc, open_jobs.Pay_Amount "
-                + "FROM job_details INNER JOIN open_jobs ON job_details.Job_Code = open_jobs.Job_Code; ");
-            int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM job_details", conn);
+            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Name,job_details.Job_Type_Code,"
+                +"open_jobs.Job_Desc, open_jobs.Pay_Amount FROM job_details INNER JOIN open_jobs "
+                +"ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
+                +"OR job_details.Employee_Code = '" + username + "'");
+            int number = cF.GetCountSQL("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN open_jobs "
+                +"ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
+                +"OR job_details.Employee_Code = '" + username + "'", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
-            LoadAvailableJobs("SELECT COUNT(Job_Code) FROM job_details");
-        }
-        private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)//Change
-        {
-            pnlOJS.Controls.Clear();
-            string jobTypeCode = cF.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'", conn);
-            MessageBox.Show(jobTypeCode);
-            int number = cF.GetCountSQL("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN "
-                + "open_jobs ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'", conn);
-            decimal dtot = (decimal)(number / 20);
-            totalPageCount = (int)Math.Ceiling(dtot);
-            pageNumber = 1;
-            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Type_Code,open_jobs.Job_Desc, open_jobs.Pay_Amount "
-                + "FROM job_details INNER JOIN open_jobs ON job_details.Job_Code = open_jobs.Job_Code "
-                + "WHERE job_details.Employer_code = '" + username + "'");
+            if(totalPageCount < 1)
+            {
+                btnNext.Visible = false;
+            }
             LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN open_jobs "
-                + "ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'");
+                +"ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
+                +"OR job_details.Employee_Code = '" + username + "'");
         }
-        private void btnPrevious_Click(object sender, EventArgs e)//Change
+        private void btnPrevious_Click(object sender, EventArgs e)
         {
             pageNumber--;
             pnlOJS.Controls.Clear();
-            if (cmbCategory.SelectedIndex == -1)
-            {
-                LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs");
-            }
-            else
-            {
-                string jobCode = cF.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'", conn);
-                LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'");
-            }
+            LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN open_jobs "
+                +"ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
+                +"OR job_details.Employee_Code = '" + username + "'");
             if (pageNumber == 1)
             {
                 btnPrevious.Visible = false;
@@ -87,19 +73,13 @@ namespace Opus_Proto_1
                 btnNext.Visible = true;
             }
         }
-        private void btnNext_Click(object sender, EventArgs e)//Change
+        private void btnNext_Click(object sender, EventArgs e)
         {
             pageNumber++;
             pnlOJS.Controls.Clear();
-            if (cmbCategory.SelectedIndex == -1)
-            {
-                LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs");
-            }
-            else
-            {
-                string jobCode = cF.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'", conn);
-                LoadAvailableJobs("SELECT COUNT(Job_Code) FROM available_jobs WHERE Job_Type_Code = '" + jobCode + "'");
-            }
+            LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN open_jobs "
+                + "ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
+                +"OR job_details.Employee_Code = '" + username + "'");
             if (pageNumber > 1)
             {
                 btnPrevious.Visible = true;
@@ -108,7 +88,6 @@ namespace Opus_Proto_1
             {
                 btnNext.Visible = false;
             }
-
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
@@ -166,15 +145,15 @@ namespace Opus_Proto_1
                 previousJob = (OpenJobs)pnlOJS.Controls[pnlOJS.Controls.Count - 2];
                 openJob.Location = new Point(0, previousJob.Location.Y + previousJob.Height + SPACERY);
             }
-            //openJob.SetJobName(lstJobs[pnlOJS.Controls.Count - 1 + Index].JobCode);
-            //openJob.SetUsername(lstJobs[pnlOJS.Controls.Count - 1 + Index].Username);
-            //openJob.SetDescription(lstJobs[pnlOJS.Controls.Count - 1 + Index].Desc);
-            //openJob.SetRating(int.Parse(cF.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlOJS.Controls.Count - 1 + Index].Username + "'", conn)));
-            //openJob.SetPaymentRate(lstJobs[pnlOJS.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
+            openJob.setJobName(lstJobs[pnlOJS.Controls.Count - 1 + Index].JobCode);
+            openJob.setUsername(lstJobs[pnlOJS.Controls.Count - 1 + Index].Username);
+            openJob.setDesc(lstJobs[pnlOJS.Controls.Count - 1 + Index].Desc);
+            openJob.setPaymentRate(lstJobs[pnlOJS.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
             openJob.index = pnlOJS.Controls.Count - 1;
             openJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
              | System.Windows.Forms.AnchorStyles.Left))));
-            //openJob.setBackColor(backColor);
+            openJob.setBackColor(backColor);
+            openJob.setButtonColor(themeButtonColor);
         }
         private void RightRow(int Index)//Change
         {
@@ -192,15 +171,15 @@ namespace Opus_Proto_1
                 previousJob = (OpenJobs)pnlOJS.Controls[pnlOJS.Controls.Count - 12];
                 openJob.Location = new Point(previousJob.Width + SPACERX, previousJob.Location.Y + previousJob.Height + SPACERY);
             }
-            //openJob.SetJobName(lstJobs[pnlOJS.Controls.Count - 1 + Index].JobCode);
-            //openJob.SetUsername(lstJobs[pnlOJS.Controls.Count - 1 + Index].Username);
-            //openJob.SetDescription(lstJobs[pnlOJS.Controls.Count - 1 + Index].Desc);
-            //openJob.SetRating(int.Parse(cF.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlOJS.Controls.Count - 1 + Index].Username.ToString() + "'", conn)));
-            //openJob.SetPaymentRate(lstJobs[pnlOJS.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
+            openJob.setJobName(lstJobs[pnlOJS.Controls.Count - 1 + Index].JobCode);
+            openJob.setUsername(lstJobs[pnlOJS.Controls.Count - 1 + Index].Username);
+            openJob.setDesc(lstJobs[pnlOJS.Controls.Count - 1 + Index].Desc);
+            openJob.setPaymentRate(lstJobs[pnlOJS.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
             openJob.index = pnlOJS.Controls.Count - 1;
             openJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
              | System.Windows.Forms.AnchorStyles.Left))));
-            //openJob.setBackColor(backColor);
+            openJob.setBackColor(backColor);
+            openJob.setButtonColor(themeButtonColor);
         }
         private void LoadAvailableJobs(string command)
         {
