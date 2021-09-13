@@ -42,8 +42,8 @@ namespace Opus_Proto_1
         {
             cmbCategory.Items.AddRange(cF.GetStringArraySQL("SELECT Job_Name FROM job_types", conn));
             btnPrevious.Visible = false;
-            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount "
-                + "FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code; ");
+            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Type_Code,open_jobs.Job_Desc, open_jobs.Pay_Amount "
+                + "FROM job_details INNER JOIN open_jobs ON job_details.Job_Code = open_jobs.Job_Code; ");
             int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM job_details", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
@@ -55,15 +55,15 @@ namespace Opus_Proto_1
             string jobTypeCode = cF.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'", conn);
             MessageBox.Show(jobTypeCode);
             int number = cF.GetCountSQL("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN "
-                + "available_jobs ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'", conn);
+                + "open_jobs ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
             pageNumber = 1;
-            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount "
-                + "FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code "
-                + "WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'");
-            LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN available_jobs "
-                + "ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'");
+            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Type_Code,open_jobs.Job_Desc, open_jobs.Pay_Amount "
+                + "FROM job_details INNER JOIN open_jobs ON job_details.Job_Code = open_jobs.Job_Code "
+                + "WHERE job_details.Employer_code = '" + username + "'");
+            LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN open_jobs "
+                + "ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'");
         }
         private void btnPrevious_Click(object sender, EventArgs e)//Change
         {

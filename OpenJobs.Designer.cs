@@ -77,7 +77,7 @@ namespace Opus_Proto_1
             // 
             // btnInfo
             // 
-            this.btnInfo.Location = new System.Drawing.Point(430, 207);
+            this.btnInfo.Location = new System.Drawing.Point(430, 198);
             this.btnInfo.Name = "btnInfo";
             this.btnInfo.Size = new System.Drawing.Size(117, 49);
             this.btnInfo.TabIndex = 13;
@@ -94,7 +94,7 @@ namespace Opus_Proto_1
             this.Controls.Add(this.redtDesc);
             this.Controls.Add(this.lblJobName);
             this.Name = "OpenJobs";
-            this.Size = new System.Drawing.Size(560, 278);
+            this.Size = new System.Drawing.Size(550, 250);
             this.ResumeLayout(false);
             this.PerformLayout();
 

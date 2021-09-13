@@ -90,7 +90,7 @@ namespace Opus_Proto_1
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
             pageNumber = 1;
-            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount "
+            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Name,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount "
                 + "FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code "
                 +"WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'");
             LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN available_jobs "
@@ -138,8 +138,8 @@ namespace Opus_Proto_1
         {
             cmbCategory.Items.AddRange(cF.GetStringArraySQL("SELECT Job_Name FROM job_types", conn));
             btnPrevious.Visible = false;
-            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount "
-                +"FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code; ");
+            FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Name,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount "
+                + "FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code; ");
             int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM job_details", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
@@ -211,7 +211,7 @@ namespace Opus_Proto_1
                 previousJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 2];
                 availableJob.Location = new Point(0, previousJob.Location.Y + previousJob.Height + SPACERY);
             }
-            availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode);
+            availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobName);
             availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username);
             availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
             availableJob.SetRating(int.Parse(cF.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username + "'", conn)));
@@ -237,7 +237,7 @@ namespace Opus_Proto_1
                 previousJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 12];
                 availableJob.Location = new Point(previousJob.Width + SPACERX, previousJob.Location.Y + previousJob.Height + SPACERY);
             }
-            availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode);
+            availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobName);
             availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username);
             availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
             availableJob.SetRating(int.Parse(cF.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username.ToString() + "'", conn)));

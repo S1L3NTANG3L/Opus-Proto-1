@@ -319,6 +319,7 @@ namespace SoutiesSandbox
     {
         public string Username { get; private set; }
         public string JobCode { get; private set; }
+        public string JobName { get; private set; }
         public string JobTypeCode { get; private set; }
         public string Desc { get; private set; }
         public decimal PayAmount { get; private set; }
@@ -326,9 +327,10 @@ namespace SoutiesSandbox
         {
             Username = (string)Data[0];
             JobCode = (string)Data[1];
-            JobTypeCode = (string)Data[2];
-            Desc = (string)Data[3];
-            PayAmount = (decimal)Data[4];
+            JobName = (string)Data[2];
+            JobTypeCode = (string)Data[3];
+            Desc = (string)Data[4];
+            PayAmount = (decimal)Data[5];
         }
     }
     public static class DecimalExtension

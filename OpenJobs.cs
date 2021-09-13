@@ -9,15 +9,35 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Opus_Proto_1
-{/// <summary>
-/// Need to code closely to available jobs
-/// </summary>
+{
     public partial class OpenJobs : UserControl
     {
         public int index = 0;
+        private string username;
+        private string jobCode;
         public OpenJobs()
         {
             InitializeComponent();
+        }
+        public void setDesc(string value)
+        {
+            redtDesc.Text = value;
+        }
+        public void setJobName(string value)
+        {
+            lblJobName.Text = value;
+        }
+        public void setUsername(string value)
+        {
+            username = value;
+        }
+        public void setJobCode(string value)
+        {
+            jobCode = value;
+        }
+        public void setPayRate(string value)
+        {
+            lblPaymentRate.Text = value;
         }
     }
 }

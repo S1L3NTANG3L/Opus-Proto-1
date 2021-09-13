@@ -24,6 +24,7 @@ namespace Opus_Proto_1
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
+            //conn = cF.CreateRemoteSQLConnection("soutiesentrance.ddns.net", "13306", "opus_user", "opus2021", "opus_db");//Remote Connection
             conn = cF.CreateRemoteSQLConnection("192.168.50.34", "13306", "opus_user", "opus2021", "opus_db");//Needs to change for external access
             var temp = cF.ReadFromFile("\\Config\\config.dll");
             string[] tempArr = temp.StringArray;
