@@ -34,6 +34,7 @@ namespace Opus_Proto_1
             this.btnBack = new System.Windows.Forms.Button();
             this.pnlAJSMain = new System.Windows.Forms.Panel();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnPrevious
@@ -83,11 +84,21 @@ namespace Opus_Proto_1
             this.cmbCategory.TabIndex = 6;
             this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(785, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 20);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Job Category:";
+            // 
             // AvailableJobsSuper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbCategory);
             this.Controls.Add(this.pnlAJSMain);
             this.Controls.Add(this.btnBack);
@@ -97,6 +108,7 @@ namespace Opus_Proto_1
             this.Size = new System.Drawing.Size(1200, 700);
             this.Load += new System.EventHandler(this.AvailableJobsSuper_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -106,5 +118,6 @@ namespace Opus_Proto_1
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Panel pnlAJSMain;
         private System.Windows.Forms.ComboBox cmbCategory;
+        private System.Windows.Forms.Label label1;
     }
 }

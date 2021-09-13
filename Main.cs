@@ -79,6 +79,16 @@ namespace Opus_Proto_1
                 registartion.Location = new Point(pnlMain.Width / 2 - 600, 0);
             }
         }
+        private void RemoveOJSSite_Click(Object sender, OpenJobsSuperArgs e)
+        {
+            OpenJobsSuper jobsSuper = (OpenJobsSuper)sender;
+            pnlMain.Controls.Remove(jobsSuper);
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.setBackColor(themeBackColor);
+            mainMenu.onRemoveSite += new MainMenu.RemoveMMEventHandler(RemoveMMSite_Click);
+            pnlMain.Controls.Add(mainMenu);
+            mainMenu.Location = new Point(pnlMain.Width / 2 - 250, 0);
+        }
         private void RemoveRegSite_Click(Object sender, RegistrationArgs e)
         {
             Registartion registartion = (Registartion)sender;
@@ -141,6 +151,15 @@ namespace Opus_Proto_1
                     userProfile.Location = new Point(pnlMain.Width / 2 - 330, 0);
                     break;
                 case 2:
+                    OpenJobsSuper openJobsSuper = new OpenJobsSuper();
+                    openJobsSuper.setButtonBackColor(themeButtonColor);
+                    openJobsSuper.setConnection(conn);
+                    openJobsSuper.setBackColor(themeBackColor);
+                    openJobsSuper.setCurrencyCode(currencyCode);
+                    //openJobsSuper.setUsername(username);
+                    openJobsSuper.onRemoveOJS += new OpenJobsSuper.RemoveOJSEventHandler(RemoveOJSSite_Click);
+                    pnlMain.Controls.Add(openJobsSuper);
+                    openJobsSuper.Location = new Point(pnlMain.Width / 2 - 600, 0);
                     break;
                 case 3:
                     AvailableJobsSuper availableJobsSuper = new AvailableJobsSuper();
@@ -148,7 +167,6 @@ namespace Opus_Proto_1
                     availableJobsSuper.setConnection(conn);
                     availableJobsSuper.setBackColor(themeBackColor);
                     availableJobsSuper.setCurrencyCode(currencyCode);
-                    availableJobsSuper.setUsername(username);
                     availableJobsSuper.onRemoveAJS += new AvailableJobsSuper.RemoveAJSEventHandler(RemoveAJSSite_Click);
                     pnlMain.Controls.Add(availableJobsSuper);
                     availableJobsSuper.Location = new Point(pnlMain.Width / 2 - 600, 0);

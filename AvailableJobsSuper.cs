@@ -140,7 +140,7 @@ namespace Opus_Proto_1
             btnPrevious.Visible = false;
             FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount "
                 +"FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code; ");
-            int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM job_Details", conn);
+            int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM job_details", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
             LoadAvailableJobs("SELECT COUNT(Job_Code) FROM job_details");
@@ -267,10 +267,6 @@ namespace Opus_Proto_1
         {
             this.currencyCode = currencyCode;
         }
-        public void setUsername(string username)
-        {
-            this.username = username;
-        }
     }
     public class AvailableJobsSuperArgs : EventArgs
     {
@@ -278,38 +274,6 @@ namespace Opus_Proto_1
         public AvailableJobsSuperArgs(int value)
         {
             index = value;
-        }
-    }
-    public class Jobs
-    {
-        public string Username { get; private set; }
-        public string JobCode { get; private set; }
-        public string JobTypeCode { get; private set; }
-        public string Desc { get; private set; }
-        public decimal PayAmount { get; private set; }
-        public Jobs(System.Data.IDataRecord Data)
-        {
-            Username = (string)Data[0];
-            JobCode = (string)Data[1];
-            JobTypeCode = (string)Data[2];
-            Desc = (string)Data[3];
-            PayAmount = (decimal)Data[4];
-        }
-    }
-    public static class DecimalExtension
-    {
-        private static readonly Dictionary<string, CultureInfo> ISOCurrenciesToACultureMap =
-            CultureInfo.GetCultures(CultureTypes.SpecificCultures)
-                .Select(c => new { c, new RegionInfo(c.LCID).ISOCurrencySymbol })
-                .GroupBy(x => x.ISOCurrencySymbol)
-                .ToDictionary(g => g.Key, g => g.First().c, StringComparer.OrdinalIgnoreCase);
-
-        public static string FormatCurrency(this decimal amount, string currencyCode)
-        {
-            CultureInfo culture;
-            if (ISOCurrenciesToACultureMap.TryGetValue(currencyCode, out culture))
-                return string.Format(culture, "{0:C}", amount);
-            return amount.ToString("0.00");
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿//Ver. 2.1.4
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -311,6 +313,38 @@ namespace SoutiesSandbox
             objTripleDESCryptoService.Clear();
             //Convert and return the decrypted data/byte into string format.
             return UTF8Encoding.UTF8.GetString(resultArray);
+        }
+    }
+    public class Jobs
+    {
+        public string Username { get; private set; }
+        public string JobCode { get; private set; }
+        public string JobTypeCode { get; private set; }
+        public string Desc { get; private set; }
+        public decimal PayAmount { get; private set; }
+        public Jobs(System.Data.IDataRecord Data)
+        {
+            Username = (string)Data[0];
+            JobCode = (string)Data[1];
+            JobTypeCode = (string)Data[2];
+            Desc = (string)Data[3];
+            PayAmount = (decimal)Data[4];
+        }
+    }
+    public static class DecimalExtension
+    {
+        private static readonly Dictionary<string, CultureInfo> ISOCurrenciesToACultureMap =
+            CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+                .Select(c => new { c, new RegionInfo(c.LCID).ISOCurrencySymbol })
+                .GroupBy(x => x.ISOCurrencySymbol)
+                .ToDictionary(g => g.Key, g => g.First().c, StringComparer.OrdinalIgnoreCase);
+
+        public static string FormatCurrency(this decimal amount, string currencyCode)
+        {
+            CultureInfo culture;
+            if (ISOCurrenciesToACultureMap.TryGetValue(currencyCode, out culture))
+                return string.Format(culture, "{0:C}", amount);
+            return amount.ToString("0.00");
         }
     }
 }

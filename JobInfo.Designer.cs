@@ -35,7 +35,6 @@ namespace Opus_Proto_1
             this.redtDesc = new System.Windows.Forms.RichTextBox();
             this.pnlApplicants = new System.Windows.Forms.Panel();
             this.btnBack = new System.Windows.Forms.Button();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // label1
@@ -115,6 +114,5 @@ namespace Opus_Proto_1
         private System.Windows.Forms.RichTextBox redtDesc;
         private System.Windows.Forms.Panel pnlApplicants;
         private System.Windows.Forms.Button btnBack;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
