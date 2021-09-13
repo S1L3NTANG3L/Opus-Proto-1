@@ -15,6 +15,8 @@ namespace Opus_Proto_1
         public int index = 0;
         private string username;
         private string jobCode;
+        public delegate void RemoveOJEventHandler(object sender, OpenJobsArgs e);
+        public event RemoveOJEventHandler onRemoveOJ;
         public OpenJobs()
         {
             InitializeComponent();
@@ -46,6 +48,26 @@ namespace Opus_Proto_1
         public void setButtonColor(Color value)
         {
             btnInfo.BackColor = value;
+        }
+        public string getUsername()
+        {
+            return username;
+        }
+        public string getJobCode()
+        {
+            return jobCode;
+        }
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            onRemoveOJ(this, new OpenJobsArgs(index));
+        }
+    }
+    public class OpenJobsArgs : EventArgs
+    {
+        public int index;
+        public OpenJobsArgs(int value)
+        {
+            index = value;
         }
     }
 }

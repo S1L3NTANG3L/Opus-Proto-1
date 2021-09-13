@@ -51,7 +51,7 @@ namespace Opus_Proto_1
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 22);
+            this.label1.Location = new System.Drawing.Point(6, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 0;
@@ -69,7 +69,7 @@ namespace Opus_Proto_1
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(337, 19);
+            this.label3.Location = new System.Drawing.Point(337, 27);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(99, 20);
             this.label3.TabIndex = 2;
@@ -86,14 +86,14 @@ namespace Opus_Proto_1
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(105, 19);
+            this.textBox1.Location = new System.Drawing.Point(91, 24);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(202, 27);
             this.textBox1.TabIndex = 4;
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(20, 101);
+            this.richTextBox1.Location = new System.Drawing.Point(3, 100);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(311, 140);
             this.richTextBox1.TabIndex = 5;
@@ -102,7 +102,7 @@ namespace Opus_Proto_1
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(442, 19);
+            this.comboBox1.Location = new System.Drawing.Point(442, 27);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(151, 28);
             this.comboBox1.TabIndex = 6;
@@ -116,7 +116,7 @@ namespace Opus_Proto_1
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(20, 280);
+            this.richTextBox2.Location = new System.Drawing.Point(3, 279);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(311, 66);
             this.richTextBox2.TabIndex = 8;
@@ -133,7 +133,7 @@ namespace Opus_Proto_1
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(20, 387);
+            this.textBox3.Location = new System.Drawing.Point(3, 386);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(202, 27);
             this.textBox3.TabIndex = 11;
@@ -149,7 +149,7 @@ namespace Opus_Proto_1
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(20, 449);
+            this.textBox4.Location = new System.Drawing.Point(3, 448);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(202, 27);
             this.textBox4.TabIndex = 13;
@@ -165,7 +165,7 @@ namespace Opus_Proto_1
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(20, 512);
+            this.textBox5.Location = new System.Drawing.Point(3, 511);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(202, 27);
             this.textBox5.TabIndex = 15;
@@ -181,7 +181,7 @@ namespace Opus_Proto_1
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(413, 578);
+            this.button1.Location = new System.Drawing.Point(417, 549);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(180, 48);
             this.button1.TabIndex = 16;
@@ -210,7 +210,7 @@ namespace Opus_Proto_1
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "CreateJob";
-            this.Size = new System.Drawing.Size(616, 646);
+            this.Size = new System.Drawing.Size(600, 600);
             this.ResumeLayout(false);
             this.PerformLayout();
 

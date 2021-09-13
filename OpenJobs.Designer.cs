@@ -83,6 +83,7 @@ namespace Opus_Proto_1
             this.btnInfo.TabIndex = 13;
             this.btnInfo.Text = "Info";
             this.btnInfo.UseVisualStyleBackColor = true;
+            this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
             // OpenJobs
             // 

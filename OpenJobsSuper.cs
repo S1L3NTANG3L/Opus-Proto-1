@@ -22,6 +22,7 @@ namespace Opus_Proto_1
         private const int SPACERX = 75;
         private int totalPageCount;
         private int pageNumber = 1;
+        private int pageShowing = 0;
         private string conn = "";
         private string currencyCode;
         private string username;
@@ -35,27 +36,28 @@ namespace Opus_Proto_1
         }
         private void OpenJobsSuper_Load(object sender, EventArgs e)
         {
-            LoadStartUpOpenJobsSuper();
+            LoadStartupOpenJobsSuper();
+            
         }
-        private void LoadStartUpOpenJobsSuper()
+        public void LoadStartupOpenJobsSuper()
         {
             btnPrevious.Visible = false;
             FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Name,job_details.Job_Type_Code,"
-                +"open_jobs.Job_Desc, open_jobs.Pay_Amount FROM job_details INNER JOIN open_jobs "
-                +"ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
-                +"OR job_details.Employee_Code = '" + username + "'");
+                + "open_jobs.Job_Desc, open_jobs.Pay_Amount FROM job_details INNER JOIN open_jobs "
+                + "ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
+                + "OR job_details.Employee_Code = '" + username + "'");
             int number = cF.GetCountSQL("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN open_jobs "
-                +"ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
-                +"OR job_details.Employee_Code = '" + username + "'", conn);
+                + "ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
+                + "OR job_details.Employee_Code = '" + username + "'", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
-            if(totalPageCount < 1)
+            if (totalPageCount < 1)
             {
                 btnNext.Visible = false;
             }
             LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN open_jobs "
-                +"ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
-                +"OR job_details.Employee_Code = '" + username + "'");
+                + "ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
+                + "OR job_details.Employee_Code = '" + username + "'");
         }
         private void btnPrevious_Click(object sender, EventArgs e)
         {
@@ -90,14 +92,34 @@ namespace Opus_Proto_1
             }
         }
         private void btnBack_Click(object sender, EventArgs e)
+        {            
+            if (pageShowing == 0)
+            {
+                onRemoveOJS(this, new OpenJobsSuperArgs(index));
+            }
+            else
+            {
+                pnlOJS.Controls.Clear();
+                LoadStartupOpenJobsSuper();
+                btnCreateJob.Visible = true;
+                pageShowing--;
+            }
+        }
+        private void btnCreateJob_Click(object sender, EventArgs e)//Change
         {
-            onRemoveOJS(this, new OpenJobsSuperArgs(index));
+            pnlOJS.Controls.Clear();
+            CreateJob createJob = new CreateJob();
+            pnlOJS.Controls.Add(createJob);
+            createJob.Location = new Point(pnlOJS.Width / 2 - 300, 0);
+            btnCreateJob.Visible = false;
+            pageShowing++;
         }
         public void setButtonBackColor(Color color)
         {
             btnBack.BackColor = color;
             btnNext.BackColor = color;
             btnPrevious.BackColor = color;
+            btnCreateJob.BackColor = color;
             themeButtonColor = color;
         }
         public void setConnection(string conn)
@@ -130,10 +152,10 @@ namespace Opus_Proto_1
                 }
             }
         }
-        private void LeftRow(int Index)//Change
+        private void LeftRow(int Index)
         {
             OpenJobs openJob = new OpenJobs();
-            //availableJob.onRemoveAJ += new AvailableJobs.RemoveAJEventHandler(RemoveAvailableJobs_Click);
+            openJob.onRemoveOJ += new OpenJobs.RemoveOJEventHandler(RemoveOpenJobs_Click);
             OpenJobs previousJob;
             pnlOJS.Controls.Add(openJob);
             if (pnlOJS.Controls.Count < 2)
@@ -150,15 +172,15 @@ namespace Opus_Proto_1
             openJob.setDesc(lstJobs[pnlOJS.Controls.Count - 1 + Index].Desc);
             openJob.setPaymentRate(lstJobs[pnlOJS.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
             openJob.index = pnlOJS.Controls.Count - 1;
-            openJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
-             | System.Windows.Forms.AnchorStyles.Left))));
+            openJob.Anchor = (System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top)
+             | System.Windows.Forms.AnchorStyles.Left);
             openJob.setBackColor(backColor);
             openJob.setButtonColor(themeButtonColor);
         }
-        private void RightRow(int Index)//Change
+        private void RightRow(int Index)
         {
             OpenJobs openJob = new OpenJobs();
-            //availableJob.onRemoveAJ += new AvailableJobs.RemoveAJEventHandler(RemoveAvailableJobs_Click);
+            openJob.onRemoveOJ += new OpenJobs.RemoveOJEventHandler(RemoveOpenJobs_Click);
             OpenJobs previousJob;
             OpenJobs rightFirstJob = (OpenJobs)pnlOJS.Controls[pnlOJS.Controls.Count - 10];
             pnlOJS.Controls.Add(openJob);
@@ -176,8 +198,8 @@ namespace Opus_Proto_1
             openJob.setDesc(lstJobs[pnlOJS.Controls.Count - 1 + Index].Desc);
             openJob.setPaymentRate(lstJobs[pnlOJS.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
             openJob.index = pnlOJS.Controls.Count - 1;
-            openJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
-             | System.Windows.Forms.AnchorStyles.Left))));
+            openJob.Anchor = (System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top)
+             | System.Windows.Forms.AnchorStyles.Left);
             openJob.setBackColor(backColor);
             openJob.setButtonColor(themeButtonColor);
         }
@@ -219,6 +241,35 @@ namespace Opus_Proto_1
                 }
             }
         }
+        private void RemoveOpenJobs_Click(Object sender,OpenJobsArgs e)//Change
+        {
+            OpenJobs openJobs = (OpenJobs)sender;
+            username = openJobs.getUsername();
+            string jobCode = openJobs.getJobCode();
+            pnlOJS.Controls.Clear();
+            //Change
+            //UserProfile userProfile = new UserProfile();
+            //userProfile.username = this.username;
+            //userProfile.rating = cF.GetSingleIntegerSQL("SELECT Overall_Rating FROM user_details WHERE Username ='" + username + "'", conn);
+            ////userProfile.profilePicture = sqlCode; Need to figure this out
+            //userProfile.backColor = this.backColor;
+            //userProfile.buttonColor = this.themeButtonColor;
+            //userProfile.disableBackButton();
+            //userProfile.setDefualtProfilePicture();
+            //if (!(cF.GetCountSQL("SELECT COUNT(Review) FROM reviews WHERE User_Code ='" + username + "'", conn) == 0))
+            //{
+            //    string[] arrReviews = cF.GetStringArraySQL("SELECT Review FROM reviews WHERE User_Code ='" + username + "'", conn);
+            //    for (int i = 0; i < arrReviews.Length; i++)
+            //    {
+            //        userProfile.addReview(arrReviews[i]);
+            //    }
+            //}
+            //pnlAJSMain.Controls.Add(userProfile);
+            //userProfile.Location = new Point(pnlAJSMain.Width / 2 - 330, 0);
+            btnCreateJob.Visible = false;
+            pageShowing++;
+        }
+        
     }
     public class OpenJobsSuperArgs : EventArgs
     {

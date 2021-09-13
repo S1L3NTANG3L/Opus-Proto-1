@@ -22,13 +22,5 @@ namespace Opus_Proto_1
         {
             //Event Arguement that takes you back to open jobs
         }
-        public string JobName
-        {
-            set { lblJobName.Text = value; }
-        }
-        public string JobDesc
-        {
-            set { redtDesc.Text = value; }
-        }
     }
 }

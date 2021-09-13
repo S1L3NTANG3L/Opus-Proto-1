@@ -34,6 +34,7 @@ namespace Opus_Proto_1
             this.btnBack = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnCreateJob = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pnlOJS
@@ -70,6 +71,7 @@ namespace Opus_Proto_1
             this.btnNext.TabIndex = 10;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPrevious
             // 
@@ -79,11 +81,23 @@ namespace Opus_Proto_1
             this.btnPrevious.TabIndex = 9;
             this.btnPrevious.Text = "Previous";
             this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
+            // 
+            // btnCreateJob
+            // 
+            this.btnCreateJob.Location = new System.Drawing.Point(150, 646);
+            this.btnCreateJob.Name = "btnCreateJob";
+            this.btnCreateJob.Size = new System.Drawing.Size(129, 45);
+            this.btnCreateJob.TabIndex = 12;
+            this.btnCreateJob.Text = "Create Job";
+            this.btnCreateJob.UseVisualStyleBackColor = true;
+            this.btnCreateJob.Click += new System.EventHandler(this.btnCreateJob_Click);
             // 
             // OpenJobsSuper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCreateJob);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrevious);
@@ -104,5 +118,6 @@ namespace Opus_Proto_1
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.Button btnCreateJob;
     }
 }

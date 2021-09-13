@@ -119,6 +119,10 @@ namespace Opus_Proto_1
             }
             pnlAJSMain.Controls.Add(userProfile);
             userProfile.Location = new Point(pnlAJSMain.Width / 2 - 330, 0);
+            cmbCategory.Visible = false;
+            btnNext.Visible = false;
+            btnPrevious.Visible = false;
+            lblJobCat.Visible = false;
             pageShowing++;
         }
         private void btnBack_Click(object sender, EventArgs e)
@@ -131,6 +135,9 @@ namespace Opus_Proto_1
             {
                 pnlAJSMain.Controls.Clear();
                 LoadStartUpAvailableJobsSuper();
+                cmbCategory.Visible = true;
+                btnNext.Visible = true;
+                lblJobCat.Visible = true;
                 pageShowing--;
             }            
         }

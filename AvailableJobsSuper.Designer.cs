@@ -34,12 +34,12 @@ namespace Opus_Proto_1
             this.btnBack = new System.Windows.Forms.Button();
             this.pnlAJSMain = new System.Windows.Forms.Panel();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblJobCat = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnPrevious
             // 
-            this.btnPrevious.Location = new System.Drawing.Point(933, 652);
+            this.btnPrevious.Location = new System.Drawing.Point(933, 757);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(129, 45);
             this.btnPrevious.TabIndex = 2;
@@ -49,7 +49,7 @@ namespace Opus_Proto_1
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(1080, 652);
+            this.btnNext.Location = new System.Drawing.Point(1080, 757);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(117, 45);
             this.btnNext.TabIndex = 3;
@@ -59,7 +59,7 @@ namespace Opus_Proto_1
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(3, 652);
+            this.btnBack.Location = new System.Drawing.Point(3, 757);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(129, 45);
             this.btnBack.TabIndex = 4;
@@ -72,7 +72,7 @@ namespace Opus_Proto_1
             this.pnlAJSMain.AutoScroll = true;
             this.pnlAJSMain.Location = new System.Drawing.Point(0, 40);
             this.pnlAJSMain.Name = "pnlAJSMain";
-            this.pnlAJSMain.Size = new System.Drawing.Size(1200, 600);
+            this.pnlAJSMain.Size = new System.Drawing.Size(1200, 711);
             this.pnlAJSMain.TabIndex = 5;
             // 
             // cmbCategory
@@ -84,28 +84,28 @@ namespace Opus_Proto_1
             this.cmbCategory.TabIndex = 6;
             this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
             // 
-            // label1
+            // lblJobCat
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(785, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 20);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Job Category:";
+            this.lblJobCat.AutoSize = true;
+            this.lblJobCat.Location = new System.Drawing.Point(785, 9);
+            this.lblJobCat.Name = "lblJobCat";
+            this.lblJobCat.Size = new System.Drawing.Size(99, 20);
+            this.lblJobCat.TabIndex = 9;
+            this.lblJobCat.Text = "Job Category:";
             // 
             // AvailableJobsSuper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblJobCat);
             this.Controls.Add(this.cmbCategory);
             this.Controls.Add(this.pnlAJSMain);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnPrevious);
             this.Name = "AvailableJobsSuper";
-            this.Size = new System.Drawing.Size(1200, 700);
+            this.Size = new System.Drawing.Size(1200, 805);
             this.Load += new System.EventHandler(this.AvailableJobsSuper_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -118,6 +118,6 @@ namespace Opus_Proto_1
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Panel pnlAJSMain;
         private System.Windows.Forms.ComboBox cmbCategory;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblJobCat;
     }
 }
