@@ -26,10 +26,13 @@ namespace Opus_Proto_1
         private string conn = "";
         private string currencyCode;
         private string username;
+        private string jobCode;
         List<Jobs> lstJobs = new List<Jobs>();
         CustomFunctions cF = new CustomFunctions();
         public delegate void RemoveOJSEventHandler(object sender, OpenJobsSuperArgs e);
         public event RemoveOJSEventHandler onRemoveOJS;
+        public delegate void LoadJobInfoEventHandler(object sender, OpenJobsSuperArgs e);
+        public event LoadJobInfoEventHandler LoadJobInfo;
         public OpenJobsSuper()
         {
             InitializeComponent();
@@ -43,11 +46,11 @@ namespace Opus_Proto_1
         {
             btnPrevious.Visible = false;
             FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Name,job_details.Job_Type_Code,"
-                + "open_jobs.Job_Desc, open_jobs.Pay_Amount FROM job_details INNER JOIN open_jobs "
-                + "ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
+                + "available_jobs.Job_Desc, available_jobs.Pay_Amount FROM job_details INNER JOIN available_jobs "
+                + "ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
                 + "OR job_details.Employee_Code = '" + username + "'");
-            int number = cF.GetCountSQL("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN open_jobs "
-                + "ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
+            int number = cF.GetCountSQL("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN available_jobs "
+                + "ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
                 + "OR job_details.Employee_Code = '" + username + "'", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
@@ -55,16 +58,16 @@ namespace Opus_Proto_1
             {
                 btnNext.Visible = false;
             }
-            LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN open_jobs "
-                + "ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
+            LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN available_jobs "
+                + "ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
                 + "OR job_details.Employee_Code = '" + username + "'");
         }
         private void btnPrevious_Click(object sender, EventArgs e)
         {
             pageNumber--;
             pnlOJS.Controls.Clear();
-            LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN open_jobs "
-                +"ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
+            LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN available_jobs "
+                +"ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
                 +"OR job_details.Employee_Code = '" + username + "'");
             if (pageNumber == 1)
             {
@@ -79,8 +82,8 @@ namespace Opus_Proto_1
         {
             pageNumber++;
             pnlOJS.Controls.Clear();
-            LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN open_jobs "
-                + "ON job_details.Job_Code = open_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
+            LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN available_jobs "
+                + "ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
                 +"OR job_details.Employee_Code = '" + username + "'");
             if (pageNumber > 1)
             {
@@ -105,10 +108,15 @@ namespace Opus_Proto_1
                 pageShowing--;
             }
         }
-        private void btnCreateJob_Click(object sender, EventArgs e)//Change
+        private void btnCreateJob_Click(object sender, EventArgs e)
         {
             pnlOJS.Controls.Clear();
             CreateJob createJob = new CreateJob();
+            createJob.createJob += new CreateJob.CreateJobEventHandler(ReloadJobs_Click);
+            createJob.setConn(conn);
+            createJob.setUsername(username);
+            createJob.setBackColor(backColor);
+            createJob.setButtonColor(themeButtonColor);
             pnlOJS.Controls.Add(createJob);
             createJob.Location = new Point(pnlOJS.Width / 2 - 300, 0);
             btnCreateJob.Visible = false;
@@ -156,6 +164,7 @@ namespace Opus_Proto_1
         {
             OpenJobs openJob = new OpenJobs();
             openJob.onRemoveOJ += new OpenJobs.RemoveOJEventHandler(RemoveOpenJobs_Click);
+            openJob.JobDeleted += new OpenJobs.JobDeleteEventHandler(RemoveJob_Click);
             OpenJobs previousJob;
             pnlOJS.Controls.Add(openJob);
             if (pnlOJS.Controls.Count < 2)
@@ -167,10 +176,12 @@ namespace Opus_Proto_1
                 previousJob = (OpenJobs)pnlOJS.Controls[pnlOJS.Controls.Count - 2];
                 openJob.Location = new Point(0, previousJob.Location.Y + previousJob.Height + SPACERY);
             }
-            openJob.setJobName(lstJobs[pnlOJS.Controls.Count - 1 + Index].JobCode);
+            openJob.setJobName(lstJobs[pnlOJS.Controls.Count - 1 + Index].JobName);
             openJob.setUsername(lstJobs[pnlOJS.Controls.Count - 1 + Index].Username);
             openJob.setDesc(lstJobs[pnlOJS.Controls.Count - 1 + Index].Desc);
             openJob.setPaymentRate(lstJobs[pnlOJS.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
+            openJob.setConn(conn);
+            openJob.setJobCode(lstJobs[pnlOJS.Controls.Count - 1 + Index].JobCode);
             openJob.index = pnlOJS.Controls.Count - 1;
             openJob.Anchor = (System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top)
              | System.Windows.Forms.AnchorStyles.Left);
@@ -181,6 +192,7 @@ namespace Opus_Proto_1
         {
             OpenJobs openJob = new OpenJobs();
             openJob.onRemoveOJ += new OpenJobs.RemoveOJEventHandler(RemoveOpenJobs_Click);
+            openJob.JobDeleted += new OpenJobs.JobDeleteEventHandler(RemoveJob_Click);
             OpenJobs previousJob;
             OpenJobs rightFirstJob = (OpenJobs)pnlOJS.Controls[pnlOJS.Controls.Count - 10];
             pnlOJS.Controls.Add(openJob);
@@ -193,10 +205,12 @@ namespace Opus_Proto_1
                 previousJob = (OpenJobs)pnlOJS.Controls[pnlOJS.Controls.Count - 12];
                 openJob.Location = new Point(previousJob.Width + SPACERX, previousJob.Location.Y + previousJob.Height + SPACERY);
             }
-            openJob.setJobName(lstJobs[pnlOJS.Controls.Count - 1 + Index].JobCode);
+            openJob.setJobName(lstJobs[pnlOJS.Controls.Count - 1 + Index].JobName);
             openJob.setUsername(lstJobs[pnlOJS.Controls.Count - 1 + Index].Username);
             openJob.setDesc(lstJobs[pnlOJS.Controls.Count - 1 + Index].Desc);
             openJob.setPaymentRate(lstJobs[pnlOJS.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
+            openJob.setConn(conn);
+            openJob.setJobCode(lstJobs[pnlOJS.Controls.Count - 1 + Index].JobCode);
             openJob.index = pnlOJS.Controls.Count - 1;
             openJob.Anchor = (System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top)
              | System.Windows.Forms.AnchorStyles.Left);
@@ -241,35 +255,26 @@ namespace Opus_Proto_1
                 }
             }
         }
-        private void RemoveOpenJobs_Click(Object sender,OpenJobsArgs e)//Change
+        private void RemoveOpenJobs_Click(Object sender,OpenJobsArgs e)
         {
             OpenJobs openJobs = (OpenJobs)sender;
-            username = openJobs.getUsername();
-            string jobCode = openJobs.getJobCode();
-            pnlOJS.Controls.Clear();
-            //Change
-            //UserProfile userProfile = new UserProfile();
-            //userProfile.username = this.username;
-            //userProfile.rating = cF.GetSingleIntegerSQL("SELECT Overall_Rating FROM user_details WHERE Username ='" + username + "'", conn);
-            ////userProfile.profilePicture = sqlCode; Need to figure this out
-            //userProfile.backColor = this.backColor;
-            //userProfile.buttonColor = this.themeButtonColor;
-            //userProfile.disableBackButton();
-            //userProfile.setDefualtProfilePicture();
-            //if (!(cF.GetCountSQL("SELECT COUNT(Review) FROM reviews WHERE User_Code ='" + username + "'", conn) == 0))
-            //{
-            //    string[] arrReviews = cF.GetStringArraySQL("SELECT Review FROM reviews WHERE User_Code ='" + username + "'", conn);
-            //    for (int i = 0; i < arrReviews.Length; i++)
-            //    {
-            //        userProfile.addReview(arrReviews[i]);
-            //    }
-            //}
-            //pnlAJSMain.Controls.Add(userProfile);
-            //userProfile.Location = new Point(pnlAJSMain.Width / 2 - 330, 0);
-            btnCreateJob.Visible = false;
-            pageShowing++;
+            jobCode = openJobs.getJobCode();
+            LoadJobInfo(this, new OpenJobsSuperArgs(index));
         }
-        
+        public string getJobCode()
+        {
+            return jobCode;
+        }
+        private void RemoveJob_Click(Object sender, OpenJobsArgs e)
+        {
+            pnlOJS.Controls.Clear();
+            LoadStartupOpenJobsSuper();
+        }
+        private void ReloadJobs_Click(Object sender, CreateJobArgs e)
+        {
+            pnlOJS.Controls.Clear();
+            LoadStartupOpenJobsSuper();
+        }
     }
     public class OpenJobsSuperArgs : EventArgs
     {

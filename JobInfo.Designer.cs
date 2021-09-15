@@ -35,6 +35,7 @@ namespace Opus_Proto_1
             this.redtDesc = new System.Windows.Forms.RichTextBox();
             this.pnlApplicants = new System.Windows.Forms.Panel();
             this.btnBack = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -58,7 +59,7 @@ namespace Opus_Proto_1
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 83);
+            this.label2.Location = new System.Drawing.Point(14, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 20);
             this.label2.TabIndex = 2;
@@ -66,7 +67,7 @@ namespace Opus_Proto_1
             // 
             // redtDesc
             // 
-            this.redtDesc.Location = new System.Drawing.Point(14, 106);
+            this.redtDesc.Location = new System.Drawing.Point(14, 98);
             this.redtDesc.Name = "redtDesc";
             this.redtDesc.Size = new System.Drawing.Size(341, 120);
             this.redtDesc.TabIndex = 3;
@@ -89,10 +90,20 @@ namespace Opus_Proto_1
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(14, 221);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Applicants:";
+            // 
             // JobInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.pnlApplicants);
             this.Controls.Add(this.redtDesc);
@@ -100,7 +111,7 @@ namespace Opus_Proto_1
             this.Controls.Add(this.lblJobName);
             this.Controls.Add(this.label1);
             this.Name = "JobInfo";
-            this.Size = new System.Drawing.Size(604, 720);
+            this.Size = new System.Drawing.Size(600, 720);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,5 +125,6 @@ namespace Opus_Proto_1
         private System.Windows.Forms.RichTextBox redtDesc;
         private System.Windows.Forms.Panel pnlApplicants;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Label label3;
     }
 }

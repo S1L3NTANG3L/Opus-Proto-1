@@ -45,13 +45,13 @@ namespace Opus_Proto_1
             this.label7 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCreateJob = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 27);
+            this.label1.Location = new System.Drawing.Point(3, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 20);
             this.label1.TabIndex = 0;
@@ -60,7 +60,7 @@ namespace Opus_Proto_1
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 77);
+            this.label2.Location = new System.Drawing.Point(3, 74);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 20);
             this.label2.TabIndex = 1;
@@ -86,7 +86,7 @@ namespace Opus_Proto_1
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(91, 24);
+            this.textBox1.Location = new System.Drawing.Point(88, 27);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(202, 27);
             this.textBox1.TabIndex = 4;
@@ -125,7 +125,7 @@ namespace Opus_Proto_1
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 257);
+            this.label5.Location = new System.Drawing.Point(3, 256);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 20);
             this.label5.TabIndex = 9;
@@ -141,7 +141,7 @@ namespace Opus_Proto_1
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(20, 364);
+            this.label6.Location = new System.Drawing.Point(3, 363);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(37, 20);
             this.label6.TabIndex = 10;
@@ -157,7 +157,7 @@ namespace Opus_Proto_1
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 426);
+            this.label7.Location = new System.Drawing.Point(3, 425);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(46, 20);
             this.label7.TabIndex = 12;
@@ -173,26 +173,27 @@ namespace Opus_Proto_1
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(20, 489);
+            this.label8.Location = new System.Drawing.Point(3, 488);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(73, 20);
             this.label8.TabIndex = 14;
             this.label8.Text = "Zip Code:";
             // 
-            // button1
+            // btnCreateJob
             // 
-            this.button1.Location = new System.Drawing.Point(417, 549);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(180, 48);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Create Job";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCreateJob.Location = new System.Drawing.Point(417, 549);
+            this.btnCreateJob.Name = "btnCreateJob";
+            this.btnCreateJob.Size = new System.Drawing.Size(180, 48);
+            this.btnCreateJob.TabIndex = 16;
+            this.btnCreateJob.Text = "Create Job";
+            this.btnCreateJob.UseVisualStyleBackColor = true;
+            this.btnCreateJob.Click += new System.EventHandler(this.btnCreateJob_Click);
             // 
             // CreateJob
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCreateJob);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textBox4);
@@ -234,6 +235,6 @@ namespace Opus_Proto_1
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCreateJob;
     }
 }

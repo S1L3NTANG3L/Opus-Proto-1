@@ -132,6 +132,34 @@ namespace Opus_Proto_1
             pnlMain.Controls.Add(mainMenu);
             mainMenu.Location = new Point(pnlMain.Width / 2 - 250, 0);
         }
+        private void LoadJobInfo_Click(Object sender, OpenJobsSuperArgs e)
+        {
+            OpenJobsSuper openJobsSuper = (OpenJobsSuper)sender;
+            string tempJobCode = openJobsSuper.getJobCode();
+            pnlMain.Controls.Clear();
+            JobInfo jobInfo = new JobInfo(tempJobCode);
+            jobInfo.LoadOpenJobs += new JobInfo.LoadOpenJobsEventHandler(LoadOpenJobs_Click);
+            jobInfo.setBackColor(themeBackColor);
+            jobInfo.setButtonColor(themeButtonColor);
+            jobInfo.setJobName(cF.GetSingleStringSQL("SELECT Job_Name FROM job_details WHERE Job_Code = '" + tempJobCode + "'", conn));
+            jobInfo.setDesc(cF.GetSingleStringSQL("SELECT Job_Desc FROM available_jobs WHERE Job_Code = '" + tempJobCode + "'", conn));
+            pnlMain.Controls.Add(jobInfo);
+            jobInfo.Location = new Point(pnlMain.Width / 2 - 300, 0);
+        }
+        private void LoadOpenJobs_Click(Object sender, JobInfoArgs e)
+        {
+            pnlMain.Controls.Clear();
+            OpenJobsSuper openJobsSuper = new OpenJobsSuper();
+            openJobsSuper.setButtonBackColor(themeButtonColor);
+            openJobsSuper.setConnection(conn);
+            openJobsSuper.setBackColor(themeBackColor);
+            openJobsSuper.setCurrencyCode(currencyCode);
+            openJobsSuper.setUsername(username);
+            openJobsSuper.onRemoveOJS += new OpenJobsSuper.RemoveOJSEventHandler(RemoveOJSSite_Click);
+            openJobsSuper.LoadJobInfo += new OpenJobsSuper.LoadJobInfoEventHandler(LoadJobInfo_Click);
+            pnlMain.Controls.Add(openJobsSuper);
+            openJobsSuper.Location = new Point(pnlMain.Width / 2 - 600, 0);
+        }
         private void RemoveMMSite_Click(Object sender, MainMenuArgs e)
         {
             MainMenu mainMenu = (MainMenu)sender;
@@ -158,6 +186,7 @@ namespace Opus_Proto_1
                     openJobsSuper.setCurrencyCode(currencyCode);
                     openJobsSuper.setUsername(username);
                     openJobsSuper.onRemoveOJS += new OpenJobsSuper.RemoveOJSEventHandler(RemoveOJSSite_Click);
+                    openJobsSuper.LoadJobInfo += new OpenJobsSuper.LoadJobInfoEventHandler(LoadJobInfo_Click);
                     pnlMain.Controls.Add(openJobsSuper);
                     openJobsSuper.Location = new Point(pnlMain.Width / 2 - 600, 0);
                     break;

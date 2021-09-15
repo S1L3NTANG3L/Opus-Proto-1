@@ -34,6 +34,7 @@ namespace Opus_Proto_1
             this.redtDesc = new System.Windows.Forms.RichTextBox();
             this.lblJobName = new System.Windows.Forms.Label();
             this.btnInfo = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblPaymentRate
@@ -85,10 +86,21 @@ namespace Opus_Proto_1
             this.btnInfo.UseVisualStyleBackColor = true;
             this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(307, 198);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(117, 49);
+            this.btnRemove.TabIndex = 14;
+            this.btnRemove.Text = "Delete";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
             // OpenJobs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.lblPaymentRate);
             this.Controls.Add(this.label1);
@@ -108,5 +120,6 @@ namespace Opus_Proto_1
         private System.Windows.Forms.RichTextBox redtDesc;
         private System.Windows.Forms.Label lblJobName;
         private System.Windows.Forms.Button btnInfo;
+        private System.Windows.Forms.Button btnRemove;
     }
 }
