@@ -8,7 +8,9 @@ namespace Opus_Proto_1
     public partial class Login : UserControl
     {
         CustomFunctions cF = new CustomFunctions();
-        string conn;
+        private string conn;
+        private string sec_key;
+        private string username;
         public int index = 0;
         public delegate void RemoveLoginEventHandler(Object sender, LoginArgs e);
         public event RemoveLoginEventHandler onRemoveLogin;
@@ -21,31 +23,31 @@ namespace Opus_Proto_1
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //conn = cF.CreateRemoteSQLConnection("10.100.100.15", "13306", "Rechard", "V<6OD|>!$i]L", "opus_db");
-            //if (edtPassword.Text == "")
-            //{
-            //    lblInvalid.Visible = true;
-            //}
-            //else if (edtUsername.Text == "")
-            //{
-            //    lblInvalid.Visible = true;
-            //}
-            //else if (cF.GetCountSQL("SELECT COUNT(Username) FROM student_responses_table WHERE student_number = '"
-            //    + edtUsername.Text + "'", conn) == 0)//Need to change
-            //{
-            //    lblInvalid.Visible = true;
-            //}
-            //else if (cF.DecryptCipherTextToPlainText(cF.GetSingleStringSQL(
-            //    "SELECT student_password FROM student_responses_table WHERE student_number = '" + edtUsername.Text + "'",//Need to change
-            //    conn), sec_key) != edtPassword.Text)
-            //{
-            //    lblInvalid.Visible = true;
-            //}
-            //else
-            //{
-            //    onRemoveLogin(this, new LoginArgs(index));
-            //}
-            onRemoveLogin(this, new LoginArgs(index));
+            lblInvalid.Visible = false;
+            if (edtPassword.Text == "")
+            {
+                lblInvalid.Visible = true;
+            }
+            else if (edtUsername.Text == "")
+            {
+                lblInvalid.Visible = true;
+            }
+            else if (cF.GetCountSQL("SELECT COUNT(Name) FROM user_details WHERE Username  = '" + edtUsername.Text + "' OR"
+                +" Email  = '" + edtUsername.Text.ToLower() + "'", conn) == 0)
+            {
+                lblInvalid.Visible = true;
+            }            
+            else if (cF.DecryptCipherTextToPlainText(cF.GetSingleStringSQL(
+                "SELECT Password FROM user_details WHERE Username  = '" + edtUsername.Text + "' OR"
+                +" Email  = '" + edtUsername.Text.ToLower() + "'", conn), sec_key) != edtPassword.Text)
+            {
+                lblInvalid.Visible = true;
+            }
+            else
+            {
+                username = edtUsername.Text;
+                onRemoveLogin(this, new LoginArgs(index));
+            }
         }
         public void setButtonBackColor(Color color)
         {
@@ -60,12 +62,14 @@ namespace Opus_Proto_1
         {
             BackColor = color;
         }
-        public string username
+        public void setSecCode(string value)
         {
-            //get { return edtUsername.Text; }
-            get { return "RECHARD1"; }//Remember to change this
+            sec_key = value;
         }
-
+        public string getUsername()
+        {
+            return username;
+        }  
         private void btnRegister_Click(object sender, EventArgs e)
         {
             LoadReg(this, new LoginArgs(index));

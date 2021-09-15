@@ -56,9 +56,9 @@ namespace Opus_Proto_1
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(71, 405);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 20);
+            this.label1.Size = new System.Drawing.Size(134, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Email";
+            this.label1.Text = "Email or Username";
             // 
             // label2
             // 
@@ -92,6 +92,7 @@ namespace Opus_Proto_1
             this.edtPassword.Name = "edtPassword";
             this.edtPassword.Size = new System.Drawing.Size(235, 27);
             this.edtPassword.TabIndex = 5;
+            this.edtPassword.UseSystemPasswordChar = true;
             // 
             // lblInvalid
             // 

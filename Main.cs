@@ -50,6 +50,7 @@ namespace Opus_Proto_1
             lgnForm.setButtonBackColor(themeButtonColor);
             lgnForm.setConnection(conn);
             lgnForm.setBackColor(themeBackColor);
+            lgnForm.setSecCode(sec_key);
             pnlMain.Controls.Add(lgnForm);
             lgnForm.Location = new Point(pnlMain.Width / 2 - 250, 0);
             lgnForm.onRemoveLogin += new Login.RemoveLoginEventHandler(LoadMainMenu_Click);
@@ -58,7 +59,7 @@ namespace Opus_Proto_1
         private void LoadMainMenu_Click(Object sender, LoginArgs e)
         {
             Login login = (Login)sender;
-            username = login.username;
+            username = login.getUsername();
             pnlMain.Controls.Remove(login);
             MainMenu mainMenu = new MainMenu();
             mainMenu.setBackColor(themeBackColor);
