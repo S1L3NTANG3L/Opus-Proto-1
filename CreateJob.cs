@@ -1,12 +1,6 @@
 ﻿using SoutiesSandbox;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Opus_Proto_1
@@ -15,7 +9,7 @@ namespace Opus_Proto_1
     {
         public int index = 0;
         CustomFunctions cF = new CustomFunctions();
-        public delegate void    CreateJobEventHandler(object sender, CreateJobArgs e);
+        public delegate void CreateJobEventHandler(object sender, CreateJobArgs e);
         public event CreateJobEventHandler createJob;
         private string username;
         private string conn;
@@ -26,15 +20,15 @@ namespace Opus_Proto_1
         private void btnCreateJob_Click(object sender, EventArgs e)
         {
             //Verification and insert code
-            createJob(this, new CreateJobArgs(index));         
+            createJob(this, new CreateJobArgs(index));
         }
         public void setBackColor(Color color)
-        { 
-            this.BackColor = color; 
+        {
+            this.BackColor = color;
         }
         public void setButtonColor(Color color)
-        { 
-            btnCreateJob.BackColor = color; 
+        {
+            btnCreateJob.BackColor = color;
         }
         public void setUsername(string value)
         {

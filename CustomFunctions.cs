@@ -22,7 +22,7 @@ namespace SoutiesSandbox
         }
         public (string[] StringArray, int ItemCount) ReadFromFile(string FileName)//Textfile method
         {
-            string[] output = File.ReadAllLines(Application.StartupPath+FileName);
+            string[] output = File.ReadAllLines(Application.StartupPath + FileName);
             int count = File.ReadAllLines(Application.StartupPath + FileName).Length;
             return (output, count);
         }

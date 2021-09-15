@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using SoutiesSandbox;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Opus_Proto_1
 {
@@ -40,7 +34,7 @@ namespace Opus_Proto_1
         private void OpenJobsSuper_Load(object sender, EventArgs e)
         {
             LoadStartupOpenJobsSuper();
-            
+
         }
         public void LoadStartupOpenJobsSuper()
         {
@@ -67,8 +61,8 @@ namespace Opus_Proto_1
             pageNumber--;
             pnlOJS.Controls.Clear();
             LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN available_jobs "
-                +"ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
-                +"OR job_details.Employee_Code = '" + username + "'");
+                + "ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
+                + "OR job_details.Employee_Code = '" + username + "'");
             if (pageNumber == 1)
             {
                 btnPrevious.Visible = false;
@@ -84,7 +78,7 @@ namespace Opus_Proto_1
             pnlOJS.Controls.Clear();
             LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN available_jobs "
                 + "ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
-                +"OR job_details.Employee_Code = '" + username + "'");
+                + "OR job_details.Employee_Code = '" + username + "'");
             if (pageNumber > 1)
             {
                 btnPrevious.Visible = true;
@@ -95,7 +89,7 @@ namespace Opus_Proto_1
             }
         }
         private void btnBack_Click(object sender, EventArgs e)
-        {            
+        {
             if (pageShowing == 0)
             {
                 onRemoveOJS(this, new OpenJobsSuperArgs(index));
@@ -255,7 +249,7 @@ namespace Opus_Proto_1
                 }
             }
         }
-        private void RemoveOpenJobs_Click(Object sender,OpenJobsArgs e)
+        private void RemoveOpenJobs_Click(Object sender, OpenJobsArgs e)
         {
             OpenJobs openJobs = (OpenJobs)sender;
             jobCode = openJobs.getJobCode();

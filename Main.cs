@@ -4,7 +4,6 @@ using SoutiesSandbox;
 using System;
 using System.Drawing;
 using System.Reflection;
-using System.Windows.Forms;
 
 namespace Opus_Proto_1
 {
@@ -59,7 +58,7 @@ namespace Opus_Proto_1
         {
             Login login = (Login)sender;
             username = login.username;
-            if(login.buttonPressed == 1)
+            if (login.buttonPressed == 1)
             {
                 pnlMain.Controls.Remove(login);
                 MainMenu mainMenu = new MainMenu();
@@ -141,10 +140,12 @@ namespace Opus_Proto_1
             jobInfo.LoadOpenJobs += new JobInfo.LoadOpenJobsEventHandler(LoadOpenJobs_Click);
             jobInfo.setBackColor(themeBackColor);
             jobInfo.setButtonColor(themeButtonColor);
-            jobInfo.setJobName(cF.GetSingleStringSQL("SELECT Job_Name FROM job_details WHERE Job_Code = '" + tempJobCode + "'", conn));
-            jobInfo.setDesc(cF.GetSingleStringSQL("SELECT Job_Desc FROM available_jobs WHERE Job_Code = '" + tempJobCode + "'", conn));
+            jobInfo.setJobName(cF.GetSingleStringSQL("SELECT Job_Name FROM job_details WHERE Job_Code = '"
+                + tempJobCode + "'", conn));
+            jobInfo.setDesc(cF.GetSingleStringSQL("SELECT Job_Desc FROM available_jobs WHERE Job_Code = '"
+                + tempJobCode + "'", conn));
             pnlMain.Controls.Add(jobInfo);
-            jobInfo.Location = new Point(pnlMain.Width / 2 - 300, 0);
+            jobInfo.Location = new Point(pnlMain.Width / 2 - 200, 0);
         }
         private void LoadOpenJobs_Click(Object sender, JobInfoArgs e)
         {
@@ -170,7 +171,7 @@ namespace Opus_Proto_1
                 case 1:
                     UserProfile userProfile = new UserProfile();
                     userProfile.username = this.username;
-                    userProfile.rating = cF.GetSingleIntegerSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + username + "'",conn);
+                    userProfile.rating = cF.GetSingleIntegerSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + username + "'", conn);
                     userProfile.backColor = themeBackColor;
                     userProfile.buttonColor = themeButtonColor;
                     userProfile.setDefualtProfilePicture();

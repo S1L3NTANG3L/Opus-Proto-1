@@ -2,10 +2,7 @@
 using SoutiesSandbox;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
-using System.Globalization;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Opus_Proto_1
@@ -86,15 +83,15 @@ namespace Opus_Proto_1
             string jobTypeCode = cF.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'", conn);
             MessageBox.Show(jobTypeCode);
             int number = cF.GetCountSQL("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN "
-                +"available_jobs ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'", conn);
+                + "available_jobs ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
             pageNumber = 1;
             FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Name,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount "
                 + "FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code "
-                +"WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'");
+                + "WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'");
             LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN available_jobs "
-                +"ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'");
+                + "ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'");
         }
         private void RemoveAvailableJobs_Click(Object sender, AvailableJobsArgs e)
         {
@@ -103,19 +100,19 @@ namespace Opus_Proto_1
             pnlAJSMain.Controls.Clear();
             UserProfile userProfile = new UserProfile();
             userProfile.username = this.username;
-            userProfile.rating = cF.GetSingleIntegerSQL("SELECT Overall_Rating FROM user_details WHERE Username ='" + username + "'",conn);
+            userProfile.rating = cF.GetSingleIntegerSQL("SELECT Overall_Rating FROM user_details WHERE Username ='" + username + "'", conn);
             //userProfile.profilePicture = sqlCode; Need to figure this out
             userProfile.backColor = this.backColor;
             userProfile.buttonColor = this.themeButtonColor;
             userProfile.disableBackButton();
             userProfile.setDefualtProfilePicture();
-            if(!(cF.GetCountSQL("SELECT COUNT(Review) FROM reviews WHERE User_Code ='" + username + "'", conn) == 0))
+            if (!(cF.GetCountSQL("SELECT COUNT(Review) FROM reviews WHERE User_Code ='" + username + "'", conn) == 0))
             {
                 string[] arrReviews = cF.GetStringArraySQL("SELECT Review FROM reviews WHERE User_Code ='" + username + "'", conn);
                 for (int i = 0; i < arrReviews.Length; i++)
                 {
                     userProfile.addReview(arrReviews[i]);
-                }                
+                }
             }
             pnlAJSMain.Controls.Add(userProfile);
             userProfile.Location = new Point(pnlAJSMain.Width / 2 - 330, 0);
@@ -127,7 +124,7 @@ namespace Opus_Proto_1
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
-            if(pageShowing == 0)
+            if (pageShowing == 0)
             {
                 onRemoveAJS(this, new AvailableJobsSuperArgs(index));
             }
@@ -139,7 +136,7 @@ namespace Opus_Proto_1
                 btnNext.Visible = true;
                 lblJobCat.Visible = true;
                 pageShowing--;
-            }            
+            }
         }
         private void LoadStartUpAvailableJobsSuper()
         {

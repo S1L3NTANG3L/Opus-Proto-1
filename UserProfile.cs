@@ -1,12 +1,6 @@
 ﻿using RatingControls;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Opus_Proto_1
@@ -71,7 +65,7 @@ namespace Opus_Proto_1
         {
             set
             {
-                this.BackColor  = value;
+                this.BackColor = value;
             }
         }
         public Color buttonColor
