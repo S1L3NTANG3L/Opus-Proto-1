@@ -244,7 +244,7 @@ namespace SoutiesSandbox
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex.ErrorCode.ToString() + ", " + ex.Code);
             }
         }
         public string RandomPasswordGenerator(int PasswordLength)//In the name

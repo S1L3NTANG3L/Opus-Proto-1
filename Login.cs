@@ -10,9 +10,10 @@ namespace Opus_Proto_1
         CustomFunctions cF = new CustomFunctions();
         string conn;
         public int index = 0;
-        public int buttonPressed;
         public delegate void RemoveLoginEventHandler(Object sender, LoginArgs e);
         public event RemoveLoginEventHandler onRemoveLogin;
+        public delegate void LoadRegEventHandler(Object sender, LoginArgs e);
+        public event LoadRegEventHandler LoadReg;
         public Login()
         {
             InitializeComponent();
@@ -44,7 +45,6 @@ namespace Opus_Proto_1
             //{
             //    onRemoveLogin(this, new LoginArgs(index));
             //}
-            buttonPressed = 1;
             onRemoveLogin(this, new LoginArgs(index));
         }
         public void setButtonBackColor(Color color)
@@ -68,8 +68,7 @@ namespace Opus_Proto_1
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            buttonPressed = 2;
-            onRemoveLogin(this, new LoginArgs(index));
+            LoadReg(this, new LoginArgs(index));
         }
     }
     public class LoginArgs : EventArgs

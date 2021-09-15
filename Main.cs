@@ -52,32 +52,32 @@ namespace Opus_Proto_1
             lgnForm.setBackColor(themeBackColor);
             pnlMain.Controls.Add(lgnForm);
             lgnForm.Location = new Point(pnlMain.Width / 2 - 250, 0);
-            lgnForm.onRemoveLogin += new Login.RemoveLoginEventHandler(RemoveLgnSite_Click);
+            lgnForm.onRemoveLogin += new Login.RemoveLoginEventHandler(LoadMainMenu_Click);
+            lgnForm.LoadReg += new Login.LoadRegEventHandler(LoadRegistration_Click);
         }
-        private void RemoveLgnSite_Click(Object sender, LoginArgs e)
+        private void LoadMainMenu_Click(Object sender, LoginArgs e)
         {
             Login login = (Login)sender;
             username = login.username;
-            if (login.buttonPressed == 1)
-            {
-                pnlMain.Controls.Remove(login);
-                MainMenu mainMenu = new MainMenu();
-                mainMenu.setBackColor(themeBackColor);
-                mainMenu.onRemoveSite += new MainMenu.RemoveMMEventHandler(RemoveMMSite_Click);
-                pnlMain.Controls.Add(mainMenu);
-                mainMenu.Location = new Point(pnlMain.Width / 2 - 250, 0);
-            }
-            else
-            {
-                pnlMain.Controls.Remove(login);
-                Registartion registartion = new Registartion();
-                registartion.setBackColor(themeBackColor);
-                registartion.setButtonBackColor(themeButtonColor);
-                registartion.setConnection(conn);
-                registartion.onRemoveSite += new Registartion.RemoveRegEventHandler(RemoveRegSite_Click);
-                pnlMain.Controls.Add(registartion);
-                registartion.Location = new Point(pnlMain.Width / 2 - 600, 0);
-            }
+            pnlMain.Controls.Remove(login);
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.setBackColor(themeBackColor);
+            mainMenu.onRemoveSite += new MainMenu.RemoveMMEventHandler(RemoveMMSite_Click);
+            pnlMain.Controls.Add(mainMenu);
+            mainMenu.Location = new Point(pnlMain.Width / 2 - 250, 0);
+        }
+        private void LoadRegistration_Click(Object sender, LoginArgs e)
+        {
+            Login login = (Login)sender;
+            pnlMain.Controls.Remove(login);
+            Registartion registartion = new Registartion();
+            registartion.setBackColor(themeBackColor);
+            registartion.setButtonBackColor(themeButtonColor);
+            registartion.setConnection(conn);
+            registartion.setSecCode(sec_key);
+            registartion.onRemoveSite += new Registartion.RemoveRegEventHandler(RemoveRegSite_Click);
+            pnlMain.Controls.Add(registartion);
+            registartion.Location = new Point(pnlMain.Width / 2 - 600, 0);
         }
         private void RemoveOJSSite_Click(Object sender, OpenJobsSuperArgs e)
         {
@@ -99,7 +99,8 @@ namespace Opus_Proto_1
             lgnForm.setBackColor(themeBackColor);
             pnlMain.Controls.Add(lgnForm);
             lgnForm.Location = new Point(pnlMain.Width / 2 - 250, 0);
-            lgnForm.onRemoveLogin += new Login.RemoveLoginEventHandler(RemoveLgnSite_Click);
+            lgnForm.onRemoveLogin += new Login.RemoveLoginEventHandler(LoadMainMenu_Click);
+            lgnForm.LoadReg += new Login.LoadRegEventHandler(LoadRegistration_Click);
         }
         private void RemoveUPSite_Click(Object sender, UserProfileArgs e)
         {
@@ -220,7 +221,8 @@ namespace Opus_Proto_1
                     login.setButtonBackColor(themeButtonColor);
                     login.setConnection(conn);
                     login.setBackColor(themeBackColor);
-                    login.onRemoveLogin += new Login.RemoveLoginEventHandler(RemoveLgnSite_Click);
+                    login.onRemoveLogin += new Login.RemoveLoginEventHandler(LoadMainMenu_Click);
+                    login.LoadReg += new Login.LoadRegEventHandler(LoadRegistration_Click);
                     pnlMain.Controls.Add(login);
                     login.Location = new Point(pnlMain.Width / 2 - 250, 0);
                     break;
