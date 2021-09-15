@@ -38,6 +38,7 @@ namespace Opus_Proto_1
             this.edtPassword = new System.Windows.Forms.TextBox();
             this.lblInvalid = new System.Windows.Forms.Label();
             this.btnRegister = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,11 +116,22 @@ namespace Opus_Proto_1
             this.btnRegister.UseVisualStyleBackColor = true;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
+            // btnView
+            // 
+            this.btnView.Location = new System.Drawing.Point(312, 501);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(23, 29);
+            this.btnView.TabIndex = 33;
+            this.btnView.Text = "V";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.Controls.Add(this.btnView);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.lblInvalid);
             this.Controls.Add(this.edtPassword);
@@ -146,5 +158,6 @@ namespace Opus_Proto_1
         private System.Windows.Forms.TextBox edtPassword;
         private System.Windows.Forms.Label lblInvalid;
         private System.Windows.Forms.Button btnRegister;
+        private System.Windows.Forms.Button btnView;
     }
 }

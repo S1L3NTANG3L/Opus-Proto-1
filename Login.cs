@@ -45,7 +45,9 @@ namespace Opus_Proto_1
             }
             else
             {
-                username = edtUsername.Text;
+
+                username = cF.GetSingleStringSQL("SELECT Username FROM user_details WHERE Username  = '" + edtUsername.Text + "' OR"
+                + " Email  = '" + edtUsername.Text.ToLower() + "'", conn);
                 onRemoveLogin(this, new LoginArgs(index));
             }
         }
@@ -53,6 +55,7 @@ namespace Opus_Proto_1
         {
             btnLogin.BackColor = color;
             btnRegister.BackColor = color;
+            btnView.BackColor = color;
         }
         public void setConnection(string conn)
         {
@@ -73,6 +76,19 @@ namespace Opus_Proto_1
         private void btnRegister_Click(object sender, EventArgs e)
         {
             LoadReg(this, new LoginArgs(index));
+        }
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            if (edtPassword.UseSystemPasswordChar)
+            {
+                edtPassword.UseSystemPasswordChar = false;
+                edtPassword.PasswordChar = '\0';
+            }
+            else
+            {
+                edtPassword.UseSystemPasswordChar = true;
+                edtPassword.PasswordChar = '*';
+            }
         }
     }
     public class LoginArgs : EventArgs
