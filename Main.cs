@@ -199,6 +199,7 @@ namespace Opus_Proto_1
                     availableJobsSuper.setConnection(conn);
                     availableJobsSuper.setBackColor(themeBackColor);
                     availableJobsSuper.setCurrencyCode(currencyCode);
+                    availableJobsSuper.setCurrentUser(username);
                     availableJobsSuper.onRemoveAJS += new AvailableJobsSuper.RemoveAJSEventHandler(RemoveAJSSite_Click);
                     pnlMain.Controls.Add(availableJobsSuper);
                     availableJobsSuper.Location = new Point(pnlMain.Width / 2 - 600, 0);

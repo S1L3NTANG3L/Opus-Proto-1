@@ -20,6 +20,7 @@ namespace Opus_Proto_1
         private string currencyCode;
         private int pageShowing = 0;
         private string username;
+        private string currentUser;
         List<Jobs> lstJobs = new List<Jobs>();
         CustomFunctions cF = new CustomFunctions();
         public delegate void RemoveAJSEventHandler(object sender, AvailableJobsSuperArgs e);
@@ -101,7 +102,6 @@ namespace Opus_Proto_1
             UserProfile userProfile = new UserProfile();
             userProfile.username = this.username;
             userProfile.rating = cF.GetSingleIntegerSQL("SELECT Overall_Rating FROM user_details WHERE Username ='" + username + "'", conn);
-            //userProfile.profilePicture = sqlCode; Need to figure this out
             userProfile.backColor = this.backColor;
             userProfile.buttonColor = this.themeButtonColor;
             userProfile.disableBackButton();
@@ -143,7 +143,7 @@ namespace Opus_Proto_1
             cmbCategory.Items.AddRange(cF.GetStringArraySQL("SELECT Job_Name FROM job_types", conn));
             btnPrevious.Visible = false;
             FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Name,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount "
-                + "FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code; ");
+                + "FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code");
             int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM job_details", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
@@ -200,10 +200,19 @@ namespace Opus_Proto_1
                 }
             }
         }
+        private void Apply_Click(Object sender, AvailableJobsArgs e)
+        {
+            AvailableJobs availableJobs = (AvailableJobs)sender;
+            string jobCode = availableJobs.getJobCode();
+            cF.NonQuerySQL("INSERT INTO applications VALUES('" + jobCode + "','" + currentUser + "')",conn);
+            pnlAJSMain.Controls.Clear();
+            LoadStartUpAvailableJobsSuper();
+        }
         private void LeftRow(int Index)
         {
             AvailableJobs availableJob = new AvailableJobs();
             availableJob.onRemoveAJ += new AvailableJobs.RemoveAJEventHandler(RemoveAvailableJobs_Click);
+            availableJob.onApply += new AvailableJobs.ApplyEventHandler(Apply_Click);
             AvailableJobs previousJob;
             pnlAJSMain.Controls.Add(availableJob);
             if (pnlAJSMain.Controls.Count < 2)
@@ -216,10 +225,16 @@ namespace Opus_Proto_1
                 availableJob.Location = new Point(0, previousJob.Location.Y + previousJob.Height + SPACERY);
             }
             availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobName);
+            availableJob.setJobCode(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode);
             availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username);
             availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
             availableJob.SetRating(int.Parse(cF.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username + "'", conn)));
             availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
+            if(cF.GetSingleLongIntegerSQL("SELECT COUNT(Job_Code) FROM applications WHERE Job_Code = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode + "' AND Employee_Code = '" + currentUser + "' ", conn) == 1)
+            {
+                availableJob.setApplyStatus(false);
+            }
+            availableJob.setButtonColor(themeButtonColor);
             availableJob.index = pnlAJSMain.Controls.Count - 1;
             availableJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
              | System.Windows.Forms.AnchorStyles.Left))));
@@ -229,6 +244,7 @@ namespace Opus_Proto_1
         {
             AvailableJobs availableJob = new AvailableJobs();
             availableJob.onRemoveAJ += new AvailableJobs.RemoveAJEventHandler(RemoveAvailableJobs_Click);
+            availableJob.onApply += new AvailableJobs.ApplyEventHandler(Apply_Click);
             AvailableJobs previousJob;
             AvailableJobs rightFirstJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 10];
             pnlAJSMain.Controls.Add(availableJob);
@@ -242,10 +258,16 @@ namespace Opus_Proto_1
                 availableJob.Location = new Point(previousJob.Width + SPACERX, previousJob.Location.Y + previousJob.Height + SPACERY);
             }
             availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobName);
+            availableJob.setJobCode(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode);
             availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username);
             availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
             availableJob.SetRating(int.Parse(cF.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username.ToString() + "'", conn)));
             availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
+            if (cF.GetSingleLongIntegerSQL("SELECT COUNT(Job_Code) FROM applications WHERE Job_Code = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode + "' AND Employee_Code = '" + currentUser + "' ", conn) == 1)
+            {
+                availableJob.setApplyStatus(false);
+            }
+            availableJob.setButtonColor(themeButtonColor);
             availableJob.index = pnlAJSMain.Controls.Count - 1;
             availableJob.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top)
              | System.Windows.Forms.AnchorStyles.Left))));
@@ -266,6 +288,10 @@ namespace Opus_Proto_1
         {
             this.BackColor = color;
             backColor = color;
+        }
+        public void setCurrentUser(string value)
+        {
+            currentUser = value;
         }
         public void setCurrencyCode(string currencyCode)
         {

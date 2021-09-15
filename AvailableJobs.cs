@@ -11,11 +11,14 @@ namespace Opus_Proto_1
         private StarRatingControl starRatingControl = new StarRatingControl();
         public delegate void RemoveAJEventHandler(object sender, AvailableJobsArgs e);
         public event RemoveAJEventHandler onRemoveAJ;
+        public delegate void ApplyEventHandler(object sender, AvailableJobsArgs e);
+        public event ApplyEventHandler onApply;
+        private string jobCode;
         public AvailableJobs()
         {
             InitializeComponent();
-            starRatingControl.Top = 200;
-            starRatingControl.Left = 400;
+            starRatingControl.Top = 215;
+            starRatingControl.Left = 250;
             Controls.Add(starRatingControl);
             starRatingControl.Enabled = false;
             lblUsername.ForeColor = Color.Blue;
@@ -36,6 +39,13 @@ namespace Opus_Proto_1
         {
             starRatingControl.SelectedStar = value;
         }
+        public void setApplyStatus(bool value)
+        {
+            if(!value)
+            {
+                btnApply.Visible = false;
+            }
+        }
         public void SetPaymentRate(string value)
         {
             lblPaymentRate.Text = value;
@@ -48,9 +58,25 @@ namespace Opus_Proto_1
         {
             this.BackColor = color;
         }
+        public void setButtonColor(Color color)
+        {
+            btnApply.BackColor = color;
+        }
         public string getUsername()
         {
             return lblUsername.Text;
+        }
+        public string getJobCode()
+        {
+            return jobCode;
+        }
+        public void setJobCode(string value)
+        {
+            jobCode = value;
+        }
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            onApply(this, new AvailableJobsArgs(index));
         }
     }
     public class AvailableJobsArgs : EventArgs

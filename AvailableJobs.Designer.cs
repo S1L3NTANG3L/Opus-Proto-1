@@ -91,7 +91,7 @@ namespace Opus_Proto_1
             // 
             this.lblUsername.AutoSize = true;
             this.lblUsername.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblUsername.Location = new System.Drawing.Point(111, 205);
+            this.lblUsername.Location = new System.Drawing.Point(108, 207);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(65, 28);
             this.lblUsername.TabIndex = 5;
@@ -100,12 +100,13 @@ namespace Opus_Proto_1
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(392, 175);
+            this.btnApply.Location = new System.Drawing.Point(395, 177);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(155, 58);
             this.btnApply.TabIndex = 6;
             this.btnApply.Text = "Apply";
             this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // AvailableJobs
             // 
