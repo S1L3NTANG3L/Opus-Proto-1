@@ -47,7 +47,7 @@ namespace Opus_Proto_1
             this.label11 = new System.Windows.Forms.Label();
             this.edtUsername = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.pbProfile = new System.Windows.Forms.PictureBox();
+            this.pbProfilePicture = new System.Windows.Forms.PictureBox();
             this.gbPersonalInfo = new System.Windows.Forms.GroupBox();
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblInvalid = new System.Windows.Forms.Label();
@@ -70,10 +70,11 @@ namespace Opus_Proto_1
             this.edtName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnSubmit = new System.Windows.Forms.Button();
+            this.opnfdPicture = new System.Windows.Forms.OpenFileDialog();
             this.pnlReg.SuspendLayout();
             this.gbAccountInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPasswordLength)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbProfile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfilePicture)).BeginInit();
             this.gbPersonalInfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,7 +120,7 @@ namespace Opus_Proto_1
             this.gbAccountInfo.Controls.Add(this.label11);
             this.gbAccountInfo.Controls.Add(this.edtUsername);
             this.gbAccountInfo.Controls.Add(this.label2);
-            this.gbAccountInfo.Controls.Add(this.pbProfile);
+            this.gbAccountInfo.Controls.Add(this.pbProfilePicture);
             this.gbAccountInfo.Location = new System.Drawing.Point(551, 5);
             this.gbAccountInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gbAccountInfo.Name = "gbAccountInfo";
@@ -285,17 +286,18 @@ namespace Opus_Proto_1
             this.label2.TabIndex = 21;
             this.label2.Text = "Username:";
             // 
-            // pbProfile
+            // pbProfilePicture
             // 
-            this.pbProfile.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pbProfile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbProfile.Location = new System.Drawing.Point(8, 23);
-            this.pbProfile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pbProfile.Name = "pbProfile";
-            this.pbProfile.Size = new System.Drawing.Size(133, 110);
-            this.pbProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbProfile.TabIndex = 19;
-            this.pbProfile.TabStop = false;
+            this.pbProfilePicture.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.pbProfilePicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbProfilePicture.Location = new System.Drawing.Point(8, 23);
+            this.pbProfilePicture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pbProfilePicture.Name = "pbProfilePicture";
+            this.pbProfilePicture.Size = new System.Drawing.Size(133, 110);
+            this.pbProfilePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbProfilePicture.TabIndex = 19;
+            this.pbProfilePicture.TabStop = false;
+            this.pbProfilePicture.Click += new System.EventHandler(this.pbProfilePicture_Click);
             // 
             // gbPersonalInfo
             // 
@@ -524,6 +526,10 @@ namespace Opus_Proto_1
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
+            // opnfdPicture
+            // 
+            this.opnfdPicture.FileName = "Select A Picture";
+            // 
             // Registartion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -536,7 +542,7 @@ namespace Opus_Proto_1
             this.gbAccountInfo.ResumeLayout(false);
             this.gbAccountInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPasswordLength)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbProfile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfilePicture)).EndInit();
             this.gbPersonalInfo.ResumeLayout(false);
             this.gbPersonalInfo.PerformLayout();
             this.ResumeLayout(false);
@@ -555,7 +561,7 @@ namespace Opus_Proto_1
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox edtUsername;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pbProfile;
+        private System.Windows.Forms.PictureBox pbProfilePicture;
         private System.Windows.Forms.GroupBox gbPersonalInfo;
         private System.Windows.Forms.TextBox edtTown;
         private System.Windows.Forms.Label label17;
@@ -586,5 +592,6 @@ namespace Opus_Proto_1
         private System.Windows.Forms.Button btnCreatePassword;
         private System.Windows.Forms.NumericUpDown nudPasswordLength;
         private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.OpenFileDialog opnfdPicture;
     }
 }

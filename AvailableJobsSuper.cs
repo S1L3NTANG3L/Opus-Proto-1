@@ -101,6 +101,7 @@ namespace Opus_Proto_1
             pnlAJSMain.Controls.Clear();
             UserProfile userProfile = new UserProfile();
             userProfile.username = this.username;
+            userProfile.hideDetails();
             userProfile.rating = cF.GetSingleIntegerSQL("SELECT Overall_Rating FROM user_details WHERE Username ='" + username + "'", conn);
             userProfile.backColor = this.backColor;
             userProfile.buttonColor = this.themeButtonColor;

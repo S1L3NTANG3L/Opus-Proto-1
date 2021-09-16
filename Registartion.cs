@@ -1,6 +1,7 @@
 ﻿using SoutiesSandbox;
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace Opus_Proto_1
@@ -148,6 +149,23 @@ namespace Opus_Proto_1
         {
             string password = cF.RandomPasswordGenerator((int)nudPasswordLength.Value);
             edtPassword.Text = edtConfirm.Text = password;
+        }
+
+        private void pbProfilePicture_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (opnfdPicture.ShowDialog() == DialogResult.OK)
+                {
+                    opnfdPicture.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+                    pbProfilePicture.Image = new Bitmap(opnfdPicture.FileName);
+                    pbProfilePicture.Image.Save(Application.StartupPath + "\\Config\\DefaultPP.png", ImageFormat.Png);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable to change picture.\n" + ex.Message, ex.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
     public class RegistrationArgs : EventArgs

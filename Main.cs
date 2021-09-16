@@ -174,8 +174,11 @@ namespace Opus_Proto_1
                     UserProfile userProfile = new UserProfile();
                     userProfile.username = this.username;
                     userProfile.rating = cF.GetSingleIntegerSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + username + "'", conn);
+                    userProfile.setEmail(cF.GetSingleStringSQL("SELECT Email FROM user_details WHERE Username = '" + username + "'", conn));
+                    userProfile.setNumber(cF.GetSingleStringSQL("SELECT Number FROM user_details WHERE Username = '" + username + "'", conn));
                     userProfile.backColor = themeBackColor;
                     userProfile.buttonColor = themeButtonColor;
+                    userProfile.setConn(conn);
                     userProfile.setDefualtProfilePicture();
                     userProfile.onRemoveUP += new UserProfile.RemoveUPEventHandler(RemoveUPSite_Click);
                     pnlMain.Controls.Add(userProfile);
