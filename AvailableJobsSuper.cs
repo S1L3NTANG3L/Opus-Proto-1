@@ -84,21 +84,22 @@ namespace Opus_Proto_1
             string jobTypeCode = cF.GetSingleStringSQL("SELECT Job_Type_Code FROM  job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'", conn);
             MessageBox.Show(jobTypeCode);
             int number = cF.GetCountSQL("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN "
-                + "available_jobs ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'", conn);
+                + "available_jobs ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "' AND job_details.In_Progress = 0", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
             pageNumber = 1;
             FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Name,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount "
                 + "FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code "
-                + "WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'");
+                + "WHERE job_details.Job_Type_Code = '" + jobTypeCode + "' AND job_details.In_Progress = 0");
             LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN available_jobs "
-                + "ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "'");
+                + "ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Job_Type_Code = '" + jobTypeCode + "' AND job_details.In_Progress = 0");
         }
         private void RemoveAvailableJobs_Click(Object sender, AvailableJobsArgs e)
         {
             AvailableJobs availableJobs = (AvailableJobs)sender;
             username = availableJobs.getUsername();
             LoadUserProfile();
+            pageShowing++;
         }
         private void ReviewOpen_Click(Object sender, UserProfileArgs e)
         {
@@ -107,6 +108,7 @@ namespace Opus_Proto_1
             pnlAJSMain.Controls.Clear();
             //Need code here
             Review review = new Review();
+            review.AddReview += new Review.AddReviewEventHandler(ReviewAdd_Click);
             review.setBackColor(backColor);
             review.setButtonColor(themeButtonColor);
             review.setConn(conn);
@@ -115,6 +117,12 @@ namespace Opus_Proto_1
             pnlAJSMain.Controls.Add(review);
             review.Location = new Point(pnlAJSMain.Width / 2 - 275, 0);
             pageShowing++;
+        }
+        private void ReviewAdd_Click(Object sender, ReviewArgs e)
+        {
+            pageShowing = 0;
+            pnlAJSMain.Controls.Clear();
+            LoadStartUpAvailableJobsSuper();
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
@@ -165,18 +173,17 @@ namespace Opus_Proto_1
             btnNext.Visible = false;
             btnPrevious.Visible = false;
             lblJobCat.Visible = false;
-            pageShowing++;
         }
         private void LoadStartUpAvailableJobsSuper()
         {
             cmbCategory.Items.AddRange(cF.GetStringArraySQL("SELECT Job_Name FROM job_types", conn));
             btnPrevious.Visible = false;
             FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Name,job_details.Job_Type_Code,available_jobs.Job_Desc, available_jobs.Pay_Amount "
-                + "FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code");
-            int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM job_details", conn);
+                + "FROM job_details INNER JOIN available_jobs ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.In_Progress = 0");
+            int number = cF.GetCountSQL("SELECT COUNT(Job_Code) FROM job_details WHERE In_Progress = 0", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
-            LoadAvailableJobs("SELECT COUNT(Job_Code) FROM job_details");
+            LoadAvailableJobs("SELECT COUNT(Job_Code) FROM job_details WHERE In_Progress = 0");
         }
         private void LoadAvailableJobs(string command)
         {

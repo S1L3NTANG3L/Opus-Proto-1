@@ -16,7 +16,9 @@ namespace Opus_Proto_1
     {
         CustomFunctions cf = new CustomFunctions();
         private StarRatingControl starRatingControl = new StarRatingControl();
-        //Need retunr code
+        public int index = 0;
+        public delegate void AddReviewEventHandler(object sender, ReviewArgs e);
+        public event AddReviewEventHandler AddReview;
         private string conn;
         private string username;
         private string userBeingReviewed;
@@ -24,12 +26,22 @@ namespace Opus_Proto_1
         {
             InitializeComponent();
             starRatingControl.Top = 27;
-            starRatingControl.Left = 327;
+            starRatingControl.Left = 365;
             Controls.Add(starRatingControl);
+            lblError.Visible = false;
         }
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            //sql here
+            lblError.Visible = false;
+            if (starRatingControl.SelectedStar < 0)
+            {
+                lblError.Visible = true;
+            }
+            else
+            {
+                cf.NonQuerySQL("INSERT INTO reviews VALUES('" + username + "'," + starRatingControl.SelectedStar + ",'" + redtReview.Text + "','" + userBeingReviewed + "')", conn);
+                AddReview(this, new ReviewArgs(index));
+            }            
         }
         public void setBackColor(Color color)
         {
@@ -50,6 +62,14 @@ namespace Opus_Proto_1
         public void setUserBeingReviewed(string value)
         {
             userBeingReviewed = value;
+        }
+    }
+    public class ReviewArgs : EventArgs
+    {
+        public int index;
+        public ReviewArgs(int value)
+        {
+            index = value;
         }
     }
 }

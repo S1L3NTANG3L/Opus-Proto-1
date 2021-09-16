@@ -41,11 +41,11 @@ namespace Opus_Proto_1
             btnPrevious.Visible = false;
             FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Name,job_details.Job_Type_Code,"
                 + "available_jobs.Job_Desc, available_jobs.Pay_Amount FROM job_details INNER JOIN available_jobs "
-                + "ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
-                + "OR job_details.Employee_Code = '" + username + "'");
+                + "ON job_details.Job_Code = available_jobs.Job_Code WHERE (job_details.Employer_Code = '" + username + "' "
+                + "OR job_details.Employee_Code = '" + username + "') AND (job_details.In_Progress = 0 OR job_details.In_Progress = 1)");
             int number = cF.GetCountSQL("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN available_jobs "
-                + "ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
-                + "OR job_details.Employee_Code = '" + username + "'", conn);
+                + "ON job_details.Job_Code = available_jobs.Job_Code WHERE (job_details.Employer_Code = '" + username + "' "
+                + "OR job_details.Employee_Code = '" + username + "') AND (job_details.In_Progress = 0 OR job_details.In_Progress = 1)", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
             if (totalPageCount < 1)
@@ -53,8 +53,8 @@ namespace Opus_Proto_1
                 btnNext.Visible = false;
             }
             LoadAvailableJobs("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN available_jobs "
-                + "ON job_details.Job_Code = available_jobs.Job_Code WHERE job_details.Employer_Code = '" + username + "' "
-                + "OR job_details.Employee_Code = '" + username + "'");
+                + "ON job_details.Job_Code = available_jobs.Job_Code WHERE (job_details.Employer_Code = '" + username + "' "
+                + "OR job_details.Employee_Code = '" + username + "') AND (job_details.In_Progress = 0 OR job_details.In_Progress = 1)");
         }
         private void btnPrevious_Click(object sender, EventArgs e)
         {
