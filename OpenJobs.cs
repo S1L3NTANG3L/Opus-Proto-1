@@ -7,15 +7,15 @@ namespace Opus_Proto_1
 {
     public partial class OpenJobs : UserControl
     {
-        CustomFunctions cF = new CustomFunctions();
         public int index = 0;
-        private string username;
-        private string jobCode;
-        private string conn;
         public delegate void RemoveOJEventHandler(object sender, OpenJobsArgs e);
         public event RemoveOJEventHandler onRemoveOJ;
         public delegate void JobDeleteEventHandler(object sender, OpenJobsArgs e);
         public event JobDeleteEventHandler JobDeleted;
+        private CustomFunctions cF = new CustomFunctions();
+        private string username;
+        private string jobCode;
+        private string conn;
         public OpenJobs()
         {
             InitializeComponent();

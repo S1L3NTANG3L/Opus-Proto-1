@@ -7,13 +7,13 @@ namespace Opus_Proto_1
 {
     public partial class Settings : UserControl
     {
-        CustomFunctions cF = new CustomFunctions();
-        private string sec_key;
-        private string currencyCode;
-        private string pickedTheme;
         public int index = 0;
         public delegate void RemoveSEventHandler(object sender, SettingsArgs e);
         public event RemoveSEventHandler onRemoveS;
+        private CustomFunctions cF = new CustomFunctions();
+        private string sec_key;
+        private string currencyCode;
+        private string pickedTheme;        
         public Settings()
         {
             InitializeComponent();

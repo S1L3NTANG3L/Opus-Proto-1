@@ -8,8 +8,7 @@ using System.Reflection;
 namespace Opus_Proto_1
 {
     public partial class frmMain : MaterialForm
-    {
-        CustomFunctions cF = new CustomFunctions();
+    {        
         public string pickedTheme;
         public Color themeButtonColor;
         public Color themeBackColor;
@@ -17,6 +16,7 @@ namespace Opus_Proto_1
         public string conn;
         public string currencyCode;
         private string username;
+        private CustomFunctions cF = new CustomFunctions();
         public frmMain()
         {
             InitializeComponent();

@@ -8,9 +8,10 @@ using System.Windows.Forms;
 namespace Opus_Proto_1
 {
     public partial class AvailableJobsSuper : UserControl
-    {
-        Color backColor;
+    {        
         public int index = 0;
+        public delegate void RemoveAJSEventHandler(object sender, AvailableJobsSuperArgs e);
+        public event RemoveAJSEventHandler onRemoveAJS;
         private Color themeButtonColor;
         private const int SPACERY = 10;
         private const int SPACERX = 75;
@@ -21,10 +22,9 @@ namespace Opus_Proto_1
         private int pageShowing = 0;
         private string username;
         private string currentUser;
-        List<Jobs> lstJobs = new List<Jobs>();
-        CustomFunctions cF = new CustomFunctions();
-        public delegate void RemoveAJSEventHandler(object sender, AvailableJobsSuperArgs e);
-        public event RemoveAJSEventHandler onRemoveAJS;
+        private List<Jobs> lstJobs = new List<Jobs>();
+        private CustomFunctions cF = new CustomFunctions();
+        private Color backColor;
         public AvailableJobsSuper()
         {
             InitializeComponent();

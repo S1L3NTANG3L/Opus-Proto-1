@@ -6,16 +6,16 @@ using System.Windows.Forms;
 namespace Opus_Proto_1
 {
     public partial class Login : UserControl
-    {
-        CustomFunctions cF = new CustomFunctions();
-        private string conn;
-        private string sec_key;
-        private string username;
+    {        
         public int index = 0;
         public delegate void RemoveLoginEventHandler(Object sender, LoginArgs e);
         public event RemoveLoginEventHandler onRemoveLogin;
         public delegate void LoadRegEventHandler(Object sender, LoginArgs e);
         public event LoadRegEventHandler LoadReg;
+        private CustomFunctions cF = new CustomFunctions();
+        private string conn;
+        private string sec_key;
+        private string username;
         public Login()
         {
             InitializeComponent();

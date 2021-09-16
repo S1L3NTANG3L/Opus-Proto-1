@@ -7,15 +7,15 @@ using System.Windows.Forms;
 namespace Opus_Proto_1
 {
     public partial class Review : UserControl
-    {
-        CustomFunctions cf = new CustomFunctions();
-        private StarRatingControl starRatingControl = new StarRatingControl();
+    {        
         public int index = 0;
         public delegate void AddReviewEventHandler(object sender, ReviewArgs e);
         public event AddReviewEventHandler AddReview;
         private string conn;
         private string username;
         private string userBeingReviewed;
+        private CustomFunctions cf = new CustomFunctions();
+        private StarRatingControl starRatingControl = new StarRatingControl();
         public Review()
         {
             InitializeComponent();

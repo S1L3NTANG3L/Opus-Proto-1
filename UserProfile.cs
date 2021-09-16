@@ -9,15 +9,15 @@ namespace Opus_Proto_1
 {
     public partial class UserProfile : UserControl
     {
-        CustomFunctions cf = new CustomFunctions();
-        private StarRatingControl starRatingControl = new StarRatingControl();
+        public int index = 0;
         public delegate void RemoveUPEventHandler(object sender, UserProfileArgs e);
         public event RemoveUPEventHandler onRemoveUP;
         public delegate void ReviewUserEventHandler(object sender, UserProfileArgs e);
         public event ReviewUserEventHandler ReviewUser;
+        private CustomFunctions cf = new CustomFunctions();
+        private StarRatingControl starRatingControl = new StarRatingControl();
         private string conn;
         private string username;
-        public int index = 0;
         public UserProfile()
         {
             InitializeComponent();

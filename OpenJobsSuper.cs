@@ -9,8 +9,12 @@ namespace Opus_Proto_1
 {
     public partial class OpenJobsSuper : UserControl
     {
+        public delegate void RemoveOJSEventHandler(object sender, OpenJobsSuperArgs e);
+        public event RemoveOJSEventHandler onRemoveOJS;
+        public delegate void LoadJobInfoEventHandler(object sender, OpenJobsSuperArgs e);
+        public event LoadJobInfoEventHandler LoadJobInfo;
         public int index = 0;
-        Color backColor;
+        private Color backColor;
         private Color themeButtonColor;
         private const int SPACERY = 10;
         private const int SPACERX = 75;
@@ -21,12 +25,8 @@ namespace Opus_Proto_1
         private string currencyCode;
         private string username;
         private string jobCode;
-        List<Jobs> lstJobs = new List<Jobs>();
-        CustomFunctions cF = new CustomFunctions();
-        public delegate void RemoveOJSEventHandler(object sender, OpenJobsSuperArgs e);
-        public event RemoveOJSEventHandler onRemoveOJS;
-        public delegate void LoadJobInfoEventHandler(object sender, OpenJobsSuperArgs e);
-        public event LoadJobInfoEventHandler LoadJobInfo;
+        private List<Jobs> lstJobs = new List<Jobs>();
+        private CustomFunctions cF = new CustomFunctions();        
         public OpenJobsSuper()
         {
             InitializeComponent();

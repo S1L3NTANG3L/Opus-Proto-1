@@ -7,13 +7,13 @@ using System.Windows.Forms;
 namespace Opus_Proto_1
 {
     public partial class Registartion : UserControl
-    {
-        CustomFunctions cF = new CustomFunctions();
+    {        
         public int index = 0;
         public delegate void RemoveRegEventHandler(object sender, RegistrationArgs e);
         public event RemoveRegEventHandler onRemoveSite;
         private string conn;
         private string sec_code;
+        private CustomFunctions cF = new CustomFunctions();
         public Registartion()
         {
             InitializeComponent();

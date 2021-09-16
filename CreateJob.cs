@@ -7,12 +7,12 @@ namespace Opus_Proto_1
 {
     public partial class CreateJob : UserControl
     {
-        public int index = 0;
-        CustomFunctions cF = new CustomFunctions();
+        public int index = 0;        
         public delegate void CreateJobEventHandler(object sender, CreateJobArgs e);
         public event CreateJobEventHandler createJob;
         private string username;
         private string conn;
+        private CustomFunctions cF = new CustomFunctions();
         public CreateJob()
         {
             InitializeComponent();

@@ -7,13 +7,13 @@ namespace Opus_Proto_1
 {
     public partial class AvailableJobs : UserControl
     {
-        public int index = 0;
-        private StarRatingControl starRatingControl = new StarRatingControl();
+        public int index = 0;        
         public delegate void RemoveAJEventHandler(object sender, AvailableJobsArgs e);
         public event RemoveAJEventHandler onRemoveAJ;
         public delegate void ApplyEventHandler(object sender, AvailableJobsArgs e);
         public event ApplyEventHandler onApply;
         private string jobCode;
+        private StarRatingControl starRatingControl = new StarRatingControl();
         public AvailableJobs()
         {
             InitializeComponent();
