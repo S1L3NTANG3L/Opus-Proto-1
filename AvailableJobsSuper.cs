@@ -98,21 +98,65 @@ namespace Opus_Proto_1
         {
             AvailableJobs availableJobs = (AvailableJobs)sender;
             username = availableJobs.getUsername();
+            LoadUserProfile();
+        }
+        private void ReviewOpen_Click(Object sender, UserProfileArgs e)
+        {
+            UserProfile userProfile = (UserProfile)sender;
+            string User_Reviewed_Code = userProfile.getUsername();
+            pnlAJSMain.Controls.Clear();
+            //Need code here
+            Review review = new Review();
+            review.setBackColor(backColor);
+            review.setButtonColor(themeButtonColor);
+            review.setConn(conn);
+            review.setUserBeingReviewed(User_Reviewed_Code);
+            review.setUsername(currentUser);
+            pnlAJSMain.Controls.Add(review);
+            review.Location = new Point(pnlAJSMain.Width / 2 - 275, 0);
+            pageShowing++;
+        }
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            if (pageShowing == 0)
+            {
+                onRemoveAJS(this, new AvailableJobsSuperArgs(index));
+            }
+            else if(pageShowing == 1)
+            {
+                pnlAJSMain.Controls.Clear();
+                LoadStartUpAvailableJobsSuper();
+                cmbCategory.Visible = true;
+                btnNext.Visible = true;
+                lblJobCat.Visible = true;
+                pageShowing--;
+            }
+            else
+            {
+                LoadUserProfile();
+                pageShowing--;
+            }
+        }
+        private void LoadUserProfile()
+        {
             pnlAJSMain.Controls.Clear();
             UserProfile userProfile = new UserProfile();
-            userProfile.username = this.username;
-            userProfile.hideDetails();
-            userProfile.rating = cF.GetSingleIntegerSQL("SELECT Overall_Rating FROM user_details WHERE Username ='" + username + "'", conn);
+            userProfile.ReviewUser += new UserProfile.ReviewUserEventHandler(ReviewOpen_Click);
+            userProfile.setUsername(username);
+            userProfile.dateJoined = cF.GetSingleStringSQL("SELECT Date_Joined FROM user_details WHERE Username = '" + username + "'", conn);
+            userProfile.hideDetails();            
+            userProfile.rating = loadRating(username);
             userProfile.backColor = this.backColor;
             userProfile.buttonColor = this.themeButtonColor;
             userProfile.disableBackButton();
             userProfile.setDefualtProfilePicture();
-            if (!(cF.GetCountSQL("SELECT COUNT(Review) FROM reviews WHERE User_Code ='" + username + "'", conn) == 0))
+            if (!(cF.GetCountSQL("SELECT COUNT(Review) FROM reviews WHERE User_Code ='" + username + "' AND Rating NOT NULL", conn) == 0))
             {
-                string[] arrReviews = cF.GetStringArraySQL("SELECT Review FROM reviews WHERE User_Code ='" + username + "'", conn);
+                string[] arrReviews = cF.GetStringArraySQL("SELECT Review FROM reviews WHERE User_Reviewed_Code ='" + username + "'", conn);
+                string[] arrUsers = cF.GetStringArraySQL("SELECT User_Code FROM reviews WHERE User_Reviewed_Code ='" + username + "' AND Rating NOT NULL", conn);
                 for (int i = 0; i < arrReviews.Length; i++)
                 {
-                    userProfile.addReview(arrReviews[i]);
+                    userProfile.addReview("Review by: " + arrUsers[i] + "\n" + arrReviews[i]);
                 }
             }
             pnlAJSMain.Controls.Add(userProfile);
@@ -122,22 +166,6 @@ namespace Opus_Proto_1
             btnPrevious.Visible = false;
             lblJobCat.Visible = false;
             pageShowing++;
-        }
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            if (pageShowing == 0)
-            {
-                onRemoveAJS(this, new AvailableJobsSuperArgs(index));
-            }
-            else
-            {
-                pnlAJSMain.Controls.Clear();
-                LoadStartUpAvailableJobsSuper();
-                cmbCategory.Visible = true;
-                btnNext.Visible = true;
-                lblJobCat.Visible = true;
-                pageShowing--;
-            }
         }
         private void LoadStartUpAvailableJobsSuper()
         {
@@ -229,7 +257,7 @@ namespace Opus_Proto_1
             availableJob.setJobCode(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode);
             availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username);
             availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
-            availableJob.SetRating(int.Parse(cF.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username + "'", conn)));
+            availableJob.SetRating(loadRating(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username.ToString()));
             availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
             if(cF.GetSingleLongIntegerSQL("SELECT COUNT(Job_Code) FROM applications WHERE Job_Code = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode + "' AND Employee_Code = '" + currentUser + "' ", conn) == 1)
             {
@@ -262,7 +290,7 @@ namespace Opus_Proto_1
             availableJob.setJobCode(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode);
             availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username);
             availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
-            availableJob.SetRating(int.Parse(cF.GetSingleStringSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username.ToString() + "'", conn)));
+            availableJob.SetRating(loadRating(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username.ToString()));
             availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
             if (cF.GetSingleLongIntegerSQL("SELECT COUNT(Job_Code) FROM applications WHERE Job_Code = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode + "' AND Employee_Code = '" + currentUser + "' ", conn) == 1)
             {
@@ -297,6 +325,25 @@ namespace Opus_Proto_1
         public void setCurrencyCode(string currencyCode)
         {
             this.currencyCode = currencyCode;
+        }
+        private int loadRating(string rUsename)
+        {
+            int rating = 0;
+            string[] arrRatings = cF.GetStringArraySQL("SELECT Rating FROM reviews WHERE User_Reviewed_Code ='" + rUsename + "'", conn);
+            if(arrRatings.Length == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                for (int i = 0; i < arrRatings.Length; i++)
+                {
+                    rating += int.Parse(arrRatings[i]);
+                }
+                rating = rating / arrRatings.Length;
+                return rating;
+            }
+            
         }
     }
     public class AvailableJobsSuperArgs : EventArgs

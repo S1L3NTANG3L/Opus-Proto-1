@@ -13,7 +13,10 @@ namespace Opus_Proto_1
         private StarRatingControl starRatingControl = new StarRatingControl();
         public delegate void RemoveUPEventHandler(object sender, UserProfileArgs e);
         public event RemoveUPEventHandler onRemoveUP;
+        public delegate void ReviewUserEventHandler(object sender, UserProfileArgs e);
+        public event ReviewUserEventHandler ReviewUser;
         private string conn;
+        private string username;
         public int index = 0;
         public UserProfile()
         {
@@ -28,6 +31,7 @@ namespace Opus_Proto_1
             lblInvalidNumber.Visible = false;
             lblProfile.Visible = false;
             pbProfilePicture.Enabled = false;
+            btnReview.Visible = false;
         }
         public void disableBackButton()
         {
@@ -43,12 +47,14 @@ namespace Opus_Proto_1
         {
             conn = value;
         }
-        public string username
+        public void setUsername(string value)
         {
-            set
-            {
-                lblUsername.Text = value;
-            }
+            lblUsername.Text = username = value;
+
+        }
+        public string getUsername()
+        {
+            return username;
         }
         public string dateJoined
         {
@@ -79,7 +85,7 @@ namespace Opus_Proto_1
         {
             set
             {
-                this.btnEdit.BackColor = this.btnBack.BackColor = value;
+                this.btnReview.BackColor = this.btnEdit.BackColor = this.btnBack.BackColor = value;
             }
         }
         private void btnBack_Click(object sender, EventArgs e)
@@ -93,6 +99,7 @@ namespace Opus_Proto_1
             label2.Visible = false;
             label4.Visible = false;
             btnEdit.Visible = false;
+            btnReview.Visible = true;
         }
         public void setEmail(string value)
         {
@@ -153,6 +160,10 @@ namespace Opus_Proto_1
             {
                 MessageBox.Show("Unable to change picture.\n" + ex.Message,ex.ToString(),MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
+        }
+        private void btnReview_Click(object sender, EventArgs e)
+        {
+            ReviewUser(this, new UserProfileArgs(index));
         }
     }
     public class UserProfileArgs : EventArgs

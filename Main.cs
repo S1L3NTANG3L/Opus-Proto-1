@@ -172,11 +172,30 @@ namespace Opus_Proto_1
             {
                 case 1:
                     UserProfile userProfile = new UserProfile();
-                    userProfile.username = this.username;
+                    userProfile.setUsername(username);
                     userProfile.dateJoined = cF.GetSingleStringSQL("SELECT Date_Joined FROM user_details WHERE Username = '" + username + "'", conn);
-                    userProfile.rating = cF.GetSingleIntegerSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + username + "'", conn);
+                    int rating = 0;
+                    string[] arrRatings = cF.GetStringArraySQL("SELECT Rating FROM reviews WHERE User_Reviewed_Code ='" + username + "'", conn);
+                    if(arrRatings.Length != 0)
+                    {
+                        for (int i = 0; i < arrRatings.Length; i++)
+                        {
+                            rating += int.Parse(arrRatings[i]);
+                        }
+                        rating = rating / arrRatings.Length;
+                    }                    
+                    userProfile.rating = rating;
                     userProfile.setEmail(cF.GetSingleStringSQL("SELECT Email FROM user_details WHERE Username = '" + username + "'", conn));
                     userProfile.setNumber(cF.GetSingleStringSQL("SELECT Number FROM user_details WHERE Username = '" + username + "'", conn));
+                    if (!(cF.GetCountSQL("SELECT COUNT(Review) FROM reviews WHERE User_Code ='" + username + "' AND Rating NOT NULL", conn) == 0))
+                    {
+                        string[] arrReviews = cF.GetStringArraySQL("SELECT Review FROM reviews WHERE User_Reviewed_Code ='" + username + "'", conn);
+                        string[] arrUsers = cF.GetStringArraySQL("SELECT User_Code FROM reviews WHERE User_Reviewed_Code ='" + username + "' AND Rating NOT NULL", conn);
+                        for (int i = 0; i < arrReviews.Length; i++)
+                        {
+                            userProfile.addReview("Review by: " + arrUsers[i] + "\n" + arrReviews[i]);
+                        }
+                    }
                     userProfile.backColor = themeBackColor;
                     userProfile.buttonColor = themeButtonColor;
                     userProfile.setConn(conn);

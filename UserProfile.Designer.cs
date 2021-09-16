@@ -49,6 +49,7 @@ namespace Opus_Proto_1
             this.lblInvalidEmail = new System.Windows.Forms.Label();
             this.lblProfile = new System.Windows.Forms.Label();
             this.opnfdPicture = new System.Windows.Forms.OpenFileDialog();
+            this.btnReview = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfilePicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -226,10 +227,21 @@ namespace Opus_Proto_1
             this.lblProfile.TabIndex = 18;
             this.lblProfile.Text = "Click Profile Photo To Change:";
             // 
+            // btnReview
+            // 
+            this.btnReview.Location = new System.Drawing.Point(517, 645);
+            this.btnReview.Name = "btnReview";
+            this.btnReview.Size = new System.Drawing.Size(121, 42);
+            this.btnReview.TabIndex = 19;
+            this.btnReview.Text = "Review User";
+            this.btnReview.UseVisualStyleBackColor = true;
+            this.btnReview.Click += new System.EventHandler(this.btnReview_Click);
+            // 
             // UserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnReview);
             this.Controls.Add(this.lblProfile);
             this.Controls.Add(this.lblInvalidEmail);
             this.Controls.Add(this.lblInvalidNumber);
@@ -250,7 +262,7 @@ namespace Opus_Proto_1
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pbProfilePicture);
             this.Name = "UserProfile";
-            this.Size = new System.Drawing.Size(900, 700);
+            this.Size = new System.Drawing.Size(780, 700);
             ((System.ComponentModel.ISupportInitialize)(this.pbProfilePicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -279,5 +291,6 @@ namespace Opus_Proto_1
         private System.Windows.Forms.Label lblInvalidEmail;
         private System.Windows.Forms.Label lblProfile;
         private System.Windows.Forms.OpenFileDialog opnfdPicture;
+        private System.Windows.Forms.Button btnReview;
     }
 }
