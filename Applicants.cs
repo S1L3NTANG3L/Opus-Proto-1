@@ -7,8 +7,13 @@ namespace Opus_Proto_1
 {
     public partial class Applicants : UserControl
     {
+        public int index = 0;
+        public delegate void LoadUserProfileEventHandler(object sender, ApplicantsArgs e);
+        public event LoadUserProfileEventHandler LoadUserProfile;
+        public delegate void HireApplicantEventHandler(object sender, ApplicantsArgs e);
+        public event HireApplicantEventHandler HireApplicant;
         private StarRatingControl starRatingControl = new StarRatingControl();
-        //Need an event arguement for username click
+        private string username;
         public Applicants()
         {
             InitializeComponent();
@@ -17,13 +22,17 @@ namespace Opus_Proto_1
             Controls.Add(starRatingControl);
             starRatingControl.Enabled = false;
         }
-        public string username
-        {
-            set { lblUsername.Text = value; }
-        }
         public void setButtonColor(Color color)
         {
             btnAccept.BackColor = color;
+        }
+        public void setUsername(string value)
+        {
+            username = value;
+        }
+        public string getUsername()
+        {
+            return username;
         }
         public void setBackColor(Color color)
         {
@@ -31,11 +40,23 @@ namespace Opus_Proto_1
         }
         private void lblUsername_DoubleClick(object sender, EventArgs e)
         {
-            //Event arguement needs to hide JobInfo and open UserProfile
+            LoadUserProfile(this, new ApplicantsArgs(index));
         }
         public int rating
         {
             set { starRatingControl.SelectedStar = value; }
+        }
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            HireApplicant(this, new ApplicantsArgs(index));
+        }
+    }
+    public class ApplicantsArgs : EventArgs
+    {
+        public int index;
+        public ApplicantsArgs(int value)
+        {
+            index = value;
         }
     }
 }

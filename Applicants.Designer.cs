@@ -39,8 +39,9 @@ namespace Opus_Proto_1
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(162, 40);
             this.btnAccept.TabIndex = 0;
-            this.btnAccept.Text = "Accept";
+            this.btnAccept.Text = "Hire";
             this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // lblUsername
             // 

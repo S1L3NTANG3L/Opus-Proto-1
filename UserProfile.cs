@@ -14,10 +14,13 @@ namespace Opus_Proto_1
         public event RemoveUPEventHandler onRemoveUP;
         public delegate void ReviewUserEventHandler(object sender, UserProfileArgs e);
         public event ReviewUserEventHandler ReviewUser;
+        public delegate void JobInfoLEventHandler(object sender, UserProfileArgs e);
+        public event JobInfoLEventHandler JobInfoLoad;
         private CustomFunctions cf = new CustomFunctions();
         private StarRatingControl starRatingControl = new StarRatingControl();
         private string conn;
         private string username;
+        private string job_code;
         public UserProfile()
         {
             InitializeComponent();
@@ -100,6 +103,7 @@ namespace Opus_Proto_1
             label4.Visible = false;
             btnEdit.Visible = false;
             btnReview.Visible = true;
+            btnBack2.Visible = false;
         }
         public void setEmail(string value)
         {
@@ -164,6 +168,27 @@ namespace Opus_Proto_1
         private void btnReview_Click(object sender, EventArgs e)
         {
             ReviewUser(this, new UserProfileArgs(index));
+        }
+
+        private void btnBack2_Click(object sender, EventArgs e)
+        {
+            JobInfoLoad(this, new UserProfileArgs(index));
+        }
+        public void disableBack2()
+        {
+            btnBack2.Visible = false;
+        }
+        public void disableReview()
+        {
+            btnReview.Visible = false;
+        }
+        public void setJobCode(string value)
+        {
+            job_code = value;
+        }
+        public string getJobCode()
+        {
+            return job_code;
         }
     }
     public class UserProfileArgs : EventArgs

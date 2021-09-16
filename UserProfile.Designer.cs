@@ -50,6 +50,7 @@ namespace Opus_Proto_1
             this.lblProfile = new System.Windows.Forms.Label();
             this.opnfdPicture = new System.Windows.Forms.OpenFileDialog();
             this.btnReview = new System.Windows.Forms.Button();
+            this.btnBack2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfilePicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -237,10 +238,21 @@ namespace Opus_Proto_1
             this.btnReview.UseVisualStyleBackColor = true;
             this.btnReview.Click += new System.EventHandler(this.btnReview_Click);
             // 
+            // btnBack2
+            // 
+            this.btnBack2.Location = new System.Drawing.Point(15, 645);
+            this.btnBack2.Name = "btnBack2";
+            this.btnBack2.Size = new System.Drawing.Size(121, 42);
+            this.btnBack2.TabIndex = 20;
+            this.btnBack2.Text = "Back";
+            this.btnBack2.UseVisualStyleBackColor = true;
+            this.btnBack2.Click += new System.EventHandler(this.btnBack2_Click);
+            // 
             // UserProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnBack2);
             this.Controls.Add(this.btnReview);
             this.Controls.Add(this.lblProfile);
             this.Controls.Add(this.lblInvalidEmail);
@@ -292,5 +304,6 @@ namespace Opus_Proto_1
         private System.Windows.Forms.Label lblProfile;
         private System.Windows.Forms.OpenFileDialog opnfdPicture;
         private System.Windows.Forms.Button btnReview;
+        private System.Windows.Forms.Button btnBack2;
     }
 }
