@@ -173,6 +173,7 @@ namespace Opus_Proto_1
                 case 1:
                     UserProfile userProfile = new UserProfile();
                     userProfile.username = this.username;
+                    userProfile.dateJoined = cF.GetSingleStringSQL("SELECT Date_Joined FROM user_details WHERE Username = '" + username + "'", conn);
                     userProfile.rating = cF.GetSingleIntegerSQL("SELECT Overall_Rating FROM user_details WHERE Username = '" + username + "'", conn);
                     userProfile.setEmail(cF.GetSingleStringSQL("SELECT Email FROM user_details WHERE Username = '" + username + "'", conn));
                     userProfile.setNumber(cF.GetSingleStringSQL("SELECT Number FROM user_details WHERE Username = '" + username + "'", conn));
