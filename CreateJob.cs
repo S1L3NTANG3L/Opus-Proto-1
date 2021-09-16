@@ -22,11 +22,20 @@ namespace Opus_Proto_1
         {
             lblError.Visible = false;
             if (edtCity.Text == "" || edtJobName.Text == "" || edtState.Text == "" || edtZip.Text == "" ||
-                redtAddress.Text == "" || redtJobDesc.Text == "")
+                redtAddress.Text == "" || redtJobDesc.Text == "" || cmbCategory.SelectedIndex == -1)
             {
                 lblError.Visible = true;
             }
-            createJob(this, new CreateJobArgs(index));
+            else
+            {
+                string uuid = cF.UUIDGenerator();
+                cF.NonQuerySQL("INSERT INTO job_details VALUES('" + uuid + "','" + edtJobName.Text + "',"
+                    + "'" + cF.GetSingleStringSQL("SELECT Job_Type_Code FROM job_types WHERE Job_Name = '" + cmbCategory.SelectedText + "'", conn) + ""
+                    + "',NULL,'" + username + "','" + redtAddress.Text + "','" + edtCity.Text + "','" + edtState.Text + "',"
+                    + "'" + edtZip.Text + "','0','0','0')", conn);
+                cF.NonQuerySQL("INSERT INTO available_jobs VALUES('" + uuid + "','" + redtJobDesc.Text + "'," + nudPay.Value + ")", conn);
+                createJob(this, new CreateJobArgs(index));
+            }            
         }
         public void setBackColor(Color color)
         {
