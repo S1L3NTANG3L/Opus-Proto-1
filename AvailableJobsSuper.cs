@@ -130,7 +130,7 @@ namespace Opus_Proto_1
             {
                 onRemoveAJS(this, new AvailableJobsSuperArgs(index));
             }
-            else if(pageShowing == 1)
+            else if (pageShowing == 1)
             {
                 pnlAJSMain.Controls.Clear();
                 LoadStartUpAvailableJobsSuper();
@@ -152,7 +152,7 @@ namespace Opus_Proto_1
             userProfile.ReviewUser += new UserProfile.ReviewUserEventHandler(ReviewOpen_Click);
             userProfile.setUsername(username);
             userProfile.dateJoined = cF.GetSingleStringSQL("SELECT Date_Joined FROM user_details WHERE Username = '" + username + "'", conn);
-            userProfile.hideDetails();            
+            userProfile.hideDetails();
             userProfile.rating = loadRating(username);
             userProfile.backColor = this.backColor;
             userProfile.buttonColor = this.themeButtonColor;
@@ -240,7 +240,7 @@ namespace Opus_Proto_1
         {
             AvailableJobs availableJobs = (AvailableJobs)sender;
             string jobCode = availableJobs.getJobCode();
-            cF.NonQuerySQL("INSERT INTO applications VALUES('" + jobCode + "','" + currentUser + "')",conn);
+            cF.NonQuerySQL("INSERT INTO applications VALUES('" + jobCode + "','" + currentUser + "')", conn);
             pnlAJSMain.Controls.Clear();
             LoadStartUpAvailableJobsSuper();
         }
@@ -266,7 +266,7 @@ namespace Opus_Proto_1
             availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
             availableJob.SetRating(loadRating(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username.ToString()));
             availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
-            if(cF.GetSingleLongIntegerSQL("SELECT COUNT(Job_Code) FROM applications WHERE Job_Code = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode + "' AND Employee_Code = '" + currentUser + "' ", conn) == 1)
+            if (cF.GetSingleLongIntegerSQL("SELECT COUNT(Job_Code) FROM applications WHERE Job_Code = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode + "' AND Employee_Code = '" + currentUser + "' ", conn) == 1)
             {
                 availableJob.setApplyStatus(false);
             }
@@ -337,7 +337,7 @@ namespace Opus_Proto_1
         {
             int rating = 0;
             string[] arrRatings = cF.GetStringArraySQL("SELECT Rating FROM reviews WHERE User_Reviewed_Code ='" + rUsename + "'", conn);
-            if(arrRatings.Length == 0)
+            if (arrRatings.Length == 0)
             {
                 return 0;
             }
@@ -350,7 +350,7 @@ namespace Opus_Proto_1
                 rating = rating / arrRatings.Length;
                 return rating;
             }
-            
+
         }
     }
     public class AvailableJobsSuperArgs : EventArgs

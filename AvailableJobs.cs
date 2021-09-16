@@ -41,7 +41,7 @@ namespace Opus_Proto_1
         }
         public void setApplyStatus(bool value)
         {
-            if(!value)
+            if (!value)
             {
                 btnApply.Visible = false;
             }

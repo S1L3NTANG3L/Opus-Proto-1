@@ -37,25 +37,25 @@ namespace Opus_Proto_1
             lblEmail.Visible = false;
             int number;
             bool flag = true;
-            if(edtAddress.Text == "" || edtConfirm.Text == "" || edtEmail.Text == "" || edtId.Text == "" || edtName.Text == "" ||
+            if (edtAddress.Text == "" || edtConfirm.Text == "" || edtEmail.Text == "" || edtId.Text == "" || edtName.Text == "" ||
                 edtNumber.Text == "" || edtPassword.Text == "" || edtProvince.Text == "" || edtSurname.Text == "" || edtTown.Text == "" ||
                 edtUsername.Text == "" || edtZip.Text == "")
             {
                 lblInvalid.Visible = true;
                 flag = false;
             }
-            else if(edtPassword.Text != edtConfirm.Text)
+            else if (edtPassword.Text != edtConfirm.Text)
             {
                 flag = false;
                 lblPasswordMatch.Visible = true;
             }
-            else if(cF.LuhnAlgorithm(edtId.Text))
+            else if (cF.LuhnAlgorithm(edtId.Text))
             {
                 flag = false;
                 lblInvalid.Visible = true;
                 MessageBox.Show("Id");
             }
-            else if(!int.TryParse(edtNumber.Text, out number))
+            else if (!int.TryParse(edtNumber.Text, out number))
             {
                 flag = false;
                 lblInvalid.Visible = true;
@@ -65,12 +65,12 @@ namespace Opus_Proto_1
                 flag = false;
                 lblInvalid.Visible = true;
             }
-            else if(!cF.EmailVerification(edtEmail.Text))
+            else if (!cF.EmailVerification(edtEmail.Text))
             {
                 flag = false;
                 lblInvalid.Visible = true;
             }
-            else if(cF.GetCountSQL("SELECT COUNT(Name) FROM user_details WHERE Username = '" + edtUsername.Text.ToLower() + "'",conn) > 0)
+            else if (cF.GetCountSQL("SELECT COUNT(Name) FROM user_details WHERE Username = '" + edtUsername.Text.ToLower() + "'", conn) > 0)
             {
                 flag = false;
                 lblInvalidUsername.Visible = true;
@@ -80,19 +80,19 @@ namespace Opus_Proto_1
                 flag = false;
                 lblEmail.Visible = true;
             }
-            else if(edtPassword.TextLength < 8)
+            else if (edtPassword.TextLength < 8)
             {
                 flag = false;
                 lblLength.Visible = true;
             }
-            if(flag)
+            if (flag)
             {
                 cF.NonQuerySQL("INSERT INTO user_details VALUES('" + edtUsername.Text + "','" + edtName.Text + "','" + edtSurname.Text + "'"
-                    + ",'" + edtEmail.Text.ToLower() + "','" + edtId.Text + "','" + cF.EncryptPlainTextToCipherText(edtPassword.Text,sec_code) + "'"
-                    +",0,0,0,'" + edtNumber.Text + "','" + edtAddress.Text + "','" + edtTown.Text + "','" + edtProvince.Text + "'"
-                    +",'" + edtZip.Text + "','" + DateTime.Now.ToShortDateString() + "')", conn);
+                    + ",'" + edtEmail.Text.ToLower() + "','" + edtId.Text + "','" + cF.EncryptPlainTextToCipherText(edtPassword.Text, sec_code) + "'"
+                    + ",0,0,0,'" + edtNumber.Text + "','" + edtAddress.Text + "','" + edtTown.Text + "','" + edtProvince.Text + "'"
+                    + ",'" + edtZip.Text + "','" + DateTime.Now.ToShortDateString() + "')", conn);
                 onRemoveSite(this, new RegistrationArgs(index));
-            }            
+            }
         }
         public void setButtonBackColor(Color color)
         {

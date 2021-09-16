@@ -122,12 +122,12 @@ namespace Opus_Proto_1
                 pbProfilePicture.Enabled = true;
             }
             else
-            {          
-                if(!cf.EmailVerification(edtEmail.Text))
+            {
+                if (!cf.EmailVerification(edtEmail.Text))
                 {
                     lblInvalidEmail.Visible = true;
                 }
-                else if(edtPhoneNumber.Text.Length < 9)
+                else if (edtPhoneNumber.Text.Length < 9)
                 {
                     lblInvalidNumber.Visible = true;
                 }
@@ -142,7 +142,7 @@ namespace Opus_Proto_1
                     lblProfile.Visible = false;
                     pbProfilePicture.Enabled = false;
                 }
-                
+
             }
         }
         private void pbProfilePicture_Click(object sender, EventArgs e)
@@ -153,12 +153,12 @@ namespace Opus_Proto_1
                 {
                     opnfdPicture.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
                     pbProfilePicture.Image = new Bitmap(opnfdPicture.FileName);
-                    pbProfilePicture.Image.Save(Application.StartupPath+"\\Config\\DefaultPP.png",ImageFormat.Png);
+                    pbProfilePicture.Image.Save(Application.StartupPath + "\\Config\\DefaultPP.png", ImageFormat.Png);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Unable to change picture.\n" + ex.Message,ex.ToString(),MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Unable to change picture.\n" + ex.Message, ex.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btnReview_Click(object sender, EventArgs e)

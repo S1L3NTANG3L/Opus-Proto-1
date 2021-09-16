@@ -33,13 +33,13 @@ namespace Opus_Proto_1
                 lblInvalid.Visible = true;
             }
             else if (cF.GetCountSQL("SELECT COUNT(Name) FROM user_details WHERE Username  = '" + edtUsername.Text + "' OR"
-                +" Email  = '" + edtUsername.Text.ToLower() + "'", conn) == 0)
+                + " Email  = '" + edtUsername.Text.ToLower() + "'", conn) == 0)
             {
                 lblInvalid.Visible = true;
-            }            
+            }
             else if (cF.DecryptCipherTextToPlainText(cF.GetSingleStringSQL(
                 "SELECT Password FROM user_details WHERE Username  = '" + edtUsername.Text + "' OR"
-                +" Email  = '" + edtUsername.Text.ToLower() + "'", conn), sec_key) != edtPassword.Text)
+                + " Email  = '" + edtUsername.Text.ToLower() + "'", conn), sec_key) != edtPassword.Text)
             {
                 lblInvalid.Visible = true;
             }
@@ -72,7 +72,7 @@ namespace Opus_Proto_1
         public string getUsername()
         {
             return username;
-        }  
+        }
         private void btnRegister_Click(object sender, EventArgs e)
         {
             LoadReg(this, new LoginArgs(index));

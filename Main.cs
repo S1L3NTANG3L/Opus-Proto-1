@@ -176,14 +176,14 @@ namespace Opus_Proto_1
                     userProfile.dateJoined = cF.GetSingleStringSQL("SELECT Date_Joined FROM user_details WHERE Username = '" + username + "'", conn);
                     int rating = 0;
                     string[] arrRatings = cF.GetStringArraySQL("SELECT Rating FROM reviews WHERE User_Reviewed_Code ='" + username + "'", conn);
-                    if(arrRatings.Length != 0)
+                    if (arrRatings.Length != 0)
                     {
                         for (int i = 0; i < arrRatings.Length; i++)
                         {
                             rating += int.Parse(arrRatings[i]);
                         }
                         rating = rating / arrRatings.Length;
-                    }                    
+                    }
                     userProfile.rating = rating;
                     userProfile.setEmail(cF.GetSingleStringSQL("SELECT Email FROM user_details WHERE Username = '" + username + "'", conn));
                     userProfile.setNumber(cF.GetSingleStringSQL("SELECT Number FROM user_details WHERE Username = '" + username + "'", conn));
