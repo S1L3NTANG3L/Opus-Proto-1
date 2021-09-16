@@ -75,6 +75,7 @@ namespace Opus_Proto_1
             // 
             // pnlApplicants
             // 
+            this.pnlApplicants.AutoScroll = true;
             this.pnlApplicants.Location = new System.Drawing.Point(14, 244);
             this.pnlApplicants.Name = "pnlApplicants";
             this.pnlApplicants.Size = new System.Drawing.Size(577, 394);
