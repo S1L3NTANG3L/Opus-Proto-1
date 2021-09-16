@@ -33,19 +33,21 @@ namespace Opus_Proto_1
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.edtJobName = new System.Windows.Forms.TextBox();
+            this.redtJobDesc = new System.Windows.Forms.RichTextBox();
+            this.cmbCategory = new System.Windows.Forms.ComboBox();
+            this.redtAddress = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.edtCity = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.edtState = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.edtZip = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnCreateJob = new System.Windows.Forms.Button();
+            this.lblError = new System.Windows.Forms.Label();
+            this.nudPay = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPay)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -78,49 +80,43 @@ namespace Opus_Proto_1
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(337, 77);
+            this.label4.Location = new System.Drawing.Point(323, 76);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(124, 20);
             this.label4.TabIndex = 3;
             this.label4.Text = "Pay Amount(p/h):";
             // 
-            // textBox1
+            // edtJobName
             // 
-            this.textBox1.Location = new System.Drawing.Point(88, 27);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(202, 27);
-            this.textBox1.TabIndex = 4;
+            this.edtJobName.Location = new System.Drawing.Point(88, 27);
+            this.edtJobName.Name = "edtJobName";
+            this.edtJobName.Size = new System.Drawing.Size(202, 27);
+            this.edtJobName.TabIndex = 4;
             // 
-            // richTextBox1
+            // redtJobDesc
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(3, 100);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(311, 140);
-            this.richTextBox1.TabIndex = 5;
-            this.richTextBox1.Text = "";
+            this.redtJobDesc.Location = new System.Drawing.Point(3, 100);
+            this.redtJobDesc.Name = "redtJobDesc";
+            this.redtJobDesc.Size = new System.Drawing.Size(311, 140);
+            this.redtJobDesc.TabIndex = 5;
+            this.redtJobDesc.Text = "";
             // 
-            // comboBox1
+            // cmbCategory
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(442, 27);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(151, 28);
-            this.comboBox1.TabIndex = 6;
+            this.cmbCategory.FormattingEnabled = true;
+            this.cmbCategory.Location = new System.Drawing.Point(442, 27);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Size = new System.Drawing.Size(151, 28);
+            this.cmbCategory.TabIndex = 6;
+            this.cmbCategory.SelectionChangeCommitted += new System.EventHandler(this.cmbCategory_SelectionChangeCommitted);
             // 
-            // textBox2
+            // redtAddress
             // 
-            this.textBox2.Location = new System.Drawing.Point(467, 74);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(125, 27);
-            this.textBox2.TabIndex = 7;
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Location = new System.Drawing.Point(3, 279);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(311, 66);
-            this.richTextBox2.TabIndex = 8;
-            this.richTextBox2.Text = "";
+            this.redtAddress.Location = new System.Drawing.Point(3, 279);
+            this.redtAddress.Name = "redtAddress";
+            this.redtAddress.Size = new System.Drawing.Size(311, 66);
+            this.redtAddress.TabIndex = 8;
+            this.redtAddress.Text = "";
             // 
             // label5
             // 
@@ -131,12 +127,12 @@ namespace Opus_Proto_1
             this.label5.TabIndex = 9;
             this.label5.Text = "Address:";
             // 
-            // textBox3
+            // edtCity
             // 
-            this.textBox3.Location = new System.Drawing.Point(3, 386);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(202, 27);
-            this.textBox3.TabIndex = 11;
+            this.edtCity.Location = new System.Drawing.Point(3, 386);
+            this.edtCity.Name = "edtCity";
+            this.edtCity.Size = new System.Drawing.Size(202, 27);
+            this.edtCity.TabIndex = 11;
             // 
             // label6
             // 
@@ -147,12 +143,12 @@ namespace Opus_Proto_1
             this.label6.TabIndex = 10;
             this.label6.Text = "City:";
             // 
-            // textBox4
+            // edtState
             // 
-            this.textBox4.Location = new System.Drawing.Point(3, 448);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(202, 27);
-            this.textBox4.TabIndex = 13;
+            this.edtState.Location = new System.Drawing.Point(3, 448);
+            this.edtState.Name = "edtState";
+            this.edtState.Size = new System.Drawing.Size(202, 27);
+            this.edtState.TabIndex = 13;
             // 
             // label7
             // 
@@ -163,12 +159,12 @@ namespace Opus_Proto_1
             this.label7.TabIndex = 12;
             this.label7.Text = "State:";
             // 
-            // textBox5
+            // edtZip
             // 
-            this.textBox5.Location = new System.Drawing.Point(3, 511);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(202, 27);
-            this.textBox5.TabIndex = 15;
+            this.edtZip.Location = new System.Drawing.Point(3, 511);
+            this.edtZip.Name = "edtZip";
+            this.edtZip.Size = new System.Drawing.Size(202, 27);
+            this.edtZip.TabIndex = 15;
             // 
             // label8
             // 
@@ -189,29 +185,54 @@ namespace Opus_Proto_1
             this.btnCreateJob.UseVisualStyleBackColor = true;
             this.btnCreateJob.Click += new System.EventHandler(this.btnCreateJob_Click);
             // 
+            // lblError
+            // 
+            this.lblError.AutoSize = true;
+            this.lblError.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(3, 549);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(150, 20);
+            this.lblError.TabIndex = 17;
+            this.lblError.Text = "Invalid Information!\r\n";
+            // 
+            // nudPay
+            // 
+            this.nudPay.Location = new System.Drawing.Point(443, 74);
+            this.nudPay.Maximum = new decimal(new int[] {
+            400,
+            0,
+            0,
+            0});
+            this.nudPay.Name = "nudPay";
+            this.nudPay.Size = new System.Drawing.Size(150, 27);
+            this.nudPay.TabIndex = 18;
+            // 
             // CreateJob
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.nudPay);
+            this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnCreateJob);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.edtZip);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.edtState);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.edtCity);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.richTextBox2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.redtAddress);
+            this.Controls.Add(this.cmbCategory);
+            this.Controls.Add(this.redtJobDesc);
+            this.Controls.Add(this.edtJobName);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "CreateJob";
             this.Size = new System.Drawing.Size(600, 600);
+            ((System.ComponentModel.ISupportInitialize)(this.nudPay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,18 +244,19 @@ namespace Opus_Proto_1
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.TextBox edtJobName;
+        private System.Windows.Forms.RichTextBox redtJobDesc;
+        private System.Windows.Forms.ComboBox cmbCategory;
+        private System.Windows.Forms.RichTextBox redtAddress;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox edtCity;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox edtState;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox edtZip;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnCreateJob;
+        private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.NumericUpDown nudPay;
     }
 }

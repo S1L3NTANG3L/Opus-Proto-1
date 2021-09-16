@@ -35,6 +35,7 @@ namespace Opus_Proto_1
             this.label2 = new System.Windows.Forms.Label();
             this.cmbCurrency = new System.Windows.Forms.ComboBox();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // cmbTheme
@@ -265,10 +266,30 @@ namespace Opus_Proto_1
             this.lblVersion.TabIndex = 5;
             this.lblVersion.Text = "Version: {0}.{1}.{2}.{3}";
             // 
+            // listBox1
+            // 
+            this.listBox1.Enabled = false;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 20;
+            this.listBox1.Items.AddRange(new object[] {
+            "Opus 2021",
+            "*All rights reserved*",
+            "Written by: Rechard Preston 33301212",
+            "With the help of:",
+            "Ofentse Mthembu 35624930",
+            "Caitlin Botha 34669205",
+            "Sarah Masu 32850123",
+            "Zanele Mtimkulu 3055273"});
+            this.listBox1.Location = new System.Drawing.Point(175, 505);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(332, 164);
+            this.listBox1.TabIndex = 6;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.cmbCurrency);
             this.Controls.Add(this.label2);
@@ -291,5 +312,6 @@ namespace Opus_Proto_1
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbCurrency;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

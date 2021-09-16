@@ -1,4 +1,4 @@
-﻿//Ver. 2.1.4
+﻿//Ver. 2.1.5
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -43,10 +43,6 @@ namespace SoutiesSandbox
             PictureBox temp = new PictureBox();
             temp.ImageLocation = Application.StartupPath + "\\" + ImageName + ".png";
             return temp;
-        }
-        public void AppendToFile(string LineToAppend, string FileName)//Textfile method
-        {
-            System.IO.File.AppendAllText(Application.StartupPath + FileName, LineToAppend);
         }
         public void WriteToFile(string[] ArrayToWrite, string FileName)//Textfile method
         {
@@ -102,38 +98,6 @@ namespace SoutiesSandbox
                 }
             }
         }
-        public bool StudentNumberVerification(string Number)//Method used to verify a nwu student number
-        {
-            int iTemp;
-            int cSum = 0, c = 8;
-            if (Number.Length != 8)
-            {
-                return false;
-            }
-            else
-            {
-                if (!(int.TryParse(Number, out iTemp)))
-                {
-                    return false;
-                }
-                else
-                {
-                    for (int i = 0; i < 8; i++)
-                    {
-                        cSum += (Convert.ToInt32(Number[i].ToString()) * c);
-                        c--;
-                    }
-                    if (cSum % 11 == 0)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-            }
-        }
         public int GetCountSQL(string Command, string DatabaseConnection)//Returns row count from and sql statement
         {
             int temp = 0;
@@ -148,7 +112,12 @@ namespace SoutiesSandbox
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine(ex.ToString());
+                string errorMessages = "Index #" + "1" + "\n" +
+                        "Message: " + ex.Message + "\n" +
+                        "Stack Trace: " + ex.StackTrace + "\n" +
+                        "Source: " + ex.Source + "\n" +
+                        "Target Site: " + ex.TargetSite + "\n";
+                MessageBox.Show(errorMessages, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return temp;
 
@@ -167,7 +136,12 @@ namespace SoutiesSandbox
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine(ex.ToString());
+                string errorMessages = "Index #" + "1" + "\n" +
+                        "Message: " + ex.Message + "\n" +
+                        "Stack Trace: " + ex.StackTrace + "\n" +
+                        "Source: " + ex.Source + "\n" +
+                        "Target Site: " + ex.TargetSite + "\n";
+                MessageBox.Show(errorMessages, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return temp;
         }
@@ -185,7 +159,12 @@ namespace SoutiesSandbox
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine(ex.ToString());
+                string errorMessages = "Index #" + "1" + "\n" +
+                        "Message: " + ex.Message + "\n" +
+                        "Stack Trace: " + ex.StackTrace + "\n" +
+                        "Source: " + ex.Source + "\n" +
+                        "Target Site: " + ex.TargetSite + "\n";
+                MessageBox.Show(errorMessages, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return temp;
         }
@@ -203,7 +182,12 @@ namespace SoutiesSandbox
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine(ex.ToString());
+                string errorMessages = "Index #" + "1" + "\n" +
+                         "Message: " + ex.Message + "\n" +
+                         "Stack Trace: " + ex.StackTrace + "\n" +
+                         "Source: " + ex.Source + "\n" +
+                         "Target Site: " + ex.TargetSite + "\n";
+                MessageBox.Show(errorMessages, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return temp;
         }
@@ -225,7 +209,12 @@ namespace SoutiesSandbox
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine(ex.ToString());
+                string errorMessages = "Index #" + "1" + "\n" +
+                        "Message: " + ex.Message + "\n" +
+                        "Stack Trace: " + ex.StackTrace + "\n" +
+                        "Source: " + ex.Source + "\n" +
+                        "Target Site: " + ex.TargetSite + "\n";
+                MessageBox.Show(errorMessages, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             string[] output = new string[count];
             try
@@ -245,7 +234,12 @@ namespace SoutiesSandbox
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine(ex.ToString());
+                string errorMessages = "Index #" + "1" + "\n" +
+                        "Message: " + ex.Message + "\n" +
+                        "Stack Trace: " + ex.StackTrace + "\n" +
+                        "Source: " + ex.Source + "\n" +
+                        "Target Site: " + ex.TargetSite + "\n";
+                MessageBox.Show(errorMessages, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return output;
         }
@@ -262,7 +256,12 @@ namespace SoutiesSandbox
             }
             catch (MySqlException ex)
             {
-                Console.WriteLine(ex.ErrorCode.ToString() + ", " + ex.Code);
+                string errorMessages = "Index #" + "1" + "\n" +
+                        "Message: " + ex.Message + "\n" +
+                        "Stack Trace: " + ex.StackTrace + "\n" +
+                        "Source: " + ex.Source + "\n" +
+                        "Target Site: " + ex.TargetSite + "\n";
+                MessageBox.Show(errorMessages,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
         public string RandomPasswordGenerator(int PasswordLength)//In the name

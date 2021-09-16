@@ -16,10 +16,16 @@ namespace Opus_Proto_1
         public CreateJob()
         {
             InitializeComponent();
+            lblError.Visible = false;
         }
         private void btnCreateJob_Click(object sender, EventArgs e)
         {
-            //Verification and insert code
+            lblError.Visible = false;
+            if (edtCity.Text == "" || edtJobName.Text == "" || edtState.Text == "" || edtZip.Text == "" ||
+                redtAddress.Text == "" || redtJobDesc.Text == "")
+            {
+                lblError.Visible = true;
+            }
             createJob(this, new CreateJobArgs(index));
         }
         public void setBackColor(Color color)
@@ -37,6 +43,14 @@ namespace Opus_Proto_1
         public void setConn(string value)
         {
             conn = value;
+        }
+        public void fillComboBox()
+        {
+            cmbCategory.Items.AddRange(cF.GetStringArraySQL("SELECT Job_Name FROM job_types",conn));
+        }
+        private void cmbCategory_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            nudPay.Minimum = nudPay.Value = cF.GetSingleIntegerSQL("SELECT Job_Min_Pay_Amount FROM job_types WHERE Job_Name = '" + cmbCategory.SelectedText + "'", conn);
         }
     }
     public class CreateJobArgs : EventArgs

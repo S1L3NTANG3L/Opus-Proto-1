@@ -111,6 +111,7 @@ namespace Opus_Proto_1
             createJob.setUsername(username);
             createJob.setBackColor(backColor);
             createJob.setButtonColor(themeButtonColor);
+            createJob.fillComboBox();
             pnlOJS.Controls.Add(createJob);
             createJob.Location = new Point(pnlOJS.Width / 2 - 300, 0);
             btnCreateJob.Visible = false;
