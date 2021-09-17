@@ -191,7 +191,10 @@ namespace Opus_Proto_1
             jobInfo.setDesc(cF.GetSingleStringSQL("SELECT Job_Desc FROM available_jobs WHERE Job_Code = '"
                 + tempJobCode + "'", conn));
             jobInfo.setConn(conn);
-            jobInfo.loadApplicants();
+            if(!jobInfo.showCorrect())
+            {
+                jobInfo.loadApplicants();
+            }
             pnlMain.Controls.Add(jobInfo);
             jobInfo.Location = new Point(pnlMain.Width / 2 - 200, 0);
         }
@@ -210,7 +213,10 @@ namespace Opus_Proto_1
             jobInfo.setDesc(cF.GetSingleStringSQL("SELECT Job_Desc FROM available_jobs WHERE Job_Code = '"
                 + tempJobCode + "'", conn));
             jobInfo.setConn(conn);
-            jobInfo.loadApplicants();
+            if (!jobInfo.showCorrect())
+            {
+                jobInfo.loadApplicants();
+            }
             pnlMain.Controls.Add(jobInfo);
             jobInfo.Location = new Point(pnlMain.Width / 2 - 200, 0);
         }

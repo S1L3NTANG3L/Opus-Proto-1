@@ -36,6 +36,10 @@ namespace Opus_Proto_1
             this.pnlApplicants = new System.Windows.Forms.Panel();
             this.btnBack = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnCloseJob = new System.Windows.Forms.Button();
+            this.lblEmployeeName = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblPayAmount = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -76,9 +80,9 @@ namespace Opus_Proto_1
             // pnlApplicants
             // 
             this.pnlApplicants.AutoScroll = true;
-            this.pnlApplicants.Location = new System.Drawing.Point(14, 244);
+            this.pnlApplicants.Location = new System.Drawing.Point(14, 281);
             this.pnlApplicants.Name = "pnlApplicants";
-            this.pnlApplicants.Size = new System.Drawing.Size(577, 394);
+            this.pnlApplicants.Size = new System.Drawing.Size(577, 357);
             this.pnlApplicants.TabIndex = 4;
             // 
             // btnBack
@@ -100,10 +104,52 @@ namespace Opus_Proto_1
             this.label3.TabIndex = 6;
             this.label3.Text = "Applicants:";
             // 
+            // btnCloseJob
+            // 
+            this.btnCloseJob.Location = new System.Drawing.Point(451, 659);
+            this.btnCloseJob.Name = "btnCloseJob";
+            this.btnCloseJob.Size = new System.Drawing.Size(140, 44);
+            this.btnCloseJob.TabIndex = 7;
+            this.btnCloseJob.Text = "Close Job";
+            this.btnCloseJob.UseVisualStyleBackColor = true;
+            this.btnCloseJob.Click += new System.EventHandler(this.btnCloseJob_Click);
+            // 
+            // lblEmployeeName
+            // 
+            this.lblEmployeeName.AutoSize = true;
+            this.lblEmployeeName.Location = new System.Drawing.Point(14, 258);
+            this.lblEmployeeName.Name = "lblEmployeeName";
+            this.lblEmployeeName.Size = new System.Drawing.Size(50, 20);
+            this.lblEmployeeName.TabIndex = 8;
+            this.lblEmployeeName.Text = "label4";
+            this.lblEmployeeName.Click += new System.EventHandler(this.lblEmployeeName_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(305, 258);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(128, 20);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Total Pay Amount:";
+            // 
+            // lblPayAmount
+            // 
+            this.lblPayAmount.AutoSize = true;
+            this.lblPayAmount.Location = new System.Drawing.Point(439, 258);
+            this.lblPayAmount.Name = "lblPayAmount";
+            this.lblPayAmount.Size = new System.Drawing.Size(50, 20);
+            this.lblPayAmount.TabIndex = 10;
+            this.lblPayAmount.Text = "label5";
+            // 
             // JobInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblPayAmount);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblEmployeeName);
+            this.Controls.Add(this.btnCloseJob);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.pnlApplicants);
@@ -127,5 +173,9 @@ namespace Opus_Proto_1
         private System.Windows.Forms.Panel pnlApplicants;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnCloseJob;
+        private System.Windows.Forms.Label lblEmployeeName;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblPayAmount;
     }
 }

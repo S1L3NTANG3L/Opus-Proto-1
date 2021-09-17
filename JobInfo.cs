@@ -19,10 +19,15 @@ namespace Opus_Proto_1
         private CustomFunctions cF = new CustomFunctions();
         private int SPACERY = 10;
         private string username;
+        private string currencyCode;
         public JobInfo(string JobCode)
         {
             InitializeComponent();
             jobCode = JobCode;
+            lblEmployeeName.Visible = false;
+            btnCloseJob.Visible = false;
+            label4.Visible = false;
+            lblPayAmount.Visible = false;
         }
         private void btnBack_Click(object sender, EventArgs e)
         {
@@ -116,6 +121,62 @@ namespace Opus_Proto_1
         public string getJobCode()
         {
             return jobCode;
+        }
+        public bool showCorrect()
+        {
+            int InProgress = cF.GetSingleIntegerSQL("SELECT In_Progress FROM job_details WHERE Job_Code = '" + jobCode + "'", conn);
+            if (InProgress == 1)
+            {
+                pnlApplicants.Visible = false;
+                lblEmployeeName.Visible = true;
+                btnCloseJob.Visible = true;
+                lblEmployeeName.Text = cF.GetSingleStringSQL("SELECT Employee_Code FROM job_details WHERE Job_Code = '" + jobCode + "'", conn);
+                return true;                
+            }
+            else if(InProgress ==  0)            
+            {                
+                return false;
+            }
+            else
+            {
+                pnlApplicants.Visible = false;
+                lblEmployeeName.Visible = true;                
+                lblEmployeeName.Text = cF.GetSingleStringSQL("SELECT Employee_Code FROM job_details WHERE Job_Code = '" + jobCode + "'", conn);
+                lblPayAmount.Visible = true;
+                label4.Visible = true;
+                lblPayAmount.Text = lblPayAmount.Text = ((decimal)cF.GetSingleIntegerSQL("SELECT Payment_Amount_w_Rev FROM job_details WHERE Job_Code = '" + jobCode + "'", conn)).FormatCurrency(currencyCode);
+                return true;
+            }
+
+        }
+        private void lblEmployeeName_Click(object sender, EventArgs e)
+        {            
+            username = lblEmployeeName.Text;
+            LoadApplicantUP(this, new JobInfoArgs(index));
+        }
+        private void btnCloseJob_Click(object sender, EventArgs e)
+        {
+            string temp = Microsoft.VisualBasic.Interaction.InputBox("Please enter the amount of hours the job took:", "Enter Hours", "1");
+            int hours = 0;
+            if(!int.TryParse(temp, out hours))
+            {
+                MessageBox.Show("Incorrect input!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                label4.Visible = true;
+                lblPayAmount.Visible = true;
+                int payAmount = cF.GetSingleIntegerSQL("SELECT Pay_Amount FROM available_jobs WHERE Job_Code = '" + jobCode + "'", conn);
+                int total = payAmount * hours;
+                float totalwRev = total * (float)1.03;
+                float rev = totalwRev - total;
+                lblPayAmount.Text = ((decimal)totalwRev).FormatCurrency(currencyCode);
+                cF.NonQuerySQL("UPDATE job_details SET In_Progress = 2, Payment_Amount_w_Rev = '" + totalwRev + "', Total_work_time = '" + hours + "'", conn);
+                cF.NonQuerySQL("INSERT INTO past_jobs VALUES(SELECT * FROM available_Jobs WHERE Job_Code = '" + jobCode + "')",conn);
+                cF.NonQuerySQL("DELETE FROM available_jobs WHERE Job_Code = '" + jobCode + "'", conn);
+                cF.NonQuerySQL("INSERT INTO revenue_ledger VALUES('" + jobCode + "','" + rev + "')", conn);
+                btnCloseJob.Visible = false;
+            }
         }
     }
     public class JobInfoArgs : EventArgs
