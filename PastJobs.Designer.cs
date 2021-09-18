@@ -48,6 +48,7 @@ namespace Opus_Proto_1
             this.btnPrint.TabIndex = 18;
             this.btnPrint.Text = "Print Info";
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // lblPaymentRate
             // 
