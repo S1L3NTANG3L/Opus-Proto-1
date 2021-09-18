@@ -59,7 +59,7 @@ namespace Opus_Proto_1
         }
         private void cmbCategory_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            nudPay.Minimum = nudPay.Value = cF.GetSingleIntegerSQL("SELECT Job_Min_Pay_Amount FROM job_types WHERE Job_Name = '" + cmbCategory.SelectedText + "'", conn);
+            nudPay.Minimum = nudPay.Value = cF.GetSingleIntegerSQL("SELECT Job_Min_Pay_Amount FROM job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'", conn);
         }
     }
     public class CreateJobArgs : EventArgs

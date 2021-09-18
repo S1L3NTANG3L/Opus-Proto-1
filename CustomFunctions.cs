@@ -149,7 +149,7 @@ namespace SoutiesSandbox
         {
             int temp = 0;
             try
-            {
+            {                
                 using (MySqlConnection conn = new MySqlConnection(DatabaseConnection))
                 {
                     conn.Open();
