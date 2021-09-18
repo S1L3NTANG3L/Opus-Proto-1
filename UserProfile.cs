@@ -137,7 +137,7 @@ namespace Opus_Proto_1
                 }
                 else
                 {
-                    cf.NonQuerySQL("UPDATE user_details SET Email ='" + edtEmail.Text + "', Number = '" + edtPhoneNumber.Text + "'", conn);
+                    cf.NonQuerySQL("UPDATE user_details SET Email ='" + edtEmail.Text + "', Number = '" + edtPhoneNumber.Text + "' WHERE Username = '" + username + "'", conn);
                     lblEmail.Text = edtEmail.Text;
                     lblPhone.Text = edtPhoneNumber.Text;
                     btnEdit.Text = "Edit";

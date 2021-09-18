@@ -24,8 +24,8 @@ namespace Opus_Proto_1
         private void frmMain_Load(object sender, EventArgs e)
         {
             //conn = cF.CreateRemoteSQLConnection("soutiesentrance.ddns.net", "13306", "opus_user", "opus2021", "opus_db");//Remote Connection
-            //conn = cF.CreateRemoteSQLConnection("192.168.50.34", "13306", "opus_user", "opus2021", "opus_db");//Needs to change for external access
-            conn = cF.CreateRemoteSQLConnection("127.0.0.1", "3306", "opus_user", "opus2021", "opus_db");//Needs to change for external access
+            conn = cF.CreateRemoteSQLConnection("192.168.50.34", "13306", "opus_user", "opus2021", "opus_db");//Needs to change for external access
+            //conn = cF.CreateRemoteSQLConnection("127.0.0.1", "3306", "opus_user", "opus2021", "opus_db");//Needs to change for external access
             var temp = cF.ReadFromFile("\\Config\\config.dll");
             string[] tempArr = temp.StringArray;
             sec_key = tempArr[0];
@@ -261,13 +261,13 @@ namespace Opus_Proto_1
                     userProfile.rating = rating;
                     userProfile.setEmail(cF.GetSingleStringSQL("SELECT Email FROM user_details WHERE Username = '" + username + "'", conn));
                     userProfile.setNumber(cF.GetSingleStringSQL("SELECT Number FROM user_details WHERE Username = '" + username + "'", conn));
-                    if (!(cF.GetCountSQL("SELECT COUNT(Review) FROM reviews WHERE User_Code ='" + username + "' AND Rating NOT NULL", conn) == 0))
+                    if (!(cF.GetCountSQL("SELECT COUNT(Review) FROM reviews WHERE User_Reviewed_Code ='" + username + "'", conn) == 0))
                     {
                         string[] arrReviews = cF.GetStringArraySQL("SELECT Review FROM reviews WHERE User_Reviewed_Code ='" + username + "'", conn);
-                        string[] arrUsers = cF.GetStringArraySQL("SELECT User_Code FROM reviews WHERE User_Reviewed_Code ='" + username + "' AND Rating NOT NULL", conn);
+                        string[] arrUsers = cF.GetStringArraySQL("SELECT Username FROM reviews WHERE User_Reviewed_Code ='" + username + "'", conn);
                         for (int i = 0; i < arrReviews.Length; i++)
                         {
-                            userProfile.addReview("Review by: " + arrUsers[i] + "\n" + arrReviews[i]);
+                            userProfile.addReview("Review by: " + arrUsers[i] + "\t" + arrReviews[i]);
                         }
                     }
                     userProfile.backColor = themeBackColor;

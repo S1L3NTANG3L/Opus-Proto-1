@@ -158,13 +158,13 @@ namespace Opus_Proto_1
             userProfile.buttonColor = this.themeButtonColor;
             userProfile.disableBackButton();
             userProfile.setDefualtProfilePicture();
-            if (!(cF.GetCountSQL("SELECT COUNT(Review) FROM reviews WHERE User_Code ='" + username + "' AND Rating NOT NULL", conn) == 0))
+            if (!(cF.GetCountSQL("SELECT COUNT(Review) FROM reviews WHERE User_Reviewed_Code ='" + username + "'", conn) == 0))
             {
                 string[] arrReviews = cF.GetStringArraySQL("SELECT Review FROM reviews WHERE User_Reviewed_Code ='" + username + "'", conn);
-                string[] arrUsers = cF.GetStringArraySQL("SELECT User_Code FROM reviews WHERE User_Reviewed_Code ='" + username + "' AND Rating NOT NULL", conn);
+                string[] arrUsers = cF.GetStringArraySQL("SELECT Username FROM reviews WHERE User_Reviewed_Code ='" + username + "'", conn);
                 for (int i = 0; i < arrReviews.Length; i++)
                 {
-                    userProfile.addReview("Review by: " + arrUsers[i] + "\n" + arrReviews[i]);
+                    userProfile.addReview("Review by: " + arrUsers[i] + "\t" + arrReviews[i]);
                 }
             }
             pnlAJSMain.Controls.Add(userProfile);
