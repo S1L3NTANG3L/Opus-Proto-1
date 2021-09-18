@@ -89,7 +89,7 @@ namespace Opus_Proto_1
             {
                 cF.NonQuerySQL("INSERT INTO user_details VALUES('" + edtUsername.Text + "','" + edtName.Text + "','" + edtSurname.Text + "'"
                     + ",'" + edtEmail.Text.ToLower() + "','" + edtId.Text + "','" + cF.EncryptPlainTextToCipherText(edtPassword.Text, sec_code) + "'"
-                    + ",0,0,0,'" + edtNumber.Text + "','" + edtAddress.Text + "','" + edtTown.Text + "','" + edtProvince.Text + "'"
+                    + ",0,0,'" + edtNumber.Text + "','" + edtAddress.Text + "','" + edtTown.Text + "','" + edtProvince.Text + "'"
                     + ",'" + edtZip.Text + "','" + DateTime.Now.ToShortDateString() + "')", conn);
                 onRemoveSite(this, new RegistrationArgs(index));
             }

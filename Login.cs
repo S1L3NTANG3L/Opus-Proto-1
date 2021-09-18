@@ -41,11 +41,10 @@ namespace Opus_Proto_1
                 "SELECT Password FROM user_details WHERE Username  = '" + edtUsername.Text + "' OR"
                 + " Email  = '" + edtUsername.Text.ToLower() + "'", conn), sec_key) != edtPassword.Text)
             {
-                lblInvalid.Visible = true;
+                lblInvalid.Visible = true;                
             }
             else
             {
-
                 username = cF.GetSingleStringSQL("SELECT Username FROM user_details WHERE Username  = '" + edtUsername.Text + "' OR"
                 + " Email  = '" + edtUsername.Text.ToLower() + "'", conn);
                 onRemoveLogin(this, new LoginArgs(index));

@@ -24,7 +24,8 @@ namespace Opus_Proto_1
         private void frmMain_Load(object sender, EventArgs e)
         {
             //conn = cF.CreateRemoteSQLConnection("soutiesentrance.ddns.net", "13306", "opus_user", "opus2021", "opus_db");//Remote Connection
-            conn = cF.CreateRemoteSQLConnection("192.168.50.34", "13306", "opus_user", "opus2021", "opus_db");//Needs to change for external access
+            //conn = cF.CreateRemoteSQLConnection("192.168.50.34", "13306", "opus_user", "opus2021", "opus_db");//Needs to change for external access
+            conn = cF.CreateRemoteSQLConnection("127.0.0.1", "3306", "opus_user", "opus2021", "opus_db");//Needs to change for external access
             var temp = cF.ReadFromFile("\\Config\\config.dll");
             string[] tempArr = temp.StringArray;
             sec_key = tempArr[0];
@@ -98,6 +99,7 @@ namespace Opus_Proto_1
             lgnForm.setButtonBackColor(themeButtonColor);
             lgnForm.setConnection(conn);
             lgnForm.setBackColor(themeBackColor);
+            lgnForm.setSecCode(sec_key);
             pnlMain.Controls.Add(lgnForm);
             lgnForm.Location = new Point(pnlMain.Width / 2 - 250, 0);
             lgnForm.onRemoveLogin += new Login.RemoveLoginEventHandler(LoadMainMenu_Click);
@@ -318,6 +320,7 @@ namespace Opus_Proto_1
                     login.setButtonBackColor(themeButtonColor);
                     login.setConnection(conn);
                     login.setBackColor(themeBackColor);
+                    login.setSecCode(sec_key);
                     login.onRemoveLogin += new Login.RemoveLoginEventHandler(LoadMainMenu_Click);
                     login.LoadReg += new Login.LoadRegEventHandler(LoadRegistration_Click);
                     pnlMain.Controls.Add(login);
