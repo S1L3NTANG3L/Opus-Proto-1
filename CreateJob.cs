@@ -30,7 +30,7 @@ namespace Opus_Proto_1
             {
                 string uuid = cF.UUIDGenerator();
                 cF.NonQuerySQL("INSERT INTO job_details VALUES('" + uuid + "','" + edtJobName.Text + "',"
-                    + "'" + cF.GetSingleStringSQL("SELECT Job_Type_Code FROM job_types WHERE Job_Name = '" + cmbCategory.SelectedText + "'", conn) + ""
+                    + "'" + cF.GetSingleStringSQL("SELECT Job_Type_Code FROM job_types WHERE Job_Name = '" + cmbCategory.SelectedItem.ToString() + "'", conn) + ""
                     + "',NULL,'" + username + "','" + redtAddress.Text + "','" + edtCity.Text + "','" + edtState.Text + "',"
                     + "'" + edtZip.Text + "','0','0','0')", conn);
                 cF.NonQuerySQL("INSERT INTO available_jobs VALUES('" + uuid + "','" + redtJobDesc.Text + "'," + nudPay.Value + ")", conn);

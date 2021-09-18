@@ -88,7 +88,7 @@ namespace Opus_Proto_1
                 edtPassword.UseSystemPasswordChar = true;
                 edtPassword.PasswordChar = '*';
             }
-        }
+        }        
     }
     public class LoginArgs : EventArgs
     {
