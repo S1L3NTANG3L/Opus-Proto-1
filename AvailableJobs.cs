@@ -23,19 +23,19 @@ namespace Opus_Proto_1
             starRatingControl.Enabled = false;
             lblUsername.ForeColor = Color.Blue;
         }
-        public void SetJobName(string value)
+        public void setJobName(string value)
         {
             lblJobName.Text = value;
         }
-        public void SetDescription(string value)
+        public void setDescription(string value)
         {
             redtDesc.Text = value;
         }
-        public void SetUsername(string value)
+        public void setUsername(string value)
         {
             lblUsername.Text = value;
         }
-        public void SetRating(int value)
+        public void setRating(int value)
         {
             starRatingControl.SelectedStar = value;
         }
@@ -46,7 +46,7 @@ namespace Opus_Proto_1
                 btnApply.Visible = false;
             }
         }
-        public void SetPaymentRate(string value)
+        public void setPaymentRate(string value)
         {
             lblPaymentRate.Text = value;
         }

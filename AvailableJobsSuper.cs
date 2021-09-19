@@ -260,12 +260,12 @@ namespace Opus_Proto_1
                 previousJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 2];
                 availableJob.Location = new Point(0, previousJob.Location.Y + previousJob.Height + SPACERY);
             }
-            availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobName);
+            availableJob.setJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobName);
             availableJob.setJobCode(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode);
-            availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username);
-            availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
-            availableJob.SetRating(loadRating(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username.ToString()));
-            availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
+            availableJob.setUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username);
+            availableJob.setDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
+            availableJob.setRating(loadRating(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username.ToString()));
+            availableJob.setPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
             if (cF.GetSingleLongIntegerSQL("SELECT COUNT(Job_Code) FROM applications WHERE Job_Code = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode + "' AND Employee_Code = '" + currentUser + "' ", conn) == 1)
             {
                 availableJob.setApplyStatus(false);
@@ -293,12 +293,12 @@ namespace Opus_Proto_1
                 previousJob = (AvailableJobs)pnlAJSMain.Controls[pnlAJSMain.Controls.Count - 12];
                 availableJob.Location = new Point(previousJob.Width + SPACERX, previousJob.Location.Y + previousJob.Height + SPACERY);
             }
-            availableJob.SetJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobName);
+            availableJob.setJobName(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobName);
             availableJob.setJobCode(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode);
-            availableJob.SetUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username);
-            availableJob.SetDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
-            availableJob.SetRating(loadRating(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username.ToString()));
-            availableJob.SetPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
+            availableJob.setUsername(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username);
+            availableJob.setDescription(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Desc);
+            availableJob.setRating(loadRating(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].Username.ToString()));
+            availableJob.setPaymentRate(lstJobs[pnlAJSMain.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
             if (cF.GetSingleLongIntegerSQL("SELECT COUNT(Job_Code) FROM applications WHERE Job_Code = '" + lstJobs[pnlAJSMain.Controls.Count - 1 + Index].JobCode + "' AND Employee_Code = '" + currentUser + "' ", conn) == 1)
             {
                 availableJob.setApplyStatus(false);
