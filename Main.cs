@@ -236,6 +236,16 @@ namespace Opus_Proto_1
             pnlMain.Controls.Add(openJobsSuper);
             openJobsSuper.Location = new Point(pnlMain.Width / 2 - 600, 0);
         }
+        private void RemovePJSSite_Click(Object sender, PastJobsSuperArgs e)
+        {
+            PastJobsSuper jobsSuper = (PastJobsSuper)sender;
+            pnlMain.Controls.Remove(jobsSuper);
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.setBackColor(themeBackColor);
+            mainMenu.onRemoveSite += new MainMenu.RemoveMMEventHandler(RemoveMMSite_Click);
+            pnlMain.Controls.Add(mainMenu);
+            mainMenu.Location = new Point(pnlMain.Width / 2 - 250, 0);
+        }
         private void RemoveMMSite_Click(Object sender, MainMenuArgs e)
         {
             MainMenu mainMenu = (MainMenu)sender;
@@ -302,6 +312,14 @@ namespace Opus_Proto_1
                     availableJobsSuper.Location = new Point(pnlMain.Width / 2 - 600, 0);
                     break;
                 case 4:
+                    PastJobsSuper pastJobsSuper = new PastJobsSuper();
+                    pastJobsSuper.setButtonBackColor(themeButtonColor);
+                    pastJobsSuper.setConnection(conn);
+                    pastJobsSuper.setBackColor(themeBackColor);
+                    pastJobsSuper.setCurrencyCode(currencyCode);
+                    pastJobsSuper.onRemovePJS += new PastJobsSuper.RemovePJSEventHandler(RemovePJSSite_Click);
+                    pnlMain.Controls.Add(pastJobsSuper);
+                    pastJobsSuper.Location = new Point(pnlMain.Width / 2 - 600, 0);
                     break;
                 case 5:
                     Settings settings = new Settings();

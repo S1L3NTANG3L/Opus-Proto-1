@@ -41,10 +41,10 @@ namespace Opus_Proto_1
             FillList("SELECT job_details.Employer_code,job_details.Job_Code,job_details.Job_Name,job_details.Job_Type_Code,"
                 + "available_jobs.Job_Desc, available_jobs.Pay_Amount FROM job_details INNER JOIN available_jobs "
                 + "ON job_details.Job_Code = available_jobs.Job_Code WHERE (job_details.Employer_Code = '" + username + "' "
-                + "OR job_details.Employee_Code = '" + username + "') AND Job_details.In_Progress = 2");
+                + "OR job_details.Employee_Code = '" + username + "') AND job_details.In_Progress = 2");
             int number = cF.GetCountSQL("SELECT COUNT(job_details.Job_Code) FROM job_details INNER JOIN available_jobs "
                 + "ON job_details.Job_Code = available_jobs.Job_Code WHERE (job_details.Employer_Code = '" + username + "' "
-                + "OR job_details.Employee_Code = '" + username + "') AND Job_details.In_Progress = 2", conn);
+                + "OR job_details.Employee_Code = '" + username + "') AND job_details.In_Progress = 2", conn);
             decimal dtot = (decimal)(number / 20);
             totalPageCount = (int)Math.Ceiling(dtot);
             if (totalPageCount < 1)
