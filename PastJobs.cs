@@ -12,6 +12,7 @@ namespace Opus_Proto_1
         private string username;
         private string jobCode;
         private string conn;
+        private string[] arrUser = new string[2];
         public PastJobs()
         {
             InitializeComponent();
@@ -26,12 +27,20 @@ namespace Opus_Proto_1
         }
         public void setUsername(string value)
         {
-            username = value;
-            //if statement here to return the other employee
+            username = value;            
         }
         public void setJobCode(string value)
         {
             jobCode = value;
+            arrUser = cF.GetStringArraySQL("SELECT Employer_Code, Employee_Code FROM job_details WHERE Jobe_Code = '" + jobCode + "'", conn);
+            if(arrUser[1] == username)
+            {
+                lblEmp.Text = arrUser[2];
+            }
+            else
+            {
+                lblEmp.Text = arrUser[1];
+            }
         }
         public void setTotalPaymentPayment(string value)
         {

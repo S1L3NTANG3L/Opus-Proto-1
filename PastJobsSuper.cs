@@ -114,12 +114,13 @@ namespace Opus_Proto_1
                 previousJob = (PastJobs)pnlPJS.Controls[pnlPJS.Controls.Count - 2];
                 pastJob.Location = new Point(0, previousJob.Location.Y + previousJob.Height + SPACERY);
             }
-            pastJob.setJobName(lstJobs[pnlPJS.Controls.Count - 1 + Index].JobName);
-            pastJob.setUsername(lstJobs[pnlPJS.Controls.Count - 1 + Index].Username);
-            pastJob.setDesc(lstJobs[pnlPJS.Controls.Count - 1 + Index].Desc);
-            pastJob.setPaymentRate(lstJobs[pnlPJS.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
             pastJob.setConn(conn);
+            pastJob.setJobName(lstJobs[pnlPJS.Controls.Count - 1 + Index].JobName);            
+            pastJob.setUsername(username);
             pastJob.setJobCode(lstJobs[pnlPJS.Controls.Count - 1 + Index].JobCode);
+            pastJob.setDesc(lstJobs[pnlPJS.Controls.Count - 1 + Index].Desc);
+            pastJob.setPaymentRate(lstJobs[pnlPJS.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));            
+            
             pastJob.index = pnlPJS.Controls.Count - 1;
             pastJob.Anchor = (System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top)
              | System.Windows.Forms.AnchorStyles.Left);
@@ -142,7 +143,7 @@ namespace Opus_Proto_1
                 pastJob.Location = new Point(previousJob.Width + SPACERX, previousJob.Location.Y + previousJob.Height + SPACERY);
             }
             pastJob.setJobName(lstJobs[pnlPJS.Controls.Count - 1 + Index].JobName);
-            pastJob.setUsername(lstJobs[pnlPJS.Controls.Count - 1 + Index].Username);
+            pastJob.setUsername(username);
             pastJob.setDesc(lstJobs[pnlPJS.Controls.Count - 1 + Index].Desc);
             pastJob.setPaymentRate(lstJobs[pnlPJS.Controls.Count - 1 + Index].PayAmount.FormatCurrency(currencyCode));
             pastJob.setConn(conn);
