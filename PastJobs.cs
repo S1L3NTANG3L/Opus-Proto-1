@@ -1,5 +1,8 @@
-﻿using SoutiesSandbox;
+﻿using Microsoft.Reporting.WinForms;
+using Printing_Demo;
+using SoutiesSandbox;
 using System;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -73,6 +76,21 @@ namespace Opus_Proto_1
         private void btnPrint_Click(object sender, System.EventArgs e)
         {
             MessageBox.Show("There is currently no support for Report Viewing in .net5.0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //var reportViewer = new ReportViewer { Dock = DockStyle.Fill };
+            //reportViewer.Reset();
+            //reportViewer.ProcessingMode = ProcessingMode.Local;
+            //LocalReport localReport = reportViewer.LocalReport;
+            //localReport.ReportPath = "Report1.rdlc";
+            //DataSet dataset = new DataSet("DataSetAssetList");
+            //reportViewer.Refresh();
+            //PrintDialog printDialog1 = new PrintDialog();
+            //if (printDialog1.ShowDialog() == DialogResult.OK)//Change
+            //{
+            //    AutoPrintCls autoprintme = new AutoPrintCls(reportViewer.LocalReport);
+            //    autoprintme.m_pageSettings.PrinterSettings.PrinterName = printDialog1.PrinterSettings.PrinterName;
+            //    autoprintme.Print();
+            //}
         }
     }
+    
 }

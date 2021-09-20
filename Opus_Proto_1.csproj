@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="MaterialSkin.2" Version="2.2.1" />
+    <PackageReference Include="Microsoft.ReportingServices.ReportViewerControl.Winforms" Version="150.1449.0" />
+    <PackageReference Include="Microsoft.SqlServer.Types" Version="14.0.1016.290" />
     <PackageReference Include="MySql.Data" Version="8.0.26" />
   </ItemGroup>
 
