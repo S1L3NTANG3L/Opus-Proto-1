@@ -72,7 +72,7 @@ namespace Opus_Proto_1
         }
         private void btnPrint_Click(object sender, System.EventArgs e)
         {
-            //Print to pdf code
+            MessageBox.Show("There is currently no support for Report Viewing in .net5.0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
