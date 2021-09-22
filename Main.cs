@@ -28,9 +28,9 @@ namespace Opus_Proto_1
             //conn = cF.CreateRemoteSQLConnection("127.0.0.1", "3306", "opus_user", "opus2021", "opus_db");//Needs to change for external access
             var temp = cF.ReadFromFile("\\Config\\config.dll");
             string[] tempArr = temp.StringArray;
-            sec_key = tempArr[0];
-            pickedTheme = tempArr[1];
-            currencyCode = tempArr[2];
+            sec_key = "@xCp#fvaYKgTE3jQznutT92Qk5TmyAzHfsf2cEJhd$kt5m~n9YsWops%KZRMKXpCfi^fSm$kKo&4mbmSqtt7Up%XpCXc@Ff2YCvFY7ngNPPpxF`^~pTp^eWZjENf~9i#";
+            pickedTheme = tempArr[0];
+            currencyCode = tempArr[1];
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             if (pickedTheme == "Dark")
