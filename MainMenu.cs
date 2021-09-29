@@ -21,6 +21,17 @@ namespace Opus_Proto_1
             pbOpenJobs.ImageLocation = Application.StartupPath + "\\Config\\OpenJobs.png";
             pbPastJobs.ImageLocation = Application.StartupPath + "\\Config\\PastJobs.png";
             pbSettings.ImageLocation = Application.StartupPath + "\\Config\\Settings.png";
+            ToolTip toolTip1 = new ToolTip();
+            toolTip1.AutoPopDelay = 5000;
+            toolTip1.InitialDelay = 1000;
+            toolTip1.ReshowDelay = 500;
+            toolTip1.ShowAlways = true;
+            toolTip1.SetToolTip(this.pbProfile, "Profile");
+            toolTip1.SetToolTip(this.pbOpenJobs, "Open Jobs");
+            toolTip1.SetToolTip(this.pbAvailableJobs, "Available Jobs");
+            toolTip1.SetToolTip(this.pbPastJobs, "Past Jobs");
+            toolTip1.SetToolTip(this.pbSettings, "Settings");
+            toolTip1.SetToolTip(this.pbLogout, "Log Out");
         }
         private void pbProfile_Click(object sender, EventArgs e)
         {
