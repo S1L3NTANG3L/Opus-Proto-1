@@ -322,7 +322,6 @@ namespace Opus_Proto_1
                 case 5:
                     Settings settings = new Settings();
                     settings.setButtonBackColor(themeButtonColor);
-                    settings.setSecKey(sec_key);
                     settings.setCurrencyCode(currencyCode);
                     settings.setBackColor(themeBackColor);
                     settings.setPickedTheme(pickedTheme);

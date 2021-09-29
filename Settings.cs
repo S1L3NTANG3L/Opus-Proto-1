@@ -11,7 +11,6 @@ namespace Opus_Proto_1
         public delegate void RemoveSEventHandler(object sender, SettingsArgs e);
         public event RemoveSEventHandler onRemoveS;
         private CustomFunctions cF = new CustomFunctions();
-        private string sec_key;
         private string currencyCode;
         private string pickedTheme;        
         public Settings()
@@ -49,10 +48,6 @@ namespace Opus_Proto_1
         {
             btnBack.BackColor = color;
         }
-        public void setSecKey(string sec_key)
-        {
-            this.sec_key = sec_key;
-        }
         public void setCurrencyCode(string currencyCode)
         {
             this.currencyCode = currencyCode;
@@ -71,23 +66,17 @@ namespace Opus_Proto_1
         }
         private void cmbTheme_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            string[] arrTemp = new string[3];
-            arrTemp[0] = sec_key;
-            arrTemp[1] = cmbTheme.SelectedItem.ToString();
-            arrTemp[2] = currencyCode;
-            cF.WriteToFile(arrTemp, "\\Config\\config.dll");
-            if (MessageBox.Show("Program needs to restart to apply theme.\nWould you like to exit now?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-            {
-                Application.Restart();
-                Environment.Exit(0);
-            }
+            writeToConfig();
         }
         private void cmbCurrency_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            string[] arrTemp = new string[3];
-            arrTemp[0] = sec_key;
-            arrTemp[1] = pickedTheme;
-            arrTemp[2] = cmbCurrency.SelectedItem.ToString();
+            writeToConfig();
+        }
+        public void writeToConfig()
+        {
+            string[] arrTemp = new string[2];
+            arrTemp[0] = cmbTheme.SelectedItem.ToString();
+            arrTemp[1] = cmbCurrency.SelectedItem.ToString();
             cF.WriteToFile(arrTemp, "\\Config\\config.dll");
             if (MessageBox.Show("Program needs to restart to apply theme.\nWould you like to exit now?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
