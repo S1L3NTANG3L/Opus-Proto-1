@@ -123,6 +123,9 @@ namespace Opus_Proto_1
             pageShowing = 0;
             pnlAJSMain.Controls.Clear();
             LoadStartUpAvailableJobsSuper();
+            cmbCategory.Visible = true;
+            btnNext.Visible = true;
+            lblJobCat.Visible = true;
         }
         private void btnBack_Click(object sender, EventArgs e)
         {

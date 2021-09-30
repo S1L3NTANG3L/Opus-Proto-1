@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace Opus_Proto_1
 {
     public partial class Login : UserControl
-    {        
+    {
         public int index = 0;
         public delegate void RemoveLoginEventHandler(Object sender, LoginArgs e);
         public event RemoveLoginEventHandler onRemoveLogin;
@@ -23,32 +23,7 @@ namespace Opus_Proto_1
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            lblInvalid.Visible = false;
-            if (edtPassword.Text == "")
-            {
-                lblInvalid.Visible = true;
-            }
-            else if (edtUsername.Text == "")
-            {
-                lblInvalid.Visible = true;
-            }
-            else if (cF.GetCountSQL("SELECT COUNT(Name) FROM user_details WHERE Username  = '" + edtUsername.Text + "' OR"
-                + " Email  = '" + edtUsername.Text.ToLower() + "'", conn) == 0)
-            {
-                lblInvalid.Visible = true;
-            }
-            else if (cF.DecryptCipherTextToPlainText(cF.GetSingleStringSQL(
-                "SELECT Password FROM user_details WHERE Username  = '" + edtUsername.Text + "' OR"
-                + " Email  = '" + edtUsername.Text.ToLower() + "'", conn), sec_key) != edtPassword.Text)
-            {
-                lblInvalid.Visible = true;                
-            }
-            else
-            {
-                username = cF.GetSingleStringSQL("SELECT Username FROM user_details WHERE Username  = '" + edtUsername.Text + "' OR"
-                + " Email  = '" + edtUsername.Text.ToLower() + "'", conn);
-                onRemoveLogin(this, new LoginArgs(index));
-            }
+            login();
         }
         public void setButtonBackColor(Color color)
         {
@@ -88,7 +63,48 @@ namespace Opus_Proto_1
                 edtPassword.UseSystemPasswordChar = true;
                 edtPassword.PasswordChar = '*';
             }
-        }        
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if ((this.ActiveControl == edtPassword) && (keyData == Keys.Return))
+            {
+                login();
+                return true;
+            }
+            else
+            {
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+        }
+        private void login()
+        {
+            lblInvalid.Visible = false;
+            if (edtPassword.Text == "")
+            {
+                lblInvalid.Visible = true;
+            }
+            else if (edtUsername.Text == "")
+            {
+                lblInvalid.Visible = true;
+            }
+            else if (cF.GetCountSQL("SELECT COUNT(Name) FROM user_details WHERE Username  = '" + edtUsername.Text + "' OR"
+                + " Email  = '" + edtUsername.Text.ToLower() + "'", conn) == 0)
+            {
+                lblInvalid.Visible = true;
+            }
+            else if (cF.DecryptCipherTextToPlainText(cF.GetSingleStringSQL(
+                "SELECT Password FROM user_details WHERE Username  = '" + edtUsername.Text + "' OR"
+                + " Email  = '" + edtUsername.Text.ToLower() + "'", conn), sec_key) != edtPassword.Text)
+            {
+                lblInvalid.Visible = true;
+            }
+            else
+            {
+                username = cF.GetSingleStringSQL("SELECT Username FROM user_details WHERE Username  = '" + edtUsername.Text + "' OR"
+                + " Email  = '" + edtUsername.Text.ToLower() + "'", conn);
+                onRemoveLogin(this, new LoginArgs(index));
+            }
+        }
     }
     public class LoginArgs : EventArgs
     {
@@ -99,3 +115,6 @@ namespace Opus_Proto_1
         }
     }
 }
+
+        
+    
