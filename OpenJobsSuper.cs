@@ -144,6 +144,7 @@ namespace Opus_Proto_1
         }
         private void FillList(string command)
         {
+            lstJobs.Clear();
             using (MySqlConnection conn2 = new MySqlConnection(conn))
             {
                 conn2.Open();
@@ -269,6 +270,7 @@ namespace Opus_Proto_1
         {
             pnlOJS.Controls.Clear();
             LoadStartupOpenJobsSuper();
+            pageShowing--;
         }
     }
     public class OpenJobsSuperArgs : EventArgs
